@@ -1,13 +1,12 @@
 # Introdução
 
-Texto descritivo com a visão geral do projeto abordado. Inclui o contexto, o problema, os objetivos, a justificativa e o público-alvo do projeto.
+O projeto deste grupo visa a criação de uma aplicação web para a gráfica Prix do cliente Reinaldo.
+Esse projeto visa a criação de uma aplicação web que facilite o contato entre cliente e prestador de serviço.
+Desenvolvendo uma página orçamentária onde o possível cliente terá fácil acesso aos produtos disponibilizados, bem como descrições, imagens e especificações dos produto. De modo que permita ao usuário realizar um orçamento online e enviar a solicitação do mesmo para a gráfica em questão.
 
 ## Problema
-Nesse momento você deve apresentar o problema que a sua aplicação deve  resolver. No entanto, não é a hora de comentar sobre a aplicação.
+Tendo em vista a mudança em todos os setores do mercado através da popularização da tecnologia e dispositivos digitais, o cliente Reinaldo sente a necessidade de acompanhar essa tendência, de modo o problema, os objetivos, a justificativa e o público-alvo do projeto.
 
-Descreva também o contexto em que essa aplicação será usada, se  houver: empresa, tecnologias, etc. Novamente, descreva apenas o que de  fato existir, pois ainda não é a hora de apresentar requisitos  detalhados ou projetos.
-
-Nesse momento, o grupo pode optar por fazer uso  de ferramentas como Design Thinking, que permite um olhar de ponta a ponta para o problema.
 
 > **Links Úteis**:
 > - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
