@@ -1,23 +1,24 @@
 # TÍTULO DO PROJETO
 
-`CURSO`
+`CURSO` Analise e Desenvolvimento de sistemas
 
-`DISCIPLINA`
+`DISCIPLINA` - Projeto: Desenvolvimento de um Sistema Sociotécnico Inovador 
 
-`SEMESTRE`
+`SEMESTRE` Eixo 5
 
-Descrever resumidamente, em um ou dois parágrafos, o projeto que está sendo desenvolvido.
+Sistema e-comerce para Gráfica
 
 ## Integrantes
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
+* Arthur Camargos Rocha
+* Bárbara Augusta Silva Pereira
+* Henrique Augusto de Magalhães Silva
+* Raphael do Carmo Latini
+* Raquel Fernandes Negrão Soares
 
 ## Orientador
 
-* Nome completo do professor 1
+* Soraia Lúcia da Silva 1
 
 ## Instruções de utilização
 
