@@ -5,36 +5,34 @@ Esse projeto visa a criação de uma aplicação web que facilite o contato entr
 Desenvolvendo uma página orçamentária onde o possível cliente terá fácil acesso aos produtos disponibilizados, bem como descrições, imagens e especificações dos produto. De modo que permita ao usuário realizar um orçamento online e enviar a solicitação do mesmo para a gráfica em questão.
 
 ## Problema
-Tendo em vista a mudança em todos os setores do mercado através da popularização da tecnologia e dispositivos digitais, o cliente Reinaldo sente a necessidade de acompanhar essa tendência, de modo o problema, os objetivos, a justificativa e o público-alvo do projeto.
-
-
-> **Links Úteis**:
-> - [Objetivos, Problema de pesquisa e Justificativa](https://medium.com/@versioparole/objetivos-problema-de-pesquisa-e-justificativa-c98c8233b9c3)
-> - [Matriz Certezas, Suposições e Dúvidas](https://medium.com/educa%C3%A7%C3%A3o-fora-da-caixa/matriz-certezas-suposi%C3%A7%C3%B5es-e-d%C3%BAvidas-fa2263633655)
-> - [Brainstorming](https://www.euax.com.br/2018/09/brainstorming/)
+Tendo em vista a mudança em todos os setores do mercado através da popularização da tecnologia e dispositivos digitais, o cliente Reinaldo sente a necessidade de acompanhar essa tendência para se manter competitivo e também possa entregar aos clientes mais facilidades na hora de realizar orçamento.
 
 ## Objetivos
 
-Aqui você deve descrever os objetivos do trabalho indicando que o objetivo geral é desenvolver um software para solucionar o problema apresentado acima. 
+O obetivo principal deste projeto é a criação de uma aplicação web, onde apresente todos os produtos e serviços do cliente categorizados.
 
-Apresente também alguns (pelo menos 2) objetivos específicos dependendo de onde você vai querer concentrar a sua prática investigativa, ou como você vai aprofundar no seu trabalho.
- 
-> **Links Úteis**:
-> - [Objetivo geral e objetivo específico: como fazer e quais verbos utilizar](https://blog.mettzer.com/diferenca-entre-objetivo-geral-e-objetivo-especifico/)
+Como objetivos específicos temos a funcionalidade que possibilite solicitar um orçamento dos produtos de interesse junto da gráfica, através de uma forma de contato a ser definida. E também a personalização de um produto online, de modo que ao realizar o envio do orçamento possa ser possível enviar uma imagem para complementação do produto.
 
 ## Justificativa
 
-Descreva a importância ou a motivação para trabalhar com esta aplicação que você escolheu. Indique as razões pelas quais você escolheu seus objetivos específicos ou as razões para aprofundar em certos aspectos do software.
+Todos sabemos da importância da tecnologia no nosso dia-a-dia, porém essa utilização é muito subjetiva. Os objetivos foram definidos utilizando a necessidade de Reinaldo.
+Por possuir um baixo número de funcionários e atender principalmente empresas, ter uma aplicação web onde possam ser gerados orçamentos já com as imagens desejadas otimiza muito o tempo de empresas já fidelizadas por Reinaldo e também o tempo do atendimento realizado.
 
-O grupo de trabalho pode fazer uso de questionários, entrevistas e dados estatísticos, que podem ser apresentados, com o objetivo de esclarecer detalhes do problema que será abordado pelo grupo.
-
-> **Links Úteis**:
-> - [Como montar a justificativa](https://guiadamonografia.com.br/como-montar-justificativa-do-tcc/)
+Por outro lado ter uma aplicação web, onde tenha uma fácil navegação e uma clara visualização dos produtos, pode atrair novos clientes que buscam serviços prestados pelo senhor Reinaldo.
 
 ## Relação com a Extensão Universitária
 
-Relacionar a situação-problema da organização com o impacto social esperado com a implantação do sistema sociotécnico.
+Para entendermos melhor o momento socio-econômico de diversos setores do mercado, precisamos trazer uma reflexão política neste momento.
+Com a precarização do trabalho gerada pela reforma trabalhista do governo Temer pós golpe, vimos muitos funcionários amparados pela CLT serem substituídos por pessoas que devido a necessidade relizavam as mesma tarefas por um salário muito menor através de contratos que extirparam os poucos diretos antes concedidos pela CLT. Desta forma temos diversos trabalhadores desempregados, porém alguns com poder economico suficiente para abrir seu proprio empreendimento e o fizeram.
+Após esse momento de deturpação dos direitos do proletariado, tivemos um outro momento muito delicado, a pandemia. Essa se alastrou e ceifou diversas vidas, porém também gerou um impacto muito grande no mercado de trabalho, onde o presidente na época e seus ministros não possuiam capacidade moral e intelectual para lidar com o problemas. A partir desse momento ocorreu a falencia de diversas empresas e demissão em massa, onde muitos tiveram opção apenas de abrir seu próprio negócio para garantir a subsitencia familiar.
 
+Diante deste contexto vimos surgir diversas empresas em todos os ramos, poucas vingaram, porém essas que vingaram trazem consigo o advento da tecnologia que permitiu a sobrevivencia durante o período de pandemia.
+
+Ora, e o que teria o senhor Reinaldo dono de um gráfica desde 1996 a ver com toda essa história?
+Com essas novas empresas adaptadas ao meio digital, é evidenciada a necessidade de uma adequação da empresa do senhor Reinaldo, de modo que seja mais competitiva e que possua metodologias de trabalho mais confortáveis e mais avanaçadas tecnologicamente.
+ 
 ## Descrição do Parceiro
 
-Apresente uma descrição resumida sobre a organização onde o projeto será desenvolvido para que possa ser compreendido o cenário sistema sociotécnico.
+Reinaldo é homem de 59 anos, pai e dono de um gráfica. Honesto e trabalhador ele tem paixão pelo trabalho que exerce e amor pela sua gráfica.
+Reinaldo não é muito ligado em tecnologias e utiiza apenas de watsaapp com frequência. Porém tem um desejo de ter um site para sua gráfica, onde possa exibir seus produtos e facilitar o alcance a possíveis novos clientes.
+A gráfica do senhor Reinaldo é um empreendimento de renome pois já está no mercado desde 1996 entregando produtos e serviços com excelência, conta também com 2 funcionários que o auxiliam no trabalho. O público principal da gráfica são empresas, porém realiza todos os tipo de serviços comuns a gráficas com nada menos que excelência.
