@@ -22,30 +22,33 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o usuário cadastre tarefas | ALTA | 
-|RF-002| Emitir um relatório de tarefas no mês   | MÉDIA |
+|RF-001| Permitir que o cliente tenha um acesso administrador | ALTA | 
+|RF-002| Permitir que o administrador possa criar categorias   | ALTA |
+|RF-002| Permitir que o administrador possa criar produtos   | ALTA |
+|RF-003| Permitir que o administrador possa excluir categorias   | ALTA |
+|RF-004| Permitir que o administrador possa excluir produtos   | ALTA |
+|RF-005| Permitir que o administrador possa editar categorias   | ALTA |
+|RF-006| Permitir que o administrador possa editar produtos   | ALTA |
+|RF-007| Permitir que o administrador possa visualizar um histórico de todos os orçamentos   | ALTA |
+|RF-008| Permitir que o administrador possa editar texto quem somos  | MÉDIA |
+|RF-009| Permitir que usuários comuns consigam visualizar produtos  | ALTA |
+|RF-010| Permitir que usuários comuns possam solicitar orçamentos de quantos produtos desejar, desde que peencham o formulário corretamente   | ALTA |
+|RF-011| Permitir que usuários comuns possam adicionar observações de texto livre ao adiiconar um produto ao carrinho  | ALTA |
+|RF-012| Permitir que usuários comuns possam excluir produtos contidos no carrinho  | ALTA |
+|RF-013| Permitir que usuários comuns possam visualizar os produtos selecionados através do carrinho  | ALTA |
+|RF-014| Permitir que usuários comuns possam entrar em contato direto por watassp através de um botão flutuante  | ALTA |
+|RF-015| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail e telefone(?) assim que concluida uma solicitação de orçamento  |  ALTA | 
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve processar requisições do usuário em no máximo 3s |  BAIXA | 
+|RNF-002| Deve ser implementado nível de segurança para o administrador |  ALTA |
+|RNF-003| Deve conter em todas as páginas os logos das gráficas Prix e Reigraf |  ALTA |
+|RNF-004| Deve conter informações de horário de funcionamento, telefone de contato e endereço |  ALTA |
+|RNF-005| Os produtos do carrinho devem ser excluídos assim que finalizada a solicitação de um orçamento |  MÉDIA |
 
-Com base nas Histórias de Usuário, enumere os requisitos da sua solução. Classifique esses requisitos em dois grupos:
-
-- [Requisitos Funcionais
- (RF)](https://pt.wikipedia.org/wiki/Requisito_funcional):
- correspondem a uma funcionalidade que deve estar presente na
-  plataforma (ex: cadastro de usuário).
-- [Requisitos Não Funcionais
-  (RNF)](https://pt.wikipedia.org/wiki/Requisito_n%C3%A3o_funcional):
-  correspondem a uma característica técnica, seja de usabilidade,
-  desempenho, confiabilidade, segurança ou outro (ex: suporte a
-  dispositivos iOS e Android).
-Lembre-se que cada requisito deve corresponder à uma e somente uma
-característica alvo da sua solução. Além disso, certifique-se de que
-todos os aspectos capturados nas Histórias de Usuário foram cobertos.
 
 ## Restrições
 
@@ -54,13 +57,8 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode ser desenvolvido um módulo de backend        |
-
-Enumere as restrições à sua solução. Lembre-se de que as restrições geralmente limitam a solução candidata.
-
-> **Links Úteis**:
-> - [O que são Requisitos Funcionais e Requisitos Não Funcionais?](https://codificar.com.br/requisitos-funcionais-nao-funcionais/)
-> - [O que são requisitos funcionais e requisitos não funcionais?](https://analisederequisitos.com.br/requisitos-funcionais-e-requisitos-nao-funcionais-o-que-sao/)
+|02| Não pode existir um usuário além do administrador        |
+|03| Não pode existir contratação de pessoal externo à equipe pré-definida        |
 
 ## Diagrama de Casos de Uso
 
