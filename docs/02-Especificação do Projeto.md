@@ -12,7 +12,8 @@ o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a s
 
 ## Project Model Canvas
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/75726aa4-0b0e-4b2d-8857-e132798cb66a)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/e6a71b97-cad5-465a-88f2-b5fc79bacb37)
+
 
 ## Requisitos
 
