@@ -11,7 +11,7 @@ Tendo em vista a mudança em todos os setores do mercado através da populariza�
 
 O obetivo principal deste projeto é a criação de uma aplicação web, onde apresente todos os produtos e serviços do cliente categorizados.
 
-Como objetivos específicos temos a funcionalidade que possibilite solicitar um orçamento dos produtos de interesse junto da gráfica, através de uma forma de contato a ser definida. E também a personalização de um produto online, de modo que ao realizar o envio do orçamento possa ser possível enviar uma imagem para complementação do produto.
+Como objetivos específicos temos a funcionalidade que possibilite solicitar um orçamento dos produtos de interesse junto da gráfica, através de uma forma de contato a ser definida. E também a criação de um perfil administrados que consiga visualizar dentro da aplicação orçamentos solicitados, bem como realizar o gerenciamento de produtos.
 
 ## Justificativa
 
@@ -29,10 +29,10 @@ Após esse momento de deturpação dos direitos do proletariado, tivemos um outr
 Diante deste contexto vimos surgir diversas empresas em todos os ramos, poucas vingaram, porém essas que vingaram trazem consigo o advento da tecnologia que permitiu a sobrevivencia durante o período de pandemia.
 
 Ora, e o que teria o senhor Reinaldo dono de um gráfica desde 1996 a ver com toda essa história?
-Com essas novas empresas adaptadas ao meio digital, é evidenciada a necessidade de uma adequação da empresa do senhor Reinaldo, de modo que seja mais competitiva e que possua metodologias de trabalho mais confortáveis e mais avanaçadas tecnologicamente.
+Com essas novas empresas adaptadas ao meio digital, é evidenciada a necessidade de uma adequação da empresa do senhor Reinaldo, de modo que seja mais competitiva e que possua metodologias de trabalho mais confortáveis e mais avanaçadas tecnologicamente. Além de proporcionar uma plartaforma expositiva gerando uma maior divulgação seus produtos e serviço, fomentando assim o pequeno empreendedor.
  
 ## Descrição do Parceiro
 
 Reinaldo é homem de 59 anos, pai e dono de um gráfica. Honesto e trabalhador ele tem paixão pelo trabalho que exerce e amor pela sua gráfica.
 Reinaldo não é muito ligado em tecnologias e utiiza apenas de watsaapp com frequência. Porém tem um desejo de ter um site para sua gráfica, onde possa exibir seus produtos e facilitar o alcance a possíveis novos clientes.
-A gráfica do senhor Reinaldo é um empreendimento de renome pois já está no mercado desde 1996 entregando produtos e serviços com excelência, conta também com 2 funcionários que o auxiliam no trabalho. O público principal da gráfica são empresas, porém realiza todos os tipo de serviços comuns a gráficas com nada menos que excelência.
+A gráfica do senhor Reinaldo é um empreendimento de renome pois já está no mercado desde 1996 entregando produtos e serviços com excelência, conta também com 2 funcionários que o auxiliam no trabalho. O público principal da gráfica são empresas(dentre elas gigantes do mercado em diversos segmentos), porém realiza todos os tipo de serviços comuns a gráficas com nada menos que excelência.
