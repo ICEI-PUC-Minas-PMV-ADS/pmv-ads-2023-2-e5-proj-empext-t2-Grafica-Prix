@@ -32,23 +32,28 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-006| Permitir que o administrador possa editar produtos   | ALTA |
 |RF-007| Permitir que o administrador possa visualizar um histórico de todos os orçamentos   | ALTA |
 |RF-008| Permitir que o administrador possa editar texto quem somos  | MÉDIA |
-|RF-009| Permitir que usuários comuns consigam visualizar produtos  | ALTA |
-|RF-010| Permitir que usuários comuns possam solicitar orçamentos de quantos produtos desejar, desde que peencham o formulário corretamente   | ALTA |
-|RF-011| Permitir que usuários comuns possam adicionar observações de texto livre ao adiiconar um produto ao carrinho  | ALTA |
-|RF-012| Permitir que usuários comuns possam excluir produtos contidos no carrinho  | ALTA |
-|RF-013| Permitir que usuários comuns possam visualizar os produtos selecionados através do carrinho  | ALTA |
-|RF-014| Permitir que usuários comuns possam entrar em contato direto por watassp através de um botão flutuante  | ALTA |
-|RF-015| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail e telefone(?) assim que concluida uma solicitação de orçamento  |  ALTA | 
+|RF-009| Permitir que usuários comuns consigam criar uma conta e realizar login, mediante o preenchimento de um formuláruio  | ALTA |
+|RF-010| Permitir que usuários comuns consigam visualizar produtos  | ALTA |
+|RF-011| Permitir que usuários comuns consigam adicionar quantos produtos quisererem ao carrinho, desde que esteja logado | ALTA |
+|RF-012| Permitir que usuários comuns possam adicionar observações de texto livre ao adiiconar um produto ao carrinho  | ALTA |
+|RF-013| Permitir que usuários comuns possam excluir produtos contidos no carrinho  | ALTA |
+|RF-014| Permitir que usuários comuns possam visualizar os produtos selecionados através do carrinho  | ALTA |
+|RF-015| Permitir que usuários comuns possam entrar em contato direto por watassp através de um botão flutuante  | ALTA |
+|RF-016| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail, telefone e endereço (contidos no cadastro do usuário) assim que concluida uma solicitação de orçamento  |  ALTA | 
+|RF-017| Permitir que o administrador possa gerenciar os pedidos, de modo que possa atribuir um status: Fechado, negociando e venda concluída. Sempre uma solicitação de orçamento for enviada esta deve conter automaticamente o status de nogociando  |  ALTA | 
+|RF-018| Permitir que o administrador possa visulizar um relatório de quantos pedidos possuem cada um dos status.  |  ALTA | 
+|RF-019| Permitir que o administrador possa visualizar a quantidade de cliques cada um dos produtos teve |  ALTA | 
+
 
 ### Requisitos não Funcionais
 
 |ID     | Descrição do Requisito  |Prioridade |
 |-------|-------------------------|----|
 |RNF-001| O sistema deve ser responsivo para rodar em um dispositivos móvel | MÉDIA | 
-|RNF-002| Deve ser implementado nível de segurança para o administrador |  ALTA |
+|RNF-002| Deve ser implementado nível de segurança para o administrador e para os usuários comuns |  ALTA |
 |RNF-003| Deve conter em todas as páginas os logos das gráficas Prix e Reigraf |  ALTA |
 |RNF-004| Deve conter informações de horário de funcionamento, telefone de contato e endereço |  ALTA |
-|RNF-005| Os produtos do carrinho devem ser excluídos assim que finalizada a solicitação de um orçamento |  MÉDIA |
+|RNF-005| Os produtos do carrinho devem ser excluídos assim que finalizada a solicitação de um orçamento |  BAIXA |
 
 
 ## Restrições
@@ -58,7 +63,6 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 |ID| Restrição                                             |
 |--|-------------------------------------------------------|
 |01| O projeto deverá ser entregue até o final do semestre |
-|02| Não pode existir um usuário além do administrador        |
 |03| Não pode existir contratação de pessoal externo à equipe pré-definida        |
 
 ## Diagrama de Casos de Uso
