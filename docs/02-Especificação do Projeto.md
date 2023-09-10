@@ -72,10 +72,11 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ## Modelo ER (Projeto Conceitual)
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/fc476edf-c325-40c4-ae9d-c3be87cc9809)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/54809372-2255-4ff3-be4c-09d2dbebe517)
+
 
 
 ## Projeto da Base de Dados
 
-![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/523128cc-0cbe-40fa-b44b-ad510dd46be6)
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/21910399-bdf3-4bd3-bd2b-0f907ee2c540)
 
