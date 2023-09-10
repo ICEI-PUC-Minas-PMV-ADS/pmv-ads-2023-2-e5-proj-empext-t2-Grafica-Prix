@@ -80,3 +80,9 @@ O projeto está restrito pelos itens apresentados na tabela a seguir.
 
 ![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-grupo-3-turma-2/assets/91069587/21910399-bdf3-4bd3-bd2b-0f907ee2c540)
 
+
+## Planekamento das sprints
+
+É importante ressalatra que este tópico possa sofrer alterações, já que durante o decorrer do projeto é possível que prioridades surjam e serão alinhadas junto ao cliente.
+
+https://dev.azure.com/mystockgroup/Prix/_sprints/taskboard/Prix%20Team/Prix/Sprint%2001
