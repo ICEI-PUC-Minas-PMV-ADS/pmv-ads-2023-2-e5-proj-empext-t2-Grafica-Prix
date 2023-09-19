@@ -1,5 +1,4 @@
-# TÍTULO DO PROJETO
-
+# Gráfica Prix
 `CURSO` Analise e Desenvolvimento de sistemas
 
 `DISCIPLINA` - Projeto: Desenvolvimento de um Sistema Sociotécnico Inovador 
