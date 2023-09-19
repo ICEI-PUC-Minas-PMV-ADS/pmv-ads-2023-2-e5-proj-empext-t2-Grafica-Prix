@@ -1,11 +1,9 @@
 # Introdução
 
-O projeto deste grupo visa a criação de uma aplicação web para a gráfica Prix do cliente Reinaldo.
-Esse projeto visa a criação de uma aplicação web que facilite o contato entre cliente e prestador de serviço.
-Desenvolvendo uma página orçamentária onde o possível cliente terá fácil acesso aos produtos disponibilizados, bem como descrições, imagens e especificações dos produto. De modo que permita ao usuário realizar um orçamento online e enviar a solicitação do mesmo para a gráfica em questão.
+O projeto deste grupo para o 5ª semestre do curso de Análise e Desenvolvimento, tem como objetivo a criação de uma aplicação Web para o cliente Prix Editora Gráfica. O foco do projeto é uma aplicação que facilite o contato entre os clientes e o prestador de serviço, desenvolvendo uma página orçamentária na qual será possível o cliente ter acesso aos produtos ofertados pela gráfica, bem como suas descrições, imagens e especificações dos produto, de modo que permita ao usuário realizar um orçamento completo de maneira online e tendo sua solicitação, caso decida fechar o orçamento, enviado direto para o e-mail da empresa para que o seu pedido possa ser fechado.
 
 ## Problema
-Tendo em vista a mudança em todos os setores do mercado através da popularização da tecnologia e dispositivos digitais, o cliente Reinaldo sente a necessidade de acompanhar essa tendência para se manter competitivo e também possa entregar aos clientes mais facilidades na hora de realizar orçamento.
+Tendo em vista a mudança no mercado por conta da popularização da tecnologia e de dispositivos digitais, para que a Gráfica pudesse acompanhar esta evolução e se manter competitivo no mercado gráfico, existiu a necessidade de também se integrar no mundo tecnológico por meio de um website que pudesse captar novos clientes não só local como de qualquer outra parte do Brasil. 
 
 ## Objetivos
 
