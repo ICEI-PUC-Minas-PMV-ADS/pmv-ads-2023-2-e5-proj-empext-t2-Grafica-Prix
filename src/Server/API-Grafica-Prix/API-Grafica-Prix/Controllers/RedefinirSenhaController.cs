@@ -36,7 +36,7 @@ namespace API_Grafica_Prix.Controllers
             
             string novaSenha = _senhaService.GerarSenhaAleatoria(6); 
 
-            // Atualizar a senha do usuário no banco de dados
+            
             usuario.Senha = BCrypt.Net.BCrypt.HashPassword(novaSenha);
             _context.usuarios.Update(usuario);
             await _context.SaveChangesAsync();
@@ -56,19 +56,18 @@ namespace API_Grafica_Prix.Controllers
 
             if (usuario == null) return BadRequest();
 
-            // Verifique se a senha atual é válida
             if (!BCrypt.Net.BCrypt.Verify(model.SenhaAtual, usuario.Senha))
             {
                 return BadRequest("Senha atual incorreta.");
             }
 
-            // Verifique se a nova senha e a confirmação de senha são iguais
+            
             if (model.NovaSenha != model.ConfirmacaoSenha)
             {
                 return BadRequest("A nova senha e a confirmação de senha não coincidem.");
             }
 
-            // Atualize a senha
+            
             usuario.Senha = BCrypt.Net.BCrypt.HashPassword(model.NovaSenha);
 
             _context.usuarios.Update(usuario);

@@ -32,7 +32,21 @@ namespace API_Grafica_Prix.Controllers
             [HttpPost]
             public async Task<ActionResult> Criar(Usuario model)
             {
-                model.Senha = BCrypt.Net.BCrypt.HashPassword(model.Senha);
+
+            var existiEmail= await _context.usuarios.FirstOrDefaultAsync(u=>u.Email==model.Email);
+            if (existiEmail != null)
+            {
+
+                return BadRequest("Email já está em uso.");
+            }
+            var existiCPF = await _context.usuarios.FirstOrDefaultAsync(u => u.Cpf == model.Cpf);
+            if (existiCPF != null)
+            {
+                
+                return BadRequest("CPF já está em uso.");
+            }
+
+            model.Senha = BCrypt.Net.BCrypt.HashPassword(model.Senha);
 
                 _context.usuarios.Add(model);
                 await _context.SaveChangesAsync();
