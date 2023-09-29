@@ -5,7 +5,11 @@ import { StyledButton } from "./styles";
 export default function Button(props) {
   return (
     <StyledButton {...props} disabled={props.loading || props.disabled}>
-      {props.loading ? <Spinner size={props.size} /> : props.children}
+      {props.loading ? (
+        <Spinner size={props.size} margin="0" />
+      ) : (
+        props.children
+      )}
     </StyledButton>
   );
 }

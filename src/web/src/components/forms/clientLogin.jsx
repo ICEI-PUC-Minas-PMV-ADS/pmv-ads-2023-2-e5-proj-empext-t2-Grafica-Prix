@@ -3,12 +3,27 @@ import Form from "../formComponents";
 import useAuth from "../../context/auth";
 import { TextForgotPassword } from "../../pages/login/styles";
 import { Link } from "react-router-dom";
+import * as Yup from "yup";
 
 export default function ClientLogin() {
   const { login } = useAuth();
+  const [loading, setLoading] = useState(false);
+
+  const validationSchema = Yup.object().shape({
+    email: Yup.string().required("Este campo é obrigatório"),
+    senha: Yup.string().required("Este campo é obrigatório"),
+  });
 
   function handleSubmir(data) {
-    login(data).then((res) => console.log(res));
+    setLoading(true);
+    login(data).then(
+      (res) => {
+        setLoading(false);
+      },
+      (e) => {
+        setLoading(false);
+      }
+    );
   }
 
   return (
@@ -18,17 +33,28 @@ export default function ClientLogin() {
         senha: "",
       }}
       onSubmit={handleSubmir}
-      gap="10px"
+      gap="5px"
+      validationSchema={validationSchema}
     >
-      <Form.Input name="email" placeHolder="Email" />
-      <Form.Input name="senha" placeHolder="Senha" />
+      <Form.Input
+        name="email"
+        placeHolder="Ex: joaob3@gmail.com"
+        label="Email"
+      />
+      <Form.Input
+        name="senha"
+        placeHolder="********"
+        label="Senha"
+        type="password"
+      />
 
-      <Form.AlignContent justify="space-between">
+      <Form.AlignContent justify="space-between" break="1170px">
         <Form.Button
           type="submit"
           title="Entrar"
-          width="fit-content"
+          minWidth="fit-content"
           padding="7px 30px"
+          loading={loading}
         />
         <TextForgotPassword>
           Esqueceu sua senha?{" "}

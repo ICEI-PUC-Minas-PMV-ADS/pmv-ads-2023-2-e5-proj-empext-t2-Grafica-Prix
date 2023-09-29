@@ -24,7 +24,6 @@ export default function Login(props) {
     <ContainerLogin>
       <ContainerForm>
         <Logo src={logo} />
-
         <JustifyForm>
           <FormOptions>
             <Option border={form === "login"} onClick={() => setForm("login")}>
@@ -40,7 +39,7 @@ export default function Login(props) {
           {form === "login" ? (
             <ClientLogin width="fit-content" />
           ) : (
-            <ClientRegister />
+            <ClientRegister setForm={setForm} />
           )}
         </JustifyForm>
       </ContainerForm>

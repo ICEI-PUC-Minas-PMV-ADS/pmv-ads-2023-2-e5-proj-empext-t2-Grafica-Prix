@@ -52,8 +52,8 @@ export const InputGroup = styled.div`
 
 export const InputStyle = styled.input`
   width: 100%;
-  padding: ${(props) => (props.search ? "10px 10px 10px 40px" : "10px")};
-  border-radius: 10px;
+  padding: ${(props) => (props.search ? "10px 10px 10px 40px" : "7px 10px")};
+  border-radius: 5px;
   border: 1px solid #e1e1e1;
   outline: none;
   font-size: 12px;
@@ -68,7 +68,6 @@ export const ErrorMessage = styled.p`
   text-align: left;
   color: #dc3545;
   font-size: 12px;
-  margin: 10px 0;
 `;
 
 export const AlignedContentStyled = styled.div`
@@ -77,4 +76,20 @@ export const AlignedContentStyled = styled.div`
   justify-content: ${(props) => props.justify || "flex-start"};
   align-items: ${(props) => props.align || "center"};
   gap: ${(props) => props.gap || "10px"};
+
+  @media (max-width: ${(props) => props.break}) {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`;
+
+export const RequiredAsterisk = styled.span`
+  color: #dc3545;
+`;
+
+export const ContainerEye = styled.div`
+  position: absolute;
+  right: 15px;
+  bottom: ${(props) => (props.errorMessage ? "15px" : "0")};
+  cursor: pointer;
 `;

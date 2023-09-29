@@ -1,12 +1,39 @@
 import React, { useState } from "react";
 import Form from "../../components/formComponents";
 import useAuth from "../../context/auth";
+import * as Yup from "yup";
+import { ErrorMessage } from "../formComponents/styles";
 
-export default function ClientRegister(props) {
+export default function ClientRegister({ setForm }) {
   const { register } = useAuth();
+  const [loading, setLoading] = useState(false);
+  const [messageError, setMessageError] = useState({
+    title: "",
+  });
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Este campo é obrigatório"),
+    email: Yup.string().required("Este campo é obrigatório"),
+    telefone: Yup.string().required("Este campo é obrigatório"),
+    senha: Yup.string().required("Este campo é obrigatório"),
+    cpf: Yup.string().nullable(),
+    endereco: Yup.string().nullable(),
+  });
 
   function handleSubmir(data) {
-    register(data).then((res) => console.log(res));
+    setLoading(true);
+    register(data).then(
+      (res) => {
+        setLoading(false);
+        setForm("login");
+      },
+      (e) => {
+        setLoading(false);
+        setMessageError({
+          title: "Erro ao efetuar o cadastro",
+        });
+      }
+    );
   }
 
   return (
@@ -20,20 +47,48 @@ export default function ClientRegister(props) {
         endereco: "",
       }}
       onSubmit={handleSubmir}
-      gap="10px"
+      gap="5px"
+      validationSchema={validationSchema}
     >
-      <Form.Input name="name" placeHolder="Nome completo" />
-      <Form.Input name="email" placeHolder="Email" />
-      <Form.Input name="telefone" placeHolder="Telefone" />
-      <Form.Input name="senha" placeHolder="Senha" />
-      <Form.Input name="cpf" placeHolder="CPF" />
-      <Form.Input name="endereco" placeHolder="Endereço" />
+      <Form.Input
+        name="name"
+        placeHolder="Ex: João Batista"
+        label="Nome completo"
+        required
+      />
+      <Form.Input
+        name="email"
+        placeHolder="Ex: joaob3@gmail.com"
+        label="Email"
+        required
+      />
+      <Form.Input
+        name="telefone"
+        placeHolder="Ex: (24) 99786-1974"
+        label="Telefone"
+        required
+      />
+      <Form.Input
+        name="senha"
+        placeHolder="********"
+        label="Senha"
+        required
+        type="password"
+      />
+      <Form.Input name="cpf" placeHolder="Ex: 560.650.390-55" label="CPF" />
+      <Form.Input
+        name="endereco"
+        placeHolder="Ex: Rua A - 13, Belo Horizonte..."
+        label="Endereço"
+      />
       <Form.Button
         type="submit"
         title="Cadastrar"
-        width="fit-content"
+        minWidth="fit-content"
         padding="7px 30px"
+        loading={loading}
       />
+      {messageError.title && <ErrorMessage>{messageError.title}</ErrorMessage>}
     </Form>
   );
 }

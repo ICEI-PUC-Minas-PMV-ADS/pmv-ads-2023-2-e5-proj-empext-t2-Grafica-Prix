@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const StyledButton = styled.button`
-  min-width: ${(props) => props.width || "100px"};
+  min-width: ${(props) => props.minWidth || "100px"};
   width: ${(props) => {
     if (props.delete) return "10px";
     else if (props.width) return props.width;
@@ -18,7 +18,7 @@ export const StyledButton = styled.button`
     else return "#fff";
   }};
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   background-color: #ff5757;
   position: relative;
   margin: ${(props) => {

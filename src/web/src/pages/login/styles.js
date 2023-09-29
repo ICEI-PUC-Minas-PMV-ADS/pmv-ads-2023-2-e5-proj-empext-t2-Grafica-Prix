@@ -8,10 +8,19 @@ export const ContainerLogin = styled.div`
 `;
 
 export const ContainerForm = styled.div`
+  width: 100%;
   background: linear-gradient(135deg, #f2f2f2 0%, white 71%);
   height: 100vh;
   flex: 2;
   padding: 20px 50px;
+
+  @media (max-width: 810px) {
+    padding: 20px 20%;
+  }
+
+  @media (max-width: 500px) {
+    padding: 20px 10%;
+  }
 `;
 
 export const ContainerImage = styled.div`
@@ -21,7 +30,7 @@ export const ContainerImage = styled.div`
   position: relative;
   padding: 50px;
 
-  @media (max-width: 700px) {
+  @media (max-width: 810px) {
     display: none;
   }
 `;
@@ -80,8 +89,8 @@ export const JustifyForm = styled.div`
   height: 100%;
   justify-content: flex-start;
   flex-direction: column;
-  gap: 30px;
-  margin-top: 60px;
+  gap: 10px;
+  margin-top: 30px;
 `;
 
 export const TextForgotPassword = styled.p`
