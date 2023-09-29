@@ -85,7 +85,8 @@ export default function ClientRegister({ setForm }) {
         type="submit"
         title="Cadastrar"
         minWidth="fit-content"
-        padding="7px 30px"
+        padding="10px 30px"
+        margin="20px 0 0 0"
         loading={loading}
       />
       {messageError.title && <ErrorMessage>{messageError.title}</ErrorMessage>}

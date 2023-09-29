@@ -47,22 +47,20 @@ export default function ClientLogin() {
         label="Senha"
         type="password"
       />
-
-      <Form.AlignContent justify="space-between" break="1170px">
-        <Form.Button
-          type="submit"
-          title="Entrar"
-          minWidth="fit-content"
-          padding="7px 30px"
-          loading={loading}
-        />
-        <TextForgotPassword>
-          Esqueceu sua senha?{" "}
-          <Link style={{ color: "#ff5757", textDecoration: "none" }}>
-            Recuperar senha
-          </Link>
-        </TextForgotPassword>
-      </Form.AlignContent>
+      <Form.Button
+        type="submit"
+        title="Entrar"
+        minWidth="fit-content"
+        padding="10px 30px"
+        margin="20px 0 0 0"
+        loading={loading}
+      />
+      <TextForgotPassword>
+        Esqueceu sua senha?{" "}
+        <Link style={{ color: "#ff5757", textDecoration: "none" }}>
+          Recuperar senha
+        </Link>
+      </TextForgotPassword>
     </Form>
   );
 }

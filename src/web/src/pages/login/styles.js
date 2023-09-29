@@ -12,9 +12,9 @@ export const ContainerForm = styled.div`
   background: linear-gradient(135deg, #f2f2f2 0%, white 71%);
   height: 100vh;
   flex: 2;
-  padding: 20px 50px;
+  padding: 20px 100px;
 
-  @media (max-width: 810px) {
+  @media (max-width: 900px) {
     padding: 20px 20%;
   }
 
