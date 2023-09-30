@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import { ContainerSelector, Selector, TextSelector } from "./styles";
 import Container from "../container";
 
-export default function FormSelector({ selectors, maxWidth, gap }) {
-  const [actualSelector, setActualSelector] = useState(0);
+export default function FormSelector({
+  selectors,
+  maxWidth,
+  gap,
+  defaultSelector,
+}) {
+  const [actualSelector, setActualSelector] = useState(defaultSelector || 0);
 
   return (
     <Container gap={gap} maxWidth={maxWidth}>

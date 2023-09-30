@@ -25,7 +25,7 @@ namespace API_Grafica_Prix.Services
                     {
                         From = new MailAddress("prixgraficamg@gmail.com"),
                         Subject = "Redefinição de Senha",
-                        Body = $"Sua nova senha é: {novaSenha}. Clique no link para fazer login e atualizar sua senha: http://localhost:5173/login?next=/profile/password/",
+                        Body = $"Sua nova senha é: {novaSenha}. Clique no link para fazer login e atualizar sua senha: http://localhost:5173/login?next=/profile?form=1",
                         IsBodyHtml = false,
                     };
 
