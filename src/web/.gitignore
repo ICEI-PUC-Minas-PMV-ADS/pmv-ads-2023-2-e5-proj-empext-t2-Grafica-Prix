@@ -22,3 +22,6 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Servidor: cd Server/API-Grafica-Prix/API-Grafica-Prix
+# Client: cd web

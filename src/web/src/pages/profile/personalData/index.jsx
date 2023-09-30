@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Form from "../../components/formComponents";
-import useAuth from "../../context/auth";
+import Form from "../../../components/formComponents";
 import * as Yup from "yup";
-import { ErrorMessage } from "../formComponents/styles";
+import { ErrorMessage } from "../../../components/formComponents/styles";
+import http from "../../../services/http";
 
-export default function ClientRegister({ setForm }) {
-  const { register } = useAuth();
+export default function FormPersonalData(props) {
   const [loading, setLoading] = useState(false);
   const [messageError, setMessageError] = useState({
     title: "",
@@ -15,14 +14,13 @@ export default function ClientRegister({ setForm }) {
     name: Yup.string().required("Este campo é obrigatório"),
     email: Yup.string().required("Este campo é obrigatório"),
     telefone: Yup.string().required("Este campo é obrigatório"),
-    senha: Yup.string().required("Este campo é obrigatório"),
     cpf: Yup.string().nullable(),
     endereco: Yup.string().nullable(),
   });
 
   function handleSubmit(data) {
     setLoading(true);
-    register(data).then(
+    http.post("", data).then(
       (res) => {
         setLoading(false);
         setForm("login");
@@ -35,7 +33,6 @@ export default function ClientRegister({ setForm }) {
       }
     );
   }
-
   return (
     <Form
       data={{
@@ -68,13 +65,6 @@ export default function ClientRegister({ setForm }) {
         label="Telefone"
         required
       />
-      <Form.Input
-        name="senha"
-        placeHolder="********"
-        label="Senha"
-        required
-        type="password"
-      />
       <Form.Input name="cpf" placeHolder="Ex: 560.650.390-55" label="CPF" />
       <Form.Input
         name="endereco"
@@ -83,7 +73,7 @@ export default function ClientRegister({ setForm }) {
       />
       <Form.Button
         type="submit"
-        title="Cadastrar"
+        title="Confirmar"
         minWidth="fit-content"
         padding="10px 30px"
         margin="5px 0 0 0"

@@ -52,7 +52,7 @@ export const InputGroup = styled.div`
 
 export const InputStyle = styled.input`
   width: 100%;
-  padding: ${(props) => (props.search ? "10px 10px 10px 40px" : "10px 10px")};
+  padding: ${(props) => (props.search ? "10px 10px 10px 40px" : "7px 10px")};
   border-radius: 5px;
   border: 1px solid #e1e1e1;
   outline: none;
@@ -90,6 +90,6 @@ export const RequiredAsterisk = styled.span`
 export const ContainerEye = styled.div`
   position: absolute;
   right: 15px;
-  bottom: ${(props) => (props.errorMessage ? "15px" : "3px")};
+  bottom: ${(props) => (props.errorMessage ? "15px" : "0")};
   cursor: pointer;
 `;

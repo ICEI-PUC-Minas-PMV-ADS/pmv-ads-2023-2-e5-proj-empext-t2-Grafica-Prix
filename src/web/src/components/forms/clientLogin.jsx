@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import Form from "../formComponents";
 import useAuth from "../../context/auth";
 import { TextForgotPassword } from "../../pages/login/styles";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 
 export default function ClientLogin() {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
+
+  const navigate = useNavigate();
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Este campo é obrigatório"),
@@ -52,12 +54,15 @@ export default function ClientLogin() {
         title="Entrar"
         minWidth="fit-content"
         padding="10px 30px"
-        margin="20px 0 0 0"
+        margin="5px 0 0 0"
         loading={loading}
       />
       <TextForgotPassword>
         Esqueceu sua senha?{" "}
-        <Link style={{ color: "#ff5757", textDecoration: "none" }}>
+        <Link
+          to="/recover-password/"
+          style={{ color: "#ff5757", textDecoration: "none" }}
+        >
           Recuperar senha
         </Link>
       </TextForgotPassword>
