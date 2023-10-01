@@ -1,15 +1,18 @@
 import React, { useState } from "react";
 import Form from "../../../components/formComponents";
 import http from "../../../services/http";
+import useAuth from "../../../context/auth";
 
 export default function UserPasswordManagement() {
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
 
   function handleUpdatePassword(values) {
     setLoading(true);
 
     http
-      .patch(`/api/redefinir-senha/${"id"}`, {
+      .patch(`/api/redefinir-senha/${user.id}`, {
+        id: user.id,
         senhaAtual: values.senhaAtual,
         novaSenha: values.novaSenha,
         confirmacaoSenha: values.confirmacaoSenha,
