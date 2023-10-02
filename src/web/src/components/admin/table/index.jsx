@@ -1,35 +1,39 @@
-import React, { useMemo, useState } from "react";
+import { useEffect } from "react";
 import { TableStyles, Td, Th, Tr } from "./styles";
 
 export default function Table(props) {
   let newData = [];
 
+  useEffect(() => {}, []);
+
   props.data?.forEach((item) => {
-    let obj = [];
+    let items = [];
     for (let key in item) {
-      obj.push({
-        key: key,
-        content: item[key],
-      });
+      items[key] = item[key];
     }
 
-    newData.push(obj);
+    newData.push(items);
   });
+
+  function renderDatas(row, column) {
+    return row[column.key];
+  }
 
   return (
     <TableStyles>
       <Tr>
         {props.columns?.map((column) => {
-          return <Th>{column.label}</Th>;
+          return <Th countColumns={props.columns.length}>{column.label}</Th>;
         })}
       </Tr>
-      {newData?.map((data) => {
+      {newData?.map((row) => {
         return (
           <Tr>
-            {data.map((obj, index) => {
-              console.log(obj.key, props.columns[index].key);
+            {props.columns.map((column) => {
               return (
-                <Td>{props.columns[index].key === obj.key && obj.content}</Td>
+                <Td countColumns={props.columns.length}>
+                  {renderDatas(row, column)}
+                </Td>
               );
             })}
           </Tr>

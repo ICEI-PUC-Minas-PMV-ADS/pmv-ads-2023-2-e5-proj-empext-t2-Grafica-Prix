@@ -10,17 +10,24 @@ export const TableStyles = styled.table`
 
 export const Tr = styled.tr`
   width: 100%;
-  padding: 5px;
+  padding: 5px 30px;
   border-bottom: 1px solid #e1e1e1;
   display: flex;
   justify-content: space-between;
 `;
 
 export const Th = styled.th`
+  width: ${(props) => `calc(100% / ${props.countColumns})`};
   font-weight: 600;
   font-size: 12px;
+  display: flex;
+  justify-content: center;
 `;
 
 export const Td = styled.td`
+  width: ${(props) => `calc(100% / ${props.countColumns})`};
   font-size: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
