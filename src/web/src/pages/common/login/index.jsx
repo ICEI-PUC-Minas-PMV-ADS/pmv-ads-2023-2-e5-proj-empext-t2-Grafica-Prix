@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import ClientLogin from "../../components/forms/clientLogin";
-import ClientRegister from "../../components/forms/clientRegister";
+import ClientLogin from "../../../components/common/forms/clientLogin";
+import ClientRegister from "../../../components/common/forms/clientRegister";
 import {
   ContainerForm,
   ContainerImage,
@@ -14,9 +14,9 @@ import {
   TextOption,
   TitleImage,
 } from "./styles";
-import image from "../../assets/image-login-removebg-preview.png";
-import logo from "../../assets/logo-prix-removebg-preview 1.png";
-import useAuth from "../../context/auth";
+import image from "../../../assets/image-login-removebg-preview.png";
+import logo from "../../../assets/logo-prix-removebg-preview 1.png";
+import useAuth from "../../../context/auth";
 import { Navigate } from "react-router";
 
 export default function Login(props) {

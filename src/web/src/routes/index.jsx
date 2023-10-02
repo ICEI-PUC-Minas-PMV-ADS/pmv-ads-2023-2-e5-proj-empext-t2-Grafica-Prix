@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
-import Login from "../pages/login";
-import RecoverPassoword from "../pages/recoverPassword";
-import Profile from "../pages/profile";
-import Home from "../pages/home";
+import Login from "../pages/common/login";
+import RecoverPassoword from "../pages/common/recoverPassword";
+import Profile from "../pages/client/profile";
+import Home from "../pages/client/home";
 import Admin from "../pages/admin";
 import Dashboard from "../pages/admin/dashboard";
 import Categories from "../pages/admin/categories";
