@@ -1,5 +1,6 @@
 import { useEffect } from "react";
-import { TableStyles, Td, Th, Tr } from "./styles";
+import { ContainerData, TableStyles, Td, Th, Tr } from "./styles";
+import Paginator from "../paginator";
 
 export default function Table(props) {
   let newData = [];
@@ -20,25 +21,28 @@ export default function Table(props) {
   }
 
   return (
-    <TableStyles>
+    <TableStyles {...props}>
       <Tr>
         {props.columns?.map((column) => {
           return <Th countColumns={props.columns.length}>{column.label}</Th>;
         })}
       </Tr>
-      {newData?.map((row) => {
-        return (
-          <Tr>
-            {props.columns.map((column) => {
-              return (
-                <Td countColumns={props.columns.length}>
-                  {renderDatas(row, column)}
-                </Td>
-              );
-            })}
-          </Tr>
-        );
-      })}
+      <ContainerData>
+        {newData?.map((row) => {
+          return (
+            <Tr>
+              {props.columns.map((column) => {
+                return (
+                  <Td countColumns={props.columns.length}>
+                    {renderDatas(row, column)}
+                  </Td>
+                );
+              })}
+            </Tr>
+          );
+        })}
+      </ContainerData>
+      <Paginator />
     </TableStyles>
   );
 }

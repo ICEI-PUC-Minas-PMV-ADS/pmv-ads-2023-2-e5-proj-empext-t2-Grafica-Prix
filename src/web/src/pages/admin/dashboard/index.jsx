@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { ContainerActions } from "./styles";
+import { ContainerActions, ContainerClients } from "./styles";
 import TitlePage from "../../../components/admin/titlePages";
 import Container from "../../../components/container";
 import Section from "../../../components/admin/section";
 import Table from "../../../components/admin/table";
 import { BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
+import Divisor from "../../../components/common/divisor";
+import Form from "../../../components/formComponents";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
@@ -81,7 +83,14 @@ export default function Dashboard(props) {
         <TitlePage>Painel</TitlePage>
         <Section></Section>
         <Section flex="2">
-          <Table titles={titles} data={dataWithAction} columns={columns} />
+          <Divisor>
+            <ContainerClients>
+              <Form>
+                <Form.Input name="search" />
+              </Form>
+              <Table titles={titles} data={dataWithAction} columns={columns} />
+            </ContainerClients>
+          </Divisor>
         </Section>
       </Container>
     </>

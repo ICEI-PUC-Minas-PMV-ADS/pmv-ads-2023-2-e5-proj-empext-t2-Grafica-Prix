@@ -10,7 +10,7 @@ export const TableStyles = styled.table`
 
 export const Tr = styled.tr`
   width: 100%;
-  padding: 5px 30px;
+  padding: 5px;
   border-bottom: 1px solid #e1e1e1;
   display: flex;
   justify-content: space-between;
@@ -30,4 +30,9 @@ export const Td = styled.td`
   display: flex;
   justify-content: center;
   align-items: center;
+`;
+
+export const ContainerData = styled.div`
+  overflow-y: auto;
+  max-height: 100%;
 `;
