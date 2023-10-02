@@ -1,9 +1,9 @@
-import FormSelector from "../../components/formSelector";
+import FormSelector from "../../../components/common/formSelector";
 import UserPasswordManagement from "./password";
 import FormPersonalData from "./personalData";
 import { useSearchParams } from "react-router-dom";
-import useAuth from "../../context/auth";
-import ProtectedRoute from "../../services/auth";
+import useAuth from "../../../context/auth";
+import ProtectedRoute from "../../../services/auth";
 
 export default function Profile() {
   const { user } = useAuth();

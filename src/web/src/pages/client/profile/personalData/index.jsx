@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Form from "../../../components/formComponents";
+import Form from "../../../../components/common/formComponents";
 import * as Yup from "yup";
-import { ErrorMessage } from "../../../components/formComponents/styles";
-import http from "../../../services/http";
+import { ErrorMessage } from "../../../../components/common/formComponents/styles";
+import http from "../../../../services/http";
 
 export default function FormPersonalData({ data }) {
   const [loading, setLoading] = useState(false);

@@ -2,7 +2,7 @@ import ProtectedRoute from "../../services/auth";
 import { Outlet } from "react-router";
 import { Content } from "./styles";
 import Sidebar from "../../components/admin/sidebar";
-import Container from "../../components/container";
+import Container from "../../components/common/container";
 
 export default function Admin() {
   return (

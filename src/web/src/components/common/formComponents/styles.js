@@ -19,8 +19,13 @@ export const InputGroup = styled.div`
   justify-content: ${(props) => props.justify || "unset"};
   gap: ${(props) => props.gap || "5px"};
   position: relative;
+  max-width: ${(props) => props.maxWidth};
   width: ${(props) => (props.width === "fit" ? "fit-content" : "100%")};
   align-items: ${(props) => props.align || "unset"};
+  margin: ${(props) => {
+    if (props.marginCenter) return "0 auto";
+    else return props.margin;
+  }};
 
   .select__control {
     height: auto;
@@ -52,7 +57,7 @@ export const InputGroup = styled.div`
 
 export const InputStyle = styled.input`
   width: 100%;
-  padding: ${(props) => (props.search ? "10px 10px 10px 40px" : "7px 10px")};
+  padding: ${(props) => (props.search ? "10px 40px 10px 10px" : "7px 10px")};
   border-radius: 5px;
   border: 1px solid #e1e1e1;
   outline: none;
@@ -92,4 +97,10 @@ export const ContainerEye = styled.div`
   right: 15px;
   bottom: ${(props) => (props.errorMessage ? "15px" : "0")};
   cursor: pointer;
+`;
+
+export const Search = styled.span`
+  position: absolute;
+  top: 9px;
+  right: 8px;
 `;

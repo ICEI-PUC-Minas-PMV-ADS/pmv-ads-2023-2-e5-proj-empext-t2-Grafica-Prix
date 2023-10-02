@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Form from "../formComponents";
-import useAuth from "../../context/auth";
-import { TextForgotPassword } from "../../pages/login/styles";
+import Form from "../../../components/common/formComponents";
+import useAuth from "../../../context/auth";
+import { TextForgotPassword } from "../../../pages/common/login/styles";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useQueryClient } from "@tanstack/react-query";

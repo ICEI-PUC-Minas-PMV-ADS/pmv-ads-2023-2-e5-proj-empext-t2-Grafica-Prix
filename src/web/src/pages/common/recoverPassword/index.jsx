@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Container from "../../components/container";
-import Form from "../../components/formComponents";
-import http from "../../services/http";
+import Container from "../../../components/common/container";
+import Form from "../../../components/common/formComponents";
+import http from "../../../services/http";
 import {
   Background,
   Card,
@@ -9,7 +9,7 @@ import {
   Logo,
   TitleRecoverPassword,
 } from "./styles";
-import logo from "../../assets/logo-prix-removebg-preview 1.png";
+import logo from "../../../assets/logo-prix-removebg-preview 1.png";
 
 export default function RecoverPassoword({ newPassword }) {
   const [loading, setLoading] = useState(false);

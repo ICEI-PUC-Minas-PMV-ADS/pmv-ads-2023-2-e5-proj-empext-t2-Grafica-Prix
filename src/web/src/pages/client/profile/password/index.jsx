@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Form from "../../../components/formComponents";
-import http from "../../../services/http";
-import useAuth from "../../../context/auth";
+import Form from "../../../../components/common/formComponents";
+import http from "../../../../services/http";
+import useAuth from "../../../../context/auth";
 
 export default function UserPasswordManagement() {
   const [loading, setLoading] = useState(false);

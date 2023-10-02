@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import Form from "../../components/formComponents";
-import useAuth from "../../context/auth";
+import Form from "../../../components/common/formComponents";
+import useAuth from "../../../context/auth";
 import * as Yup from "yup";
-import { ErrorMessage } from "../formComponents/styles";
+import { ErrorMessage } from "../../../components/common/formComponents/styles";
 
 export default function ClientRegister({ setForm }) {
   const { register } = useAuth();

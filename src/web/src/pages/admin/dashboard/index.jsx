@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { ContainerActions, ContainerClients } from "./styles";
 import TitlePage from "../../../components/admin/titlePages";
-import Container from "../../../components/container";
+import Container from "../../../components/common/container";
 import Section from "../../../components/admin/section";
 import Table from "../../../components/admin/table";
 import { BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import Divisor from "../../../components/common/divisor";
-import Form from "../../../components/formComponents";
+import Form from "../../../components/common/formComponents";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
