@@ -59,9 +59,10 @@ export const InputStyle = styled.input`
   width: 100%;
   padding: ${(props) => (props.search ? "10px 40px 10px 10px" : "7px 10px")};
   border-radius: 5px;
-  border: 1px solid #e1e1e1;
+  border: ${(props) => props.border || "1px solid #e1e1e1"};
   outline: none;
   font-size: 12px;
+  box-shadow: ${(props) => props.shadow && "0 0 5px #e1e1e1"};
 `;
 
 export const Label = styled.label`

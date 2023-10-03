@@ -4,8 +4,11 @@ export const TableStyles = styled.table`
   background-color: #fff;
   width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height || "100%"};
+  margin: ${(props) => props.margin || "0"};
   border-radius: 5px;
   box-shadow: 0 0 10px #e1e1e1;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const Tr = styled.tr`
@@ -34,5 +37,6 @@ export const Td = styled.td`
 
 export const ContainerData = styled.div`
   overflow-y: auto;
-  max-height: 100%;
+  flex: 1;
+  max-height: 200px;
 `;

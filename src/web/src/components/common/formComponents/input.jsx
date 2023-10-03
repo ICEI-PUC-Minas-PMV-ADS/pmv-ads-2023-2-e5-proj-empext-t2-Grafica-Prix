@@ -22,6 +22,8 @@ export default function Input({
   required,
   maxWidth,
   marginCenter,
+  border,
+  shadow,
 }) {
   const [showPassowd, setShowPassord] = useState(false);
 
@@ -49,6 +51,8 @@ export default function Input({
             value={field.value}
             onChange={form.handleChange}
             min={min}
+            border={border}
+            shadow={shadow}
           />
           {type === "password" && (
             <ContainerEye

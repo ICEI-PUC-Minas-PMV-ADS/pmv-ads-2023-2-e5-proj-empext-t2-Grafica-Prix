@@ -7,9 +7,9 @@ export const ContainerActions = styled.div`
   align-items: center;
 `;
 
-export const ContainerClients = styled.div`
+export const ContainerData = styled.div`
   display: flex;
   flex-direction: column;
-  flex: 1;
-  gap: 10px;
+  width: 50%;
+  gap: 5px;
 `;
