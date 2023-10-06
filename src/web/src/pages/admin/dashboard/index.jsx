@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { ContainerActions, ContainerData } from "./styles";
+import { CardHowWeAre, ContainerActions, ContainerData } from "./styles";
 import TitlePage from "../../../components/admin/titlePages";
 import Container from "../../../components/common/container";
-import Section from "../../../components/admin/section";
 import Table from "../../../components/admin/table";
 import { BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
@@ -22,7 +21,7 @@ export default function Dashboard(props) {
   let data = [];
   let cards = [];
 
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 20; i++) {
     data.push({
       pefil: <div>Teste</div>,
       email: "teste@gmail.com",
@@ -91,55 +90,77 @@ export default function Dashboard(props) {
     <>
       <Container gap="10px" height="100%">
         <TitlePage>Painel</TitlePage>
-        <Section></Section>
-        <Section flex="2">
-          <Divisor gap="30px">
-            <ContainerData>
-              <Text size="20px" weight="600">
-                Clientes
-              </Text>
-              <Divisor justifyContent="space-between">
-                <Text>Consulte ou gerencie seus clientes</Text>
-                <Text>Total de clientes: 13</Text>
-              </Divisor>
-              <Form>
-                <Form.Input
-                  name="search"
-                  placeHolder="Pesquisar cliente..."
-                  search
-                  border="none"
-                  shadow
-                />
-              </Form>
-              <Table
-                titles={titles}
-                data={dataWithAction}
-                height="100%"
-                columns={columns}
-                margin="10px 0 0 0"
+        <Divisor gap="30px" breakPoint="900px">
+          <ContainerData>
+            <Text size="20px" weight="600">
+              Clientes
+            </Text>
+            <Divisor justifyContent="space-between">
+              <Text>Consulte ou gerencie seus clientes</Text>
+              <Text>Total de clientes: 13</Text>
+            </Divisor>
+            <Form>
+              <Form.Input
+                name="search"
+                placeHolder="Pesquisar cliente..."
+                search
+                border="none"
+                shadow
               />
-            </ContainerData>
-            <ContainerData>
-              <Text size="20px" weight="600">
-                Produtos mais procurados
+            </Form>
+            <Table
+              titles={titles}
+              data={dataWithAction}
+              height="fit-content"
+              columns={columns}
+              margin="10px 0 0 0"
+            />
+          </ContainerData>
+          <ContainerData>
+            <Text size="20px" weight="600">
+              Produtos mais procurados
+            </Text>
+            <Text>Lista de produtos com mais acessos</Text>
+            <SwiperComponent slidesPerView={3} countItems={cards?.length}>
+              {cards?.map((card, index) => {
+                return (
+                  <SwiperSlide key={index + 10023332}>
+                    <CardProduct
+                      url={card.image}
+                      name={card.name}
+                      price={card.price}
+                    />
+                  </SwiperSlide>
+                );
+              })}
+            </SwiperComponent>
+            <CardHowWeAre>
+              <Divisor justifyContent="space-between" margin="0 0 5px 0">
+                <Text size="20px" weight="600">
+                  Quem somos
+                </Text>
+                <BiEditAlt size={25} style={{ cursor: "pointer" }} />
+              </Divisor>
+              <Text>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
+                dui at leo suscipit placerat. Aenean lacinia arcu eget elementum
+                consectetur. Sed eu odio vitae leo suscipit sagittis. Vivamus
+                varius vulputate magna, pellentesque placerat nunc eleifend nec.
+                Ut at quam quis ligula ornare blandit eget tempus justo. Integer
+                porta metus nec elementum varius.
+                <br />
+                <br />
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
+                dui at leo suscipit placerat. Aenean lacinia arcu eget elementum
+                consectetur. Sed eu odio vitae leo suscipit sagittis. Vivamus
+                varius vulputate magna, pellentesque placerat nunc eleifend nec.
+                Ut at quam quis ligula ornare blandit eget tempus justo. Integer
+                porta metus nec elementum varius. Suspendisse faucibus vel
+                tortor at mollis.
               </Text>
-              <Text>Lista de produtos com mais acessos</Text>
-              <SwiperComponent slidesPerView={3}>
-                {cards?.map((card, index) => {
-                  return (
-                    <SwiperSlide key={index + 10023332}>
-                      <CardProduct
-                        url={card.image}
-                        name={card.name}
-                        price={card.price}
-                      />
-                    </SwiperSlide>
-                  );
-                })}
-              </SwiperComponent>
-            </ContainerData>
-          </Divisor>
-        </Section>
+            </CardHowWeAre>
+          </ContainerData>
+        </Divisor>
       </Container>
     </>
   );

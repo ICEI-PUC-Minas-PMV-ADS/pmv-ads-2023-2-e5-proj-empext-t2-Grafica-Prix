@@ -38,5 +38,5 @@ export const Td = styled.td`
 export const ContainerData = styled.div`
   overflow-y: auto;
   flex: 1;
-  max-height: 200px;
+  max-height: ${(props) => props.maxHeight || "300px"};
 `;

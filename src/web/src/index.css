@@ -11,3 +11,10 @@
 p {
   font-size: 12px;
 }
+
+.swiper-button-next {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  color: red;
+}
