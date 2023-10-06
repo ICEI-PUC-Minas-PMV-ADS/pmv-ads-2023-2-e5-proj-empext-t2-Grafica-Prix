@@ -18,9 +18,9 @@ namespace API_Grafica_Prix.Models
         public string Telefone { get; set; }
         [Required]
         public string Senha { get; set; }
-
+        [Required]
         public string Cpf { get; set; }
-        public string Endereco { get; set; }
+        public string? Endereco { get; set; }
     }
 
     public enum Perfil
