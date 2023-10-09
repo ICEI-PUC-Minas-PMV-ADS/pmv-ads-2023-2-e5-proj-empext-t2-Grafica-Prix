@@ -29,18 +29,7 @@ export default function Dashboard(props) {
     refetchOnMount: false,
   });
 
-  const titles = ["Nome", "Email", "Telefone", "Ações"];
-
-  let data = [];
   let cards = [];
-
-  for (let i = 0; i < 20; i++) {
-    data.push({
-      pefil: <div>Teste</div>,
-      email: "teste@gmail.com",
-      data_cadastro: "25/02/2023",
-    });
-  }
 
   for (let i = 0; i < 10; i++) {
     cards.push({
@@ -101,9 +90,7 @@ export default function Dashboard(props) {
     );
   }, []);
 
-  const categories = [
-    
-  ]
+  const categories = [];
 
   return (
     <>
@@ -128,7 +115,6 @@ export default function Dashboard(props) {
               />
             </Form>
             <Table
-              titles={titles}
               data={dataWithAction}
               height="fit-content"
               columns={columns}
