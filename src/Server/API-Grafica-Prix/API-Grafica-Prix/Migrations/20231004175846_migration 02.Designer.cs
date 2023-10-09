@@ -4,6 +4,7 @@ using API_Grafica_Prix.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace API_Grafica_Prix.Migrations
 {
     [DbContext(typeof(PrixContext))]
-    partial class PrixContextModelSnapshot : ModelSnapshot
+    [Migration("20231004175846_migration 02")]
+    partial class migration02
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -65,16 +68,21 @@ namespace API_Grafica_Prix.Migrations
                     b.Property<string>("Observacao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal?>("Preco")
+                    b.Property<int?>("UsuarioId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal?>("preco")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Promocao")
+                    b.Property<string>("promocao")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("Quantidade")
+                    b.Property<int?>("quantidade")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("UsuarioId");
 
                     b.ToTable("Produtos");
                 });
@@ -113,6 +121,15 @@ namespace API_Grafica_Prix.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Usuarios");
+                });
+
+            modelBuilder.Entity("API_Grafica_Prix.Models.Produto", b =>
+                {
+                    b.HasOne("API_Grafica_Prix.Models.Usuario", "Usuario")
+                        .WithMany()
+                        .HasForeignKey("UsuarioId");
+
+                    b.Navigation("Usuario");
                 });
 #pragma warning restore 612, 618
         }
