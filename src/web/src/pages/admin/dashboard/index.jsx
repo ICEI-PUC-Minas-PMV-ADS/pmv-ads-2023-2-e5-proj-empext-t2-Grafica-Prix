@@ -11,12 +11,25 @@ import Text from "../../../components/common/text";
 import CardProduct from "../../../components/client/cardProduct";
 import SwiperComponent from "../../../components/common/swiper";
 import { SwiperSlide } from "swiper/react";
+import { useQuery } from "@tanstack/react-query";
+import { getClients } from "../../../services/api/user";
+import Modal from "../../../components/common/modal";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
 
-  const titles = ["Perfil", "Email", "Data de cadastro", "Ações"];
+  const clients = useQuery({
+    queryKey: ["clients"],
+    queryFn: getClients,
+    retry: false,
+    retryOnMount: false,
+    refetchOnReconnect: false,
+    refetchOnWindowFocus: false,
+    refetchOnMount: false,
+  });
+
+  const titles = ["Nome", "Email", "Telefone", "Ações"];
 
   let data = [];
   let cards = [];
@@ -40,15 +53,15 @@ export default function Dashboard(props) {
   const columns = [
     {
       label: "Perfil",
-      key: "pefil",
+      key: "name",
     },
     {
       label: "Email",
       key: "email",
     },
     {
-      label: "Data de cadastro",
-      key: "data_cadastro",
+      label: "Telefone",
+      key: "telefone",
     },
     {
       label: "Ações",
@@ -58,12 +71,13 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     setDataWithAction(
-      data.map((data) => {
+      clients.data?.map((data) => {
         return {
           ...data,
           action: (
             <ContainerActions>
               <BsTrash3
+                size={25}
                 onClick={() => {
                   setModal({
                     key: "trash",
@@ -72,9 +86,10 @@ export default function Dashboard(props) {
                 }}
               />
               <BiEditAlt
+                size={25}
                 onClick={() => {
                   setModal({
-                    key: "trash",
+                    key: "editUser",
                     data: data,
                   });
                 }}
@@ -85,6 +100,10 @@ export default function Dashboard(props) {
       })
     );
   }, []);
+
+  const categories = [
+    
+  ]
 
   return (
     <>
@@ -139,7 +158,11 @@ export default function Dashboard(props) {
                 <Text size="20px" weight="600">
                   Quem somos
                 </Text>
-                <BiEditAlt size={25} style={{ cursor: "pointer" }} />
+                <BiEditAlt
+                  setModal={{ key: "editHowWeAre" }}
+                  size={25}
+                  style={{ cursor: "pointer" }}
+                />
               </Divisor>
               <Text>
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
@@ -162,6 +185,15 @@ export default function Dashboard(props) {
           </ContainerData>
         </Divisor>
       </Container>
+      {modal?.key === "trash" && (
+        <Modal setModal={setModal} width="40%"></Modal>
+      )}
+      {modal?.key === "editUser" && (
+        <Modal setModal={setModal} width="40%"></Modal>
+      )}
+      {modal?.key === "editHowWeAre" && (
+        <Modal setModal={setModal} width="40%"></Modal>
+      )}
     </>
   );
 }

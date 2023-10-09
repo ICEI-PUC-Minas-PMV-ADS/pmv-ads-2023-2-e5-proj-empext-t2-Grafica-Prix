@@ -29,10 +29,12 @@ export const Th = styled.th`
 
 export const Td = styled.td`
   width: ${(props) => `calc(100% / ${props.countColumns})`};
-  font-size: 12px;
+  font-size: 10px;
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
+  padding: 0 20px;
 `;
 
 export const ContainerData = styled.div`
