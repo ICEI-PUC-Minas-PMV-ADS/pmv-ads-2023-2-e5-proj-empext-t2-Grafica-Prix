@@ -4,16 +4,18 @@ export const ContainerPaginator = styled.div`
   background-color: #fff;
   border-top: 1px solid #e1e1e1;
   width: 100%;
-  padding: 10px;
+  padding: 5px;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 30px;
+  border-bottom-left-radius: ${(props) => props.radius || "5px"};
+  border-bottom-right-radius: ${(props) => props.radius || "5px"};
 `;
 
 export const PageButton = styled.button`
   background-color: #fff;
-  padding: 10px 15px;
+  padding: 5px 15px;
   outline: none;
   border-radius: 5px;
   border: 1px solid #e1e1e1;

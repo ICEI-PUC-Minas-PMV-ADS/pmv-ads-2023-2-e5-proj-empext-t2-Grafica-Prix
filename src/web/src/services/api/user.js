@@ -6,3 +6,8 @@ export async function getMe(query) {
   const { data } = await http.get(`/api/Usuario/${id}/`);
   return data;
 }
+
+export async function getClients() {
+  const { data } = await http.get(`/api/Usuario/`);
+  return data;
+}
