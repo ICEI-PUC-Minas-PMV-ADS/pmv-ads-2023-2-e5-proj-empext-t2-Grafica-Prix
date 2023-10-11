@@ -17,7 +17,7 @@ export const FormContainer = styled.form`
 export const InputGroup = styled.div`
   display: ${(props) => props.display || "block"};
   justify-content: ${(props) => props.justify || "unset"};
-  gap: ${(props) => props.gap || "5px"};
+  gap: ${(props) => props.gap || "10px"};
   position: relative;
   max-width: ${(props) => props.maxWidth};
   width: ${(props) => (props.width === "fit" ? "fit-content" : "100%")};

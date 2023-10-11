@@ -3,6 +3,7 @@ import { FormContainer } from "./styles";
 import Input from "./input";
 import Button from "./button";
 import AlignContent from "./alignContent";
+import EditorForm from "./editor";
 
 export default function Form({
   children,
@@ -43,3 +44,4 @@ export default function Form({
 Form.Input = Input;
 Form.Button = Button;
 Form.AlignContent = AlignContent;
+Form.Editor = EditorForm;

@@ -22,25 +22,9 @@ export default function Dashboard(props) {
   const clients = useQuery({
     queryKey: ["clients"],
     queryFn: getClients,
-    retry: false,
-    retryOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   });
 
-  const titles = ["Nome", "Email", "Telefone", "Ações"];
-
-  let data = [];
   let cards = [];
-
-  for (let i = 0; i < 20; i++) {
-    data.push({
-      pefil: <div>Teste</div>,
-      email: "teste@gmail.com",
-      data_cadastro: "25/02/2023",
-    });
-  }
 
   for (let i = 0; i < 10; i++) {
     cards.push({
@@ -99,11 +83,7 @@ export default function Dashboard(props) {
         };
       })
     );
-  }, []);
-
-  const categories = [
-    
-  ]
+  }, [clients.data]);
 
   return (
     <>
@@ -111,28 +91,15 @@ export default function Dashboard(props) {
         <TitlePage>Painel</TitlePage>
         <Divisor gap="30px" breakPoint="900px">
           <ContainerData>
-            <Text size="20px" weight="600">
-              Clientes
-            </Text>
-            <Divisor justifyContent="space-between">
-              <Text>Consulte ou gerencie seus clientes</Text>
-              <Text>Total de clientes: 13</Text>
-            </Divisor>
-            <Form>
-              <Form.Input
-                name="search"
-                placeHolder="Pesquisar cliente..."
-                search
-                border="none"
-                shadow
-              />
-            </Form>
             <Table
-              titles={titles}
+              loading={clients.isLoading}
               data={dataWithAction}
               height="fit-content"
               columns={columns}
-              margin="10px 0 0 0"
+              search
+              titleSearch="Clientes"
+              descriptionSearch="Consulte ou gerencie seus clientes"
+              textTotal="clientes"
             />
           </ContainerData>
           <ContainerData>
