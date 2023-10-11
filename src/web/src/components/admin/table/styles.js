@@ -1,14 +1,31 @@
 import styled from "styled-components";
 
+export const ContainerTable = styled.div`
+  width: 100%;
+  height: ${(props) => props.heightTable || "calc(100vh - 60px)"};
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
+export const ContainerSearch = styled.div`
+  flex: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+
 export const TableStyles = styled.table`
   background-color: #fff;
   width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height || "100%"};
   margin: ${(props) => props.margin || "0"};
   border-radius: 5px;
-  box-shadow: 0 0 10px #e1e1e1;
+  box-shadow: 0 0 5px #e1e1e1;
   display: flex;
   flex-direction: column;
+  flex: 6;
+  overflow: auto;
 `;
 
 export const Tr = styled.tr`
@@ -38,7 +55,14 @@ export const Td = styled.td`
 `;
 
 export const ContainerData = styled.div`
-  overflow-y: auto;
-  flex: 1;
-  max-height: ${(props) => props.maxHeight || "300px"};
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  height: 100%;
+  padding: 5px;
+  overflow: auto !important;
+
+  @media (max-width: 900px) {
+    width: 100%;
+  }
 `;

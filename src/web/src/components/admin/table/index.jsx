@@ -1,6 +1,17 @@
 import { useEffect } from "react";
-import { ContainerData, TableStyles, Td, Th, Tr } from "./styles";
+import {
+  ContainerData,
+  ContainerSearch,
+  ContainerTable,
+  TableStyles,
+  Td,
+  Th,
+  Tr,
+} from "./styles";
 import Paginator from "../paginator";
+import Divisor from "../../common/divisor";
+import Text from "../../common/text";
+import Form from "../../common/formComponents";
 
 export default function Table(props) {
   let newData = [];
@@ -21,28 +32,67 @@ export default function Table(props) {
   }
 
   return (
-    <TableStyles {...props}>
-      <Tr>
-        {props.columns?.map((column) => {
-          return <Th countColumns={props.columns.length}>{column.label}</Th>;
-        })}
-      </Tr>
+    <ContainerTable {...props}>
+      {props.search && (
+        <ContainerSearch>
+          <ContainerData>
+            <Text size="20px" weight="600">
+              {props.titleSearch}
+            </Text>
+            <Divisor justifyContent="space-between">
+              <Text>{props.descriptionSearch}</Text>
+              <Text>
+                Total de {props.textTotal}: {props.data?.length || 0}
+              </Text>
+            </Divisor>
+            <Form>
+              <Form.Input
+                name="search"
+                placeHolder="Pesquisar cliente..."
+                search
+                border="none"
+                shadow
+              />
+            </Form>
+          </ContainerData>
+        </ContainerSearch>
+      )}
       <ContainerData>
-        {newData?.map((row) => {
-          return (
-            <Tr>
-              {props.columns.map((column) => {
-                return (
-                  <Td countColumns={props.columns.length}>
-                    {renderDatas(row, column)}
-                  </Td>
-                );
-              })}
-            </Tr>
-          );
-        })}
+        <TableStyles {...props}>
+          <Tr>
+            {props.columns?.map((column) => {
+              return (
+                <Th countColumns={props.columns.length}>{column.label}</Th>
+              );
+            })}
+          </Tr>
+          <ContainerData>
+            {props.loading
+              ? "Carregando"
+              : newData?.map((row) => {
+                  return (
+                    <Tr>
+                      {props.columns.map((column) => {
+                        return column.html ? (
+                          <Td
+                            countColumns={props.columns.length}
+                            dangerouslySetInnerHTML={{
+                              __html: renderDatas(row, column),
+                            }}
+                          ></Td>
+                        ) : (
+                          <Td countColumns={props.columns.length}>
+                            {renderDatas(row, column)}
+                          </Td>
+                        );
+                      })}
+                    </Tr>
+                  );
+                })}
+          </ContainerData>
+          <Paginator />
+        </TableStyles>
       </ContainerData>
-      <Paginator />
-    </TableStyles>
+    </ContainerTable>
   );
 }

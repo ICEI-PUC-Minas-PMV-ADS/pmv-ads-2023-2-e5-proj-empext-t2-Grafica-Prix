@@ -22,11 +22,6 @@ export default function Dashboard(props) {
   const clients = useQuery({
     queryKey: ["clients"],
     queryFn: getClients,
-    retry: false,
-    retryOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   });
 
   let cards = [];
@@ -88,9 +83,7 @@ export default function Dashboard(props) {
         };
       })
     );
-  }, []);
-
-  const categories = [];
+  }, [clients.data]);
 
   return (
     <>
@@ -98,27 +91,15 @@ export default function Dashboard(props) {
         <TitlePage>Painel</TitlePage>
         <Divisor gap="30px" breakPoint="900px">
           <ContainerData>
-            <Text size="20px" weight="600">
-              Clientes
-            </Text>
-            <Divisor justifyContent="space-between">
-              <Text>Consulte ou gerencie seus clientes</Text>
-              <Text>Total de clientes: 13</Text>
-            </Divisor>
-            <Form>
-              <Form.Input
-                name="search"
-                placeHolder="Pesquisar cliente..."
-                search
-                border="none"
-                shadow
-              />
-            </Form>
             <Table
+              loading={clients.isLoading}
               data={dataWithAction}
               height="fit-content"
               columns={columns}
-              margin="10px 0 0 0"
+              search
+              titleSearch="Clientes"
+              descriptionSearch="Consulte ou gerencie seus clientes"
+              textTotal="clientes"
             />
           </ContainerData>
           <ContainerData>

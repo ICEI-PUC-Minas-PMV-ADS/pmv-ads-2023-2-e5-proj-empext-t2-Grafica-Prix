@@ -18,3 +18,32 @@ p {
   background-position: center;
   color: red;
 }
+
+.ql-toolbar.ql-snow {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid #e1e1e1 !important;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #e1e1e1;
+}
+
+:root {
+  --toastify-color-info: #8463a9;
+  --toastify-color-success: #67b79e;
+  --toastify-color-warning: #fc9803;
+  --toastify-color-error: #ee5656;
+
+  --toastify-icon-color-info: #ffffff;
+  --toastify-icon-color-success: #ffffff;
+  --toastify-icon-color-warning: #ffffff;
+  --toastify-icon-color-error: #ffffff;
+
+  --toastify-text-color-info: #ffffff;
+  --toastify-text-color-success: #ffffff;
+  --toastify-text-color-warning: #ffffff;
+  --toastify-text-color-error: #ffffff;
+}
