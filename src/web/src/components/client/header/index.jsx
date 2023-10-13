@@ -6,7 +6,7 @@ import {
   ContainerSearch,
   Logo,
   ContainerCategories,
-  Menu
+  Menu,
 } from "./styles";
 import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
 import Form from "../../../components/common/formComponents";
@@ -23,53 +23,52 @@ export default function Header(props) {
     { name: "Categoria 5" },
     { name: "Categoria 6" },
     { name: "Categoria 7" },
-    ];
+  ];
   return (
-  <>
-    <ContainerHeader>
-      <Container
-        direction="row"
-        padding="5px 20px"
-        justifyContent="space-between"
-      >
-        <Logo src={logo} />
-        <ContainerSearch>
-          <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
-            <Form.Input
-              name="search"
-              placeHolder={"Buscar por..."}
-              maxWidth="700px"
-              marginCenter
-              search
-            />
-          </Form>
-        </ContainerSearch>
-        <ContainerActions>
-          <ContainerDataUser>
-            <AiOutlineUser color="FF5757" size={35} />
-            <p>
-              <span>Entre</span> ou <span>cadastre-se</span>{" "}
-            </p>
-          </ContainerDataUser>
-          <AiOutlineShoppingCart color="FF5757" size={35} />
-        </ContainerActions>
-      </Container>
-    </ContainerHeader>
-    <Menu border="1px solid #E1E1E1">
-      <Container direction="row">
-        <Dropdown title="Menu">
-        <p>Admin</p>
-        <p>Quem Somos</p>
-        <p>Contato</p>
-        
-        </Dropdown>
-        <ContainerCategories>
-        {categories?.map((category, index) => {
-        return <p key={index}>{category.name}</p>;
-        })}
-        </ContainerCategories>
-    </Container>   
-  </Menu>
-  </>
+    <>
+      <ContainerHeader>
+        <Container
+          direction="row"
+          padding="5px 20px"
+          justifyContent="space-between"
+        >
+          <Logo src={logo} />
+          <ContainerSearch>
+            <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
+              <Form.Input
+                name="search"
+                placeHolder={"Buscar por..."}
+                maxWidth="700px"
+                marginCenter
+                search
+              />
+            </Form>
+          </ContainerSearch>
+          <ContainerActions>
+            <ContainerDataUser>
+              <AiOutlineUser color="FF5757" size={35} />
+              <p>
+                <span>Entre</span> ou <span>cadastre-se</span>{" "}
+              </p>
+            </ContainerDataUser>
+            <AiOutlineShoppingCart color="FF5757" size={35} />
+          </ContainerActions>
+        </Container>
+      </ContainerHeader>
+      <Menu border="1px solid #E1E1E1">
+        <Container direction="row">
+          <Dropdown title="Menu">
+            <p>Admin</p>
+            <p>Quem Somos</p>
+            <p>Contato</p>
+          </Dropdown>
+          <ContainerCategories>
+            {categories?.map((category, index) => {
+              return <p key={index}>{category.name}</p>;
+            })}
+          </ContainerCategories>
+        </Container>
+      </Menu>
+    </>
   );
 }
