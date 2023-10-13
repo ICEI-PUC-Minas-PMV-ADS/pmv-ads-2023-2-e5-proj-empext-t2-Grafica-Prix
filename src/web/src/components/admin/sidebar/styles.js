@@ -28,15 +28,24 @@ export const ContainerOptions = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
-  margin-top: 20px;
+  margin-top: 30px;
+  align-items: ${(props) => props.center && "center"};
+  gap: 5px;
 `;
 
 export const Option = styled.div`
-  background-color: #fff;
+  background-color: ${(props) => (props.selected ? "#ccc2" : "#fff")};
   width: 100%;
   border-radius: 5px;
 
-  padding: 10px;
+  padding: ${(props) => props.padding};
+
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  justify-content: ${(props) => props.justify};
+
+  cursor: pointer;
 `;
 
 export const TextOption = styled.p`
@@ -77,4 +86,20 @@ export const NameProfile = styled.p`
 
 export const RoleProfile = styled.p`
   font-size: 11px;
+`;
+
+export const ContainerIcon = styled.div`
+  position: relative;
+  top: 2px;
+`;
+
+export const TextIcon = styled.p`
+  position: absolute;
+  left: 30px;
+  top: 5px;
+  background-color: #505050;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: #fff;
+  z-index: 1;
 `;

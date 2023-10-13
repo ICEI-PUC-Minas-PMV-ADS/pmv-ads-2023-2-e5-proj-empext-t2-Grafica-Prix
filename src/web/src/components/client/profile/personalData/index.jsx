@@ -3,8 +3,11 @@ import Form from "../../../../components/common/formComponents";
 import * as Yup from "yup";
 import { ErrorMessage } from "../../../../components/common/formComponents/styles";
 import http from "../../../../services/http";
+import Text from "../../../common/text";
+import useAuth from "../../../../context/auth";
 
 export default function FormPersonalData({ data }) {
+  const { logout } = useAuth();
   const [loading, setLoading] = useState(false);
   const [messageError, setMessageError] = useState({
     title: "",
@@ -83,6 +86,17 @@ export default function FormPersonalData({ data }) {
         {messageError.title && (
           <ErrorMessage>{messageError.title}</ErrorMessage>
         )}
+        <Text
+          size="20px"
+          weight="600"
+          color="#ff5757"
+          textAlign="center"
+          cursor="pointer"
+          margin="10px 0"
+          onClick={logout}
+        >
+          Sair
+        </Text>
       </Form>
     )
   );

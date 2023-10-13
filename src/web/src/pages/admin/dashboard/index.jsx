@@ -34,6 +34,24 @@ export default function Dashboard(props) {
     });
   }
 
+  const breakpoints = {
+    0: {
+      slidesPerView: 1,
+    },
+    390: {
+      slidesPerView: 2,
+    },
+    502: {
+      slidesPerView: 3,
+    },
+    1034: {
+      slidesPerView: 4,
+    },
+    1280: {
+      slidesPerView: 3,
+    },
+  };
+
   const columns = [
     {
       label: "Perfil",
@@ -100,6 +118,7 @@ export default function Dashboard(props) {
               titleSearch="Clientes"
               descriptionSearch="Consulte ou gerencie seus clientes"
               textTotal="clientes"
+              maxHeight="400px"
             />
           </ContainerData>
           <ContainerData>
@@ -107,7 +126,10 @@ export default function Dashboard(props) {
               Produtos mais procurados
             </Text>
             <Text>Lista de produtos com mais acessos</Text>
-            <SwiperComponent slidesPerView={3} countItems={cards?.length}>
+            <SwiperComponent
+              countItems={cards?.length}
+              breakpoints={breakpoints}
+            >
               {cards?.map((card, index) => {
                 return (
                   <SwiperSlide key={index + 10023332}>

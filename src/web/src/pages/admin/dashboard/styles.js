@@ -26,4 +26,5 @@ export const CardHowWeAre = styled.div`
   border-radius: 5px;
   box-shadow: 0 0 10px #e1e1e1;
   padding: 10px 20px;
+  height: fit-content;
 `;

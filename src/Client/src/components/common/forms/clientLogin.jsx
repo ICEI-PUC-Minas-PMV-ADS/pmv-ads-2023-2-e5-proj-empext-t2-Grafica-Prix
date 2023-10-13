@@ -24,7 +24,6 @@ export default function ClientLogin() {
     login(data).then(
       (res) => {
         setLoading(false);
-        console.log(res);
         client.setQueryData(
           { queryKey: ["me", res.dbusuario.id] },
           res.dbusuario

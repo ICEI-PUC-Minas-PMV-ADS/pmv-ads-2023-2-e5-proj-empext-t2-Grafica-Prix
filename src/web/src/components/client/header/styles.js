@@ -37,6 +37,7 @@ export const ContainerActions = styled.div`
 export const ContainerDataUser = styled.div`
   display: flex;
   gap: 5px;
+  cursor: pointer;
 
   span {
     color: #ff5757;
@@ -51,9 +52,7 @@ export const ContainerCategories = styled.div`
   display: flex;
   gap: 40px;
   align-items: center;
-  position: relative;
-  left: 50%;
-  transform: translate(-50%);
+  justify-content: center;
 `;
 export const Menu = styled.div`
   display: flex;

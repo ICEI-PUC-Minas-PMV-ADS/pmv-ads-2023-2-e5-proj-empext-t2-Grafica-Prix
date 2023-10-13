@@ -5,6 +5,7 @@ export default function SwiperComponent({
   slidesPerView,
   loop,
   height,
+  breakpoints,
 }) {
   return (
     <Swiper
@@ -16,23 +17,8 @@ export default function SwiperComponent({
       pagination={{
         clickable: true,
       }}
-      breakpoints={{
-        0: {
-          slidesPerView: 1,
-        },
-        390: {
-          slidesPerView: 2,
-        },
-        502: {
-          slidesPerView: 3,
-        },
-        1034: {
-          slidesPerView: 4,
-        },
-        1280: {
-          slidesPerView: 3,
-        },
-      }}
+      breakpoints={breakpoints}
+      slidesPerView={slidesPerView}
       loop={loop}
     >
       {children}

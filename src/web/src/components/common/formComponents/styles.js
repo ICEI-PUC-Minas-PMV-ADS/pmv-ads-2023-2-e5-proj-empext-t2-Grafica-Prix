@@ -57,7 +57,7 @@ export const InputGroup = styled.div`
 
 export const InputStyle = styled.input`
   width: 100%;
-  padding: ${(props) => (props.search ? "10px 40px 10px 10px" : "7px 10px")};
+  padding: ${(props) => (props.search ? "10px" : "7px 10px")};
   border-radius: 5px;
   border: ${(props) => props.border || "1px solid #e1e1e1"};
   outline: none;

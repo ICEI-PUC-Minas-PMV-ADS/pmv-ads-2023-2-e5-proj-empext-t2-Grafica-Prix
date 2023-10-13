@@ -3,7 +3,6 @@ import UserPasswordManagement from "./password";
 import FormPersonalData from "./personalData";
 import { useSearchParams } from "react-router-dom";
 import useAuth from "../../../context/auth";
-import ProtectedRoute from "../../../services/auth";
 
 export default function Profile() {
   const { user } = useAuth();
@@ -22,7 +21,7 @@ export default function Profile() {
   ];
 
   return (
-    <ProtectedRoute route="/login?next=profile">
+    <>
       {user && (
         <FormSelector
           selectors={selectors}
@@ -31,6 +30,6 @@ export default function Profile() {
           defaultSelector={parseInt(searchParams.get("form"))}
         />
       )}
-    </ProtectedRoute>
+    </>
   );
 }

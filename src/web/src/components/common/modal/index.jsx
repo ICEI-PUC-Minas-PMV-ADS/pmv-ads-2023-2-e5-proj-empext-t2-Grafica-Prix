@@ -16,7 +16,7 @@ export default function Modal(props) {
       <ContainerPage width={props.width}>
         <ContainerBtn>
           <button onClick={() => props.setModal(false)}>
-            <IoMdClose color={"#8463A9"} />
+            <IoMdClose color="#ff5757" />
           </button>
         </ContainerBtn>
         {props.children}
