@@ -1,0 +1,49 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200;6..12,300;6..12,400;6..12,500;6..12,600;6..12,700;6..12,800;6..12,900;6..12,1000&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+  color: #505050;
+}
+
+p {
+  font-size: 12px;
+}
+
+.swiper-button-next {
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+  background-position: center;
+  color: red;
+}
+
+.ql-toolbar.ql-snow {
+  border-top-right-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid #e1e1e1 !important;
+}
+
+.ql-toolbar.ql-snow + .ql-container.ql-snow {
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+  border: 1px solid #e1e1e1;
+}
+
+:root {
+  --toastify-color-info: #8463a9;
+  --toastify-color-success: #67b79e;
+  --toastify-color-warning: #fc9803;
+  --toastify-color-error: #ee5656;
+
+  --toastify-icon-color-info: #ffffff;
+  --toastify-icon-color-success: #ffffff;
+  --toastify-icon-color-warning: #ffffff;
+  --toastify-icon-color-error: #ffffff;
+
+  --toastify-text-color-info: #ffffff;
+  --toastify-text-color-success: #ffffff;
+  --toastify-text-color-warning: #ffffff;
+  --toastify-text-color-error: #ffffff;
+}
