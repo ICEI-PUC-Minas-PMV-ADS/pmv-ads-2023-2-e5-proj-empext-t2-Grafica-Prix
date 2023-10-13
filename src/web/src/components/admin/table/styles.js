@@ -17,6 +17,7 @@ export const ContainerSearch = styled.div`
 
 export const TableStyles = styled.table`
   background-color: #fff;
+  max-height: ${(props) => props.maxHeight};
   width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height || "100%"};
   margin: ${(props) => props.margin || "0"};
@@ -25,7 +26,6 @@ export const TableStyles = styled.table`
   display: flex;
   flex-direction: column;
   flex: 6;
-  overflow: auto;
 `;
 
 export const Tr = styled.tr`
@@ -60,9 +60,15 @@ export const ContainerData = styled.div`
   gap: 5px;
   height: 100%;
   padding: 5px;
-  overflow: auto !important;
 
   @media (max-width: 900px) {
     width: 100%;
   }
+`;
+
+export const ContentTable = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow-y: auto;
 `;

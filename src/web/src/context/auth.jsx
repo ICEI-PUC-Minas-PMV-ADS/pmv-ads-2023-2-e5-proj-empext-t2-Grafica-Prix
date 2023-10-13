@@ -1,4 +1,4 @@
-import { useContext, createContext, useState } from "react";
+import { useContext, createContext } from "react";
 import http from "../services/http";
 import { getMe } from "../services/api/user";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -20,23 +20,29 @@ export function AuthProvider({ children }) {
 
   async function register(reqData) {
     const { data } = await http.post("api/Usuario/", reqData);
+    return data;
   }
 
   async function login(reqData) {
     const { data } = await http.post("api/Usuario/Autenticacao", reqData);
     localStorage.setItem("id", data.dbusuario?.id);
-    localStorage.setItem("token", data.token);
+    localStorage.setItem("token", data.jwtToken);
     client.setQueryData({ queryKey: ["me", null] }, data.dbusuario);
     return data;
   }
 
-  async function logout(reqData) {}
+  async function logout() {
+    client.setQueryData({ queryKey: ["me", localStorage.getItem("id")] }, null);
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+  }
 
   return (
     <authContext.Provider
       value={{
         login,
         register,
+        logout,
         authed: !!localStorage.getItem("id"),
         user: user?.data,
         isLoading: user?.isLoading,

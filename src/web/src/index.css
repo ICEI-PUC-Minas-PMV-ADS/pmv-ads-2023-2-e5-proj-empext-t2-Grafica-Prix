@@ -5,11 +5,15 @@
   padding: 0;
   box-sizing: border-box;
   font-family: "Nunito Sans", sans-serif;
-  color: #505050;
 }
 
 p {
   font-size: 12px;
+}
+
+a {
+  color: #505050;
+  text-decoration: none;
 }
 
 .swiper-button-next {

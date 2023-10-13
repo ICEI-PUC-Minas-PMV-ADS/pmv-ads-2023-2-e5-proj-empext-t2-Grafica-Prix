@@ -3,6 +3,7 @@ import {
   ContainerData,
   ContainerSearch,
   ContainerTable,
+  ContentTable,
   TableStyles,
   Td,
   Th,
@@ -66,7 +67,7 @@ export default function Table(props) {
               );
             })}
           </Tr>
-          <ContainerData>
+          <ContentTable>
             {props.loading
               ? "Carregando"
               : newData?.map((row) => {
@@ -89,7 +90,7 @@ export default function Table(props) {
                     </Tr>
                   );
                 })}
-          </ContainerData>
+          </ContentTable>
           <Paginator />
         </TableStyles>
       </ContainerData>

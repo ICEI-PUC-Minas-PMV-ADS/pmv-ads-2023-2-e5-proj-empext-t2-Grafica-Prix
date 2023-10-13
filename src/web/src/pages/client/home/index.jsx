@@ -1,5 +1,20 @@
-import Header from "../../../components/client/header";
+import Banner from "../../../components/client/banner";
 
 export default function Home(props) {
-  return <Header />;
+  const banners = [
+    {
+      image: "",
+    },
+    {
+      image: "",
+    },
+    {
+      image: "",
+    },
+  ];
+  return (
+    <>
+      <Banner images={banners} />
+    </>
+  );
 }
