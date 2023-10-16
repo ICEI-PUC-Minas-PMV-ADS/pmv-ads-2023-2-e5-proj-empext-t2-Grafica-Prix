@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "UFPp+l3kSVoVRpPcnj0Kn5TLtwFpySwCWdnSCUj7RrxqeYZCgkjH80+boCsxm/lYNGahAfFpz/SFNxorCj/TSA==",
+  "dgSpecHash": "9YZTnHU8RrseU4bWSO+/tZetP7bjjinuy2kuc1YFWqd7luuBcrywt3HSZs7rrUWvw7qGHGoHUgzYlZS9GpbIFw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Notebook Acer\\OneDrive\\Matérias 5 semestre - PUC\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API-Grafica-Prix\\API-Grafica-Prix\\API-Grafica-Prix.csproj",
   "expectedPackageFiles": [
@@ -71,11 +71,7 @@
     "C:\\Users\\Notebook Acer\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
     "C:\\Users\\Notebook Acer\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
     "C:\\Users\\Notebook Acer\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\Notebook Acer\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
-    "C:\\Users\\Notebook Acer\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.13\\microsoft.netcore.app.ref.6.0.13.nupkg.sha512",
-    "C:\\Users\\Notebook Acer\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.13\\microsoft.windowsdesktop.app.ref.6.0.13.nupkg.sha512",
-    "C:\\Users\\Notebook Acer\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.13\\microsoft.aspnetcore.app.ref.6.0.13.nupkg.sha512",
-    "C:\\Users\\Notebook Acer\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.13\\microsoft.netcore.app.host.win-x64.6.0.13.nupkg.sha512"
+    "C:\\Users\\Notebook Acer\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

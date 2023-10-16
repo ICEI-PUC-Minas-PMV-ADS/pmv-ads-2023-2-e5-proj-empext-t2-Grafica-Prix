@@ -15,6 +15,7 @@ export default function Form({
   gap,
   innerRef,
   width,
+  margin,
 }) {
   return (
     <Formik
@@ -33,6 +34,7 @@ export default function Form({
           onSubmit={props.handleSubmit}
           gap={gap}
           width={width}
+          margin={margin}
         >
           {children}
         </FormContainer>

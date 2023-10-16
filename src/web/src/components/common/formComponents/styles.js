@@ -12,6 +12,7 @@ export const FormContainer = styled.form`
   padding: ${(props) => props.padding || "0"};
   width: ${(props) => props.width || "100%"};
   position: relative;
+  margin: ${(props) => props.margin};
 `;
 
 export const InputGroup = styled.div`
@@ -105,3 +106,44 @@ export const Search = styled.span`
   top: 9px;
   right: 8px;
 `;
+
+export const selectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: "100%",
+    height: "23px",
+    backgroundColor: "#fff",
+    border: "1px solid #e1e1e1",
+    outline: "none",
+    fontSize: "12px",
+  }),
+  singleValue: (provided, state) => ({
+    ...provided,
+    color: "#505050",
+    outline: "none",
+  }),
+  option: (provided, state) => ({
+    ...provided,
+    display: "flex",
+    flexDirection: "column",
+    fontSize: "12px",
+    background: state.data?.color || "#fff",
+    color: "#000",
+  }),
+  menu: (base) => ({ ...base, zIndex: 999999999 }),
+  multiValue: (provided) => ({
+    ...provided,
+    backgroundColor: "#fff",
+    border: "1px solid #e1e1e1",
+    borderRadius: "3px",
+  }),
+  multiValueRemove: (provided) => ({
+    ...provided,
+    color: "#8463a9",
+    ":hover": {
+      backgroundColor: "#765998d1",
+      color: "white",
+      cursor: "pointer",
+    },
+  }),
+};

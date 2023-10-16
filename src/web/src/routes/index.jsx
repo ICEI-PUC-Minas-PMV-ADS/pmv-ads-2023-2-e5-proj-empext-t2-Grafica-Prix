@@ -6,6 +6,7 @@ import Admin from "../pages/admin";
 import Dashboard from "../pages/admin/dashboard";
 import Categories from "../pages/admin/categories";
 import Client from "../pages/client";
+import Products from "../pages/admin/products";
 
 export default function AppRoutes() {
   return (
@@ -16,6 +17,7 @@ export default function AppRoutes() {
       <Route path="admin" element={<Admin />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="categories" element={<Categories />} />
+        <Route path="products" element={<Products />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="recover-password" element={<RecoverPassoword />} />

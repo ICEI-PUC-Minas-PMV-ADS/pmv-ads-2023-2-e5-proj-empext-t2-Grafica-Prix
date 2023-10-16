@@ -6,7 +6,6 @@ import Table from "../../../components/admin/table";
 import { BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import Divisor from "../../../components/common/divisor";
-import Form from "../../../components/common/formComponents";
 import Text from "../../../components/common/text";
 import CardProduct from "../../../components/client/cardProduct";
 import SwiperComponent from "../../../components/common/swiper";
@@ -14,6 +13,8 @@ import { SwiperSlide } from "swiper/react";
 import { useQuery } from "@tanstack/react-query";
 import { getClients } from "../../../services/api/user";
 import Modal from "../../../components/common/modal";
+import Edit from "../../../components/admin/forms/clients/edit";
+import Delete from "../../../components/admin/forms/clients/delete";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
@@ -82,19 +83,21 @@ export default function Dashboard(props) {
                 size={25}
                 onClick={() => {
                   setModal({
-                    key: "trash",
+                    key: "delete",
                     data: data,
                   });
                 }}
+                style={{ cursor: "pointer" }}
               />
               <BiEditAlt
                 size={25}
                 onClick={() => {
                   setModal({
-                    key: "editUser",
+                    key: "edit",
                     data: data,
                   });
                 }}
+                style={{ cursor: "pointer" }}
               />
             </ContainerActions>
           ),
@@ -174,11 +177,27 @@ export default function Dashboard(props) {
           </ContainerData>
         </Divisor>
       </Container>
-      {modal?.key === "trash" && (
-        <Modal setModal={setModal} width="40%"></Modal>
+      {modal?.key === "delete" && (
+        <Modal setModal={setModal} width="40%">
+          <Text size="20px" weight="600">
+            Deletar cliente
+          </Text>
+          <Text size="14px" weight="500">
+            Tem certeza que deseja deletar o cliente:
+          </Text>
+          <Delete data={modal?.data} setModal={setModal} />
+        </Modal>
       )}
-      {modal?.key === "editUser" && (
-        <Modal setModal={setModal} width="40%"></Modal>
+      {modal?.key === "edit" && (
+        <Modal setModal={setModal} width="40%">
+          <Text size="20px" weight="600">
+            Editar cliente
+          </Text>
+          <Text size="14px" weight="500">
+            Edite o nome, email, telefone, cpf e endereço do cliente.
+          </Text>
+          <Edit data={modal?.data} setModal={setModal} />
+        </Modal>
       )}
       {modal?.key === "editHowWeAre" && (
         <Modal setModal={setModal} width="40%"></Modal>

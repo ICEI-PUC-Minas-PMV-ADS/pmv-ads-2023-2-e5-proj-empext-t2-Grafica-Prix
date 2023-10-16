@@ -5,7 +5,6 @@ import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
 import Register from "../../../components/admin/forms/categories/register";
 import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "../../../services/api/categories";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import ContainerActions from "../../../components/admin/containerActions";
@@ -13,14 +12,15 @@ import Modal from "../../../components/common/modal";
 import Edit from "../../../components/admin/forms/categories/edit";
 import Delete from "../../../components/admin/forms/categories/delete";
 import Details from "../../../components/admin/forms/categories/detail";
+import { getProducts } from "../../../services/api/products";
 
-export default function Categories(props) {
+export default function Products(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
 
-  const categories = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
+  const products = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
   });
 
   const columns = [
@@ -41,7 +41,7 @@ export default function Categories(props) {
 
   useEffect(() => {
     setDataWithAction(
-      categories.data?.map((data) => {
+      products.data?.map((data) => {
         return {
           ...data,
           action: (
@@ -81,18 +81,18 @@ export default function Categories(props) {
         };
       })
     );
-  }, [categories.data]);
+  }, [products.data]);
 
   return (
     <>
       <Container gap="10px" padding="0 0 0 20px" height="100%" direction="row">
         <Divisor flex="3" height="100vh" padding="20px 0 0 0">
           <Table
-            loading={categories.isLoading}
+            loading={products.isLoading}
             data={dataWithAction}
             columns={columns}
             search
-            titleSearch="Categorias"
+            titleSearch="Produtos"
             descriptionSearch="Consulte ou gerencie seus produtos"
             textTotal="produtos"
             heightTable="calc(100vh - 5%)"
@@ -107,10 +107,10 @@ export default function Categories(props) {
           padding="20px"
         >
           <Text size="20px" weight="600">
-            Cadastrar nova categoria
+            Cadastrar novo produto
           </Text>
           <Text size="14px" weight="500">
-            Informe o nome e uma descrição (opcional) para sua categoria.
+            Informe o nome e uma descrição (opcional) para seu produto.
           </Text>
           <Register />
         </Divisor>
@@ -118,10 +118,10 @@ export default function Categories(props) {
       {modal?.key === "edit" && (
         <Modal setModal={setModal} width="40%">
           <Text size="20px" weight="600">
-            Editar categoria
+            Editar produto
           </Text>
           <Text size="14px" weight="500">
-            Edite o nome e a descrição (opcional) da categoria.
+            Edite o nome e a descrição (opcional) do produto.
           </Text>
           <Edit data={modal?.data} setModal={setModal} />
         </Modal>
@@ -129,10 +129,10 @@ export default function Categories(props) {
       {modal?.key === "delete" && (
         <Modal setModal={setModal} width="40%">
           <Text size="20px" weight="600">
-            Deletar categoria
+            Deletar produto
           </Text>
           <Text size="14px" weight="500">
-            Tem certeza que deseja deletar a categoria:
+            Tem certeza que deseja deletar o produto:
           </Text>
           <Delete data={modal?.data} setModal={setModal} />
         </Modal>
