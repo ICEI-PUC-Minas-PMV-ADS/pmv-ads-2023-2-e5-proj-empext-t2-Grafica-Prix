@@ -8,7 +8,7 @@ import {
   ContainerCategories,
   Menu,
 } from "./styles";
-import { AiOutlineUser, AiOutlineShoppingCart } from "react-icons/ai";
+import { AiOutlineUser, AiOutlineShoppingCart, AiOutlineInstagram, AiFillFacebook, AiOutlineWhatsApp, AiOutlinePhone } from "react-icons/ai";
 import Form from "../../../components/common/formComponents";
 import logo from "../../../assets/logo-prix-removebg-preview 1.png";
 import Container from "../../common/container";
