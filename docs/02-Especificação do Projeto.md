@@ -8,7 +8,7 @@ Apresente uma visão geral do que será abordado nesta parte do documento, enume
 
 ## Arquitetura e Tecnologias
 
-o	Descreva brevemente a arquitetura definida para o projeto e as tecnologias a serem utilizadas. Sugere-se a criação de um diagrama de componentes da solução.
+React.Js no Front-end, C# .NET e SQL Server no back-end
 
 ## Project Model Canvas
 
@@ -23,26 +23,22 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 
 |ID    | Descrição do Requisito  | Prioridade |
 |------|-----------------------------------------|----|
-|RF-001| Permitir que o cliente tenha um acesso administrador | ALTA | 
-|RF-002| Permitir que o administrador possa criar categorias   | ALTA |
-|RF-002| Permitir que o administrador possa criar produtos   | ALTA |
-|RF-003| Permitir que o administrador possa excluir categorias   | ALTA |
-|RF-004| Permitir que o administrador possa excluir produtos   | ALTA |
-|RF-005| Permitir que o administrador possa editar categorias   | ALTA |
-|RF-006| Permitir que o administrador possa editar produtos   | ALTA |
-|RF-007| Permitir que o administrador possa visualizar um histórico de todos os orçamentos   | ALTA |
-|RF-008| Permitir que o administrador possa editar texto quem somos  | MÉDIA |
-|RF-009| Permitir que usuários comuns consigam criar uma conta e realizar login, mediante o preenchimento de um formuláruio  | ALTA |
-|RF-010| Permitir que usuários comuns consigam visualizar produtos  | ALTA |
-|RF-011| Permitir que usuários comuns consigam adicionar quantos produtos quisererem ao carrinho, desde que esteja logado | ALTA |
-|RF-012| Permitir que usuários comuns possam adicionar observações de texto livre ao adiiconar um produto ao carrinho  | ALTA |
-|RF-013| Permitir que usuários comuns possam excluir produtos contidos no carrinho  | ALTA |
-|RF-014| Permitir que usuários comuns possam visualizar os produtos selecionados através do carrinho  | ALTA |
-|RF-015| Permitir que usuários comuns possam entrar em contato direto por watassp através de um botão flutuante  | ALTA |
-|RF-016| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail, telefone e endereço (contidos no cadastro do usuário) assim que concluida uma solicitação de orçamento  |  ALTA | 
-|RF-017| Permitir que o administrador possa gerenciar os pedidos, de modo que possa atribuir um status: Fechado, negociando e venda concluída. Sempre uma solicitação de orçamento for enviada esta deve conter automaticamente o status de nogociando  |  ALTA | 
-|RF-018| Permitir que o administrador possa visulizar um relatório de quantos pedidos possuem cada um dos status.  |  ALTA | 
-|RF-019| Permitir que o administrador possa visualizar a quantidade de cliques cada um dos produtos teve |  ALTA | 
+|RF-001| Garantir que o cliente tenha um acesso administrador | ALTA | 
+|RF-002| CRUD categorias administrador   | ALTA |
+|RF-003| CRUD produtos administrador | ALTA |
+|RF-004| Permitir que o administrador possa visualizar um histórico de todos os orçamentos   | ALTA |
+|RF-005| Possibilitar ao administrador editar texto quem somos  | MÉDIA |
+|RF-006| Criação de conta e realização de login a usuários comuns, mediante o preenchimento de um formuláruio  | ALTA |
+|RF-007| Vizualização de produtos a usuários comuns | ALTA |
+|RF-008| Dar a possibilidade a usuários comuns de consiguir adicionar quantos produtos desejar ao carrinho, desde que esteja logado | ALTA |
+|RF-009| Permitir que usuários comuns possam adicionar observações de texto livre ao adiiconar um produto ao carrinho  | ALTA |
+|RF-010| Exclusão de produtos contidos no carrinho por usuários comuns  | ALTA |
+|RF-011| Possibilitar que usuários comuns possam visualizar os produtos selecionados através do carrinho  | ALTA |
+|RF-012| Comunicação direta com o emprresário por watassp através de um botão flutuante  | ALTA |
+|RF-013| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail, telefone e endereço (contidos no cadastro do usuário) assim que concluida uma solicitação de orçamento  |  ALTA | 
+|RF-014| Disponilizar uma funcionalidade em que o administrador possa gerenciar os pedidos, de modo que possa atribuir um status: Fechado, negociando e venda concluída. Sempre uma solicitação de orçamento for enviada esta deve conter automaticamente o status de nogociando  |  ALTA | 
+|RF-015| Gerar relatório de quantos pedidos possuem cada um dos status para visualização do administrador possa visulizar |  ALTA | 
+|RF-019| Visualização de quantidade de cliques por produto ao administrador |  ALTA | 
 
 
 ### Requisitos não Funcionais
