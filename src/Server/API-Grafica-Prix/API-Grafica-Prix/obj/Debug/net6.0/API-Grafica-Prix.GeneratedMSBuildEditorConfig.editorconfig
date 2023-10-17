@@ -8,17 +8,9 @@ build_property.PlatformNeutralAssembly =
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = API_Grafica_Prix
 build_property.RootNamespace = API_Grafica_Prix
-<<<<<<< HEAD
-build_property.ProjectDir = c:\Users\Notebook Acer\OneDrive\Matérias 5 semestre - PUC\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix\
+build_property.ProjectDir = C:\Users\Pichau\Documents\Cursos\Faculdade\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix\
 build_property.RazorLangVersion = 6.0
 build_property.SupportLocalizedComponentNames = 
 build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\Notebook Acer\OneDrive\Matérias 5 semestre - PUC\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix
-=======
-build_property.ProjectDir = c:\Users\Pichau\Documents\Cursos\Faculdade\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix\
-build_property.RazorLangVersion = 6.0
-build_property.SupportLocalizedComponentNames = 
-build_property.GenerateRazorMetadataSourceChecksumAttributes = 
-build_property.MSBuildProjectDirectory = c:\Users\Pichau\Documents\Cursos\Faculdade\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix
->>>>>>> 7736b51 (Atualização da Home)
+build_property.MSBuildProjectDirectory = C:\Users\Pichau\Documents\Cursos\Faculdade\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\src\Server\API-Grafica-Prix\API-Grafica-Prix
 build_property._RazorSourceGeneratorDebug = 
