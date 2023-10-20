@@ -4,6 +4,10 @@ import Input from "./input";
 import Button from "./button";
 import AlignContent from "./alignContent";
 import EditorForm from "./editor";
+import SelectForm from "./select";
+import InputPrice from "./inputPrice";
+import File from "./file";
+import Number from "./number";
 
 export default function Form({
   children,
@@ -47,3 +51,7 @@ Form.Input = Input;
 Form.Button = Button;
 Form.AlignContent = AlignContent;
 Form.Editor = EditorForm;
+Form.Select = SelectForm;
+Form.InputPrice = InputPrice;
+Form.File = File;
+Form.Number = Number;

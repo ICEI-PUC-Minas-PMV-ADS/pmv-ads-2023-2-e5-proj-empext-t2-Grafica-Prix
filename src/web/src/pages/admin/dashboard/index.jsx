@@ -108,7 +108,7 @@ export default function Dashboard(props) {
 
   return (
     <>
-      <Container gap="10px" height="100%">
+      <Container gap="10px" height="100%" maxWidth="100%">
         <TitlePage>Painel</TitlePage>
         <Divisor gap="30px" breakPoint="900px">
           <ContainerData>

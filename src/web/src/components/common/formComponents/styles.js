@@ -16,9 +16,10 @@ export const FormContainer = styled.form`
 `;
 
 export const InputGroup = styled.div`
-  display: ${(props) => props.display || "block"};
+  display: flex;
+  flex-direction: column;
   justify-content: ${(props) => props.justify || "unset"};
-  gap: ${(props) => props.gap || "10px"};
+  gap: ${(props) => props.gap || "5px"};
   position: relative;
   max-width: ${(props) => props.maxWidth};
   width: ${(props) => (props.width === "fit" ? "fit-content" : "100%")};
@@ -139,11 +140,102 @@ export const selectStyles = {
   }),
   multiValueRemove: (provided) => ({
     ...provided,
-    color: "#8463a9",
+    color: "#ff5757",
     ":hover": {
-      backgroundColor: "#765998d1",
+      backgroundColor: "#ff5757",
       color: "white",
       cursor: "pointer",
     },
   }),
 };
+
+export const ButtonAddFile = styled.button`
+  background-color: #ff6961;
+  width: fit-content;
+  padding: 5px 15px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  display: flex;
+  gap: 10px;
+  color: #8463a9;
+  cursor: pointer;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+`;
+
+export const ContainerUpFiled = styled.div`
+  background-color: #fff;
+  width: ${(props) => props.width || "80%"};
+  display: flex;
+  align-items: center;
+  justify-content: ${(props) => props.justifyContent || "space-between"};
+  padding: ${(props) => props.padding};
+  gap: ${(props) => props.gap};
+  position: relative;
+  flex-direction: ${(props) => props.direction || "row"};
+
+  background-color: #f7f7f8;
+  border-radius: 6px;
+
+  span {
+    position: absolute;
+    right: 0;
+    margin-top: 4px;
+  }
+`;
+
+export const NameFile = styled.p`
+  font-size: 14px;
+  font-weight: 500;
+  color: #0008;
+  width: fit-content;
+`;
+
+export const ContainerPreview = styled.div`
+  width: 180px;
+  height: 180px;
+  border-radius: 5px;
+  border-radius: 8px;
+  border: 1px solid #e1e1e1;
+  position: relative;
+`;
+
+export const ContainerAddImage = styled.div`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
+export const Preview = styled.img`
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 8px;
+`;
+
+export const ContainerTrash = styled.div`
+  background-color: #ff5757;
+  position: absolute;
+  bottom: 10px;
+  left: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 7px;
+  border-radius: 50%;
+  cursor: pointer;
+`;
+
+export const ContainerTextDeleteImage = styled.div`
+  background-color: #505050;
+  padding: 5px 10px;
+  position: absolute;
+  border-radius: 5px;
+  left: 10px;
+  bottom: -20px;
+`;

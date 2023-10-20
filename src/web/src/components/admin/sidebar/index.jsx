@@ -81,7 +81,6 @@ export default function Sidebar() {
           <Logo />
         </Link>
       )}
-
       <Divisor>
         <ContainerOptions center={toggleSidebar === false}>
           {options.map((option, index) => {
