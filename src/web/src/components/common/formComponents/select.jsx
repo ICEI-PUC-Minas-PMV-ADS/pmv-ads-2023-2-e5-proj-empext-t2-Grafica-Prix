@@ -5,7 +5,7 @@ import { Field } from "formik";
 import { ErrorMessage } from "./styles";
 import { useState } from "react";
 
-export default function Select(
+export default function SelectForm(
   {
     options,
     name,
@@ -112,7 +112,7 @@ export default function Select(
               borderRadius: 5,
               colors: {
                 ...theme.colors,
-                primary: "#8463a9",
+                primary: "#e1e1e1",
                 primary25: "#e1e1e1",
               },
             })}

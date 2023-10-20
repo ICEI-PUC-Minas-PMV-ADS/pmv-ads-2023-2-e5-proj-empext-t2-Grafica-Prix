@@ -3,16 +3,17 @@ import Container from "../../../components/common/container";
 import Divisor from "../../../components/common/divisor";
 import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
-import Register from "../../../components/admin/forms/categories/register";
+import Register from "../../../components/admin/forms/products/register";
 import { useQuery } from "@tanstack/react-query";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import ContainerActions from "../../../components/admin/containerActions";
 import Modal from "../../../components/common/modal";
-import Edit from "../../../components/admin/forms/categories/edit";
-import Delete from "../../../components/admin/forms/categories/delete";
-import Details from "../../../components/admin/forms/categories/detail";
+import Edit from "../../../components/admin/forms/products/edit";
+import Delete from "../../../components/admin/forms/products/delete";
+import Details from "../../../components/admin/forms/products/detail";
 import { getProducts } from "../../../services/api/products";
+import { currencyFormatter } from "../../../services/priceServices";
 
 export default function Products(props) {
   const [dataWithAction, setDataWithAction] = useState();
@@ -29,9 +30,12 @@ export default function Products(props) {
       key: "nome",
     },
     {
-      label: "Descrição",
-      key: "descricao",
-      html: true,
+      label: "Preço",
+      key: "preco",
+    },
+    {
+      label: "Quantidade",
+      key: "quantidade",
     },
     {
       label: "Ações",
@@ -42,8 +46,10 @@ export default function Products(props) {
   useEffect(() => {
     setDataWithAction(
       products.data?.map((data) => {
+        const priceFormat = currencyFormatter(data.preco);
         return {
           ...data,
+          preco: priceFormat,
           action: (
             <ContainerActions>
               <BsTrash3
@@ -85,7 +91,13 @@ export default function Products(props) {
 
   return (
     <>
-      <Container gap="10px" padding="0 0 0 20px" height="100%" direction="row">
+      <Container
+        gap="10px"
+        maxWidth="100%"
+        padding="0 0 0 20px"
+        height="100%"
+        direction="row"
+      >
         <Divisor flex="3" height="100vh" padding="20px 0 0 0">
           <Table
             loading={products.isLoading}
@@ -105,6 +117,7 @@ export default function Products(props) {
           bgColor="#fff"
           boxShadow
           padding="20px"
+          overflow="auto"
         >
           <Text size="20px" weight="600">
             Cadastrar novo produto

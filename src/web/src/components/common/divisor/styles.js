@@ -12,6 +12,9 @@ export const DivisorStyles = styled.div`
   margin: ${(props) => props.margin};
   box-shadow: ${(props) => props.boxShadow && "0 0 5px #e1e1e1"};
   padding: ${(props) => props.padding};
+  overflow: ${(props) => props.overflow};
+  border: ${(props) => props.border};
+  border-bottom: ${(props) => props.borderBottom && "1px solid #e1e1e1"};
 
   @media (max-width: ${(props) => props.breakPoint}) {
     flex-direction: column;

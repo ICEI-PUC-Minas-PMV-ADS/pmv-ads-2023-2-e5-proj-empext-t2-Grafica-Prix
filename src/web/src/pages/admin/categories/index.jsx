@@ -85,7 +85,13 @@ export default function Categories(props) {
 
   return (
     <>
-      <Container gap="10px" padding="0 0 0 20px" height="100%" direction="row">
+      <Container
+        gap="10px"
+        maxWidth="100%"
+        padding="0 0 0 20px"
+        height="100%"
+        direction="row"
+      >
         <Divisor flex="3" height="100vh" padding="20px 0 0 0">
           <Table
             loading={categories.isLoading}
