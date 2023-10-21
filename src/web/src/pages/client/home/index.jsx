@@ -3,6 +3,9 @@ import Banner from "../../../components/client/banner";
 import Section from "../../../components/client/section";
 import SwiperComponent from "../../../components/common/swiper";
 import CardProduct from "../../../components/client/cardProduct";
+import { getCategories } from "../../../services/api/categories";
+import { useQuery } from "@tanstack/react-query";
+import CarouselProducts from "../../../components/common/carouselProducts";
 
 export default function Home(props) {
   const banners = [
@@ -16,31 +19,32 @@ export default function Home(props) {
       image: "",
     },
   ];
-  const products = [
-    {
+
+  const categories = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
+
+  const products = [];
+
+  for (let i = 0; i < 10; i++) {
+    products.push({
       image: "",
       name: "Nome do produto",
       price: "RS 99,90",
-    }
-  ]
+    });
+  }
+
   return (
     <>
       <Banner images={banners} />
-      <Section title="Canecas">
-          <SwiperComponent
-          slidesPerView={4}
-          countItems={products?.length}
-          height="auto"
-        >
-          {products?.map((product, index) => {
-            return (
-              <SwiperSlide key={index + 10023332}>
-                <CardProduct url={product.image} name={product.name} price={product.price}/>
-              </SwiperSlide>
-            );
-          })}
-        </SwiperComponent>
-      </Section>
+      {categories.data?.map((category) => {
+        return (
+          <Section title={category.nome}>
+            <CarouselProducts products={products} />
+          </Section>
+        );
+      })}
     </>
   );
 }

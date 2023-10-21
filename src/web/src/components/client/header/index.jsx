@@ -124,6 +124,7 @@ export default function Header() {
                   </Text>
                   <Text weight="600" color>
                     {`${user?.name?.split(" ")[0]} ${
+                      user?.name?.split(" ").length > 1 &&
                       user?.name?.split(" ")[user?.name?.split(" ").length - 1]
                     }`}
                   </Text>
