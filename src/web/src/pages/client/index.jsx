@@ -11,7 +11,7 @@ export default function Client() {
       <Content>
         <Outlet />
       </Content>
-      <Footer/>
+      <Footer />
     </ProtectedRoute>
   );
 }

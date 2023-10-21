@@ -108,6 +108,7 @@ export default function Products(props) {
             descriptionSearch="Consulte ou gerencie seus produtos"
             textTotal="produtos"
             heightTable="calc(100vh - 5%)"
+            textNoContent="Nenhum produto cadastrado"
           />
         </Divisor>
         <Divisor

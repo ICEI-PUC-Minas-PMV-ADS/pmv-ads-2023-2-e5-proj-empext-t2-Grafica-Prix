@@ -122,6 +122,7 @@ export default function Dashboard(props) {
               descriptionSearch="Consulte ou gerencie seus clientes"
               textTotal="clientes"
               maxHeight="400px"
+              textNoContent="Nenhum cliente cadastrado"
             />
           </ContainerData>
           <ContainerData>

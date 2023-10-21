@@ -9,11 +9,6 @@ export function AuthProvider({ children }) {
   const user = useQuery({
     queryKey: ["me", localStorage.getItem("id")],
     queryFn: getMe,
-    retry: false,
-    retryOnMount: false,
-    refetchOnReconnect: false,
-    refetchOnWindowFocus: false,
-    refetchOnMount: false,
   });
 
   const client = useQueryClient();

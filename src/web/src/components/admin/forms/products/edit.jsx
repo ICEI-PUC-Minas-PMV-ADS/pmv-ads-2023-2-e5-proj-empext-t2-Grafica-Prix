@@ -5,7 +5,7 @@ import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
 import { priceFormatter } from "../../../../services/priceServices";
 
-export default function Edit({ data }) {
+export default function Edit({ data, setModal }) {
   const [loading, setLoading] = useState(false);
   const [fileConverted, setFileConverted] = useState();
 
@@ -35,6 +35,7 @@ export default function Edit({ data }) {
 
     http.put(`api/Produto/${data.id}`, formData).then(
       () => {
+        setModal(false);
         setLoading(false);
         client.invalidateQueries({ queryKey: ["products"] });
         toast.success("Produto editado com sucesso");
@@ -70,7 +71,7 @@ export default function Edit({ data }) {
         {fileConverted && (
           <Form.Button
             type="submit"
-            title="Cadastrar"
+            title="Editar"
             minWidth="fit-content"
             padding="10px 30px"
             margin="5px 0 0 0"

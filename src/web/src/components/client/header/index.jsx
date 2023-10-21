@@ -7,8 +7,17 @@ import {
   Logo,
   ContainerCategories,
   Menu,
+  Datauser,
+  MenuMobile,
+  ContainerActionsMobile,
+  ContainerSearchMobile,
+  ContainerFixed,
 } from "./styles";
-import { AiOutlineUser, AiOutlineShoppingCart, AiOutlineInstagram, AiFillFacebook, AiOutlineWhatsApp, AiOutlinePhone } from "react-icons/ai";
+import {
+  AiOutlineUser,
+  AiOutlineShoppingCart,
+  AiOutlineMenu,
+} from "react-icons/ai";
 import Form from "../../../components/common/formComponents";
 import logo from "../../../assets/logo-prix-removebg-preview 1.png";
 import Container from "../../common/container";
@@ -17,11 +26,15 @@ import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../common/modal";
 import Profile from "../profile";
 import useAuth from "../../../context/auth";
+import { useQuery } from "@tanstack/react-query";
+import { getCategories } from "../../../services/api/categories";
+import Text from "../../common/text";
 
-export default function Header(props) {
+export default function Header() {
   const { authed, user } = useAuth();
   const [profile, setProfile] = useState(false);
   const [optionAdmin, setOptionAdmin] = useState();
+  const [menuMobile, setMenuMobile] = useState(false);
 
   useEffect(() => {
     if (!authed) {
@@ -37,15 +50,10 @@ export default function Header(props) {
 
   const navigate = useNavigate();
 
-  const categories = [
-    { name: "Categoria 1" },
-    { name: "Categoria 2" },
-    { name: "Categoria 3" },
-    { name: "Categoria 4" },
-    { name: "Categoria 5" },
-    { name: "Categoria 6" },
-    { name: "Categoria 7" },
-  ];
+  const categories = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+  });
 
   const itensMenu = [
     {
@@ -58,17 +66,35 @@ export default function Header(props) {
   ];
 
   return (
-    <>
+    <ContainerFixed>
       <ContainerHeader>
         <Container
           direction="row"
-          padding="5px 20px"
+          padding="0 20px"
           justifyContent="space-between"
           alignItems="center"
         >
+          <MenuMobile onClick={() => setMenuMobile(true)}>
+            <AiOutlineMenu size={30} color="#ff5757" />
+          </MenuMobile>
           <Link to="/">
             <Logo src={logo} />
           </Link>
+          <ContainerActionsMobile>
+            <AiOutlineUser
+              color="FF5757"
+              cursor="pointer"
+              size={30}
+              onClick={() => {
+                if (authed) {
+                  setProfile(true);
+                } else {
+                  navigate("/login");
+                }
+              }}
+            />
+            <AiOutlineShoppingCart color="FF5757" cursor="pointer" size={30} />
+          </ContainerActionsMobile>
           <ContainerSearch>
             <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
               <Form.Input
@@ -90,21 +116,60 @@ export default function Header(props) {
                 }
               }}
             >
-              <AiOutlineUser color="FF5757" size={35} />
-              <p>
-                <span>Entre</span> ou <span>cadastre-se</span>{" "}
-              </p>
+              <AiOutlineUser color="FF5757" size={30} />
+              {user ? (
+                <Datauser>
+                  <Text>
+                    <span>Olá,</span>
+                  </Text>
+                  <Text weight="600" color>
+                    {`${user?.name?.split(" ")[0]} ${
+                      user?.name?.split(" ")[user?.name?.split(" ").length - 1]
+                    }`}
+                  </Text>
+                </Datauser>
+              ) : (
+                <Datauser>
+                  <Text>
+                    <span>Entre</span> ou
+                  </Text>
+                  <Text>
+                    <span>cadastre-se</span>
+                  </Text>
+                </Datauser>
+              )}
             </ContainerDataUser>
             <AiOutlineShoppingCart color="FF5757" size={35} />
           </ContainerActions>
         </Container>
+        <ContainerSearchMobile>
+          <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
+            <Form.Input
+              name="search"
+              placeHolder={"Buscar por..."}
+              maxWidth="700px"
+              marginCenter
+              search
+            />
+          </Form>
+        </ContainerSearchMobile>
       </ContainerHeader>
       <Menu border="1px solid #E1E1E1">
         <Container direction="row" padding="5px 20px" gap="185px">
-          <Dropdown title="Menu" itemsList={itensMenu} />
+          <Dropdown
+            title="Menu"
+            itemsList={itensMenu}
+            icon={<AiOutlineMenu size={20} color="#ff5757" />}
+          />
           <ContainerCategories>
-            {categories?.map((category, index) => {
-              return <p key={index}>{category.name}</p>;
+            {categories?.data?.map((category) => {
+              return (
+                <Link to="">
+                  <Text key={category.nome} size="14px" cursor="pointer">
+                    {category.nome}
+                  </Text>
+                </Link>
+              );
             })}
           </ContainerCategories>
         </Container>
@@ -114,6 +179,44 @@ export default function Header(props) {
           <Profile />
         </Modal>
       )}
-    </>
+      {menuMobile && (
+        <Modal setModal={setMenuMobile} hidden="800px" width="40%">
+          {itensMenu.map((item) => {
+            return (
+              <Link to={item.url}>
+                <Text
+                  key={item.title}
+                  size="14px"
+                  cursor="pointer"
+                  weight="600"
+                  margin="0 0 10px 0"
+                  width="100%"
+                  bordeBottom="1px solid #e1e1e1"
+                  padding="5px 0"
+                >
+                  {item.title}
+                </Text>
+              </Link>
+            );
+          })}
+          {categories?.data?.map((category) => {
+            return (
+              <Text
+                key={category.nome}
+                size="14px"
+                cursor="pointer"
+                weight="600"
+                margin="0 0 10px 0"
+                width="100%"
+                bordeBottom="1px solid #e1e1e1"
+                padding="5px 0"
+              >
+                {category.nome}
+              </Text>
+            );
+          })}
+        </Modal>
+      )}
+    </ContainerFixed>
   );
 }

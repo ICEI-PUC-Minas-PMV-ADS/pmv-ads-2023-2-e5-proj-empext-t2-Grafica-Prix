@@ -2,15 +2,11 @@ import React, { useState } from "react";
 import Form from "../../../components/common/formComponents";
 import useAuth from "../../../context/auth";
 import * as Yup from "yup";
-import { ErrorMessage } from "../../../components/common/formComponents/styles";
+import { toast } from "react-toastify";
 
 export default function ClientRegister({ setForm }) {
   const { register } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [messageError, setMessageError] = useState({
-    title: "",
-  });
-
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Este campo é obrigatório"),
     email: Yup.string().required("Este campo é obrigatório"),
@@ -26,12 +22,12 @@ export default function ClientRegister({ setForm }) {
       (res) => {
         setLoading(false);
         setForm("login");
+        toast.success("Usuário cadastrado com sucesso.");
       },
       (e) => {
         setLoading(false);
-        setMessageError({
-          title: "Erro ao efetuar o cadastro",
-        });
+        console.dir(e.response.data);
+        toast.error(e.response.data || "Não foi possível cadastrar o usuário.");
       }
     );
   }
@@ -89,7 +85,6 @@ export default function ClientRegister({ setForm }) {
         margin="5px 0 0 0"
         loading={loading}
       />
-      {messageError.title && <ErrorMessage>{messageError.title}</ErrorMessage>}
     </Form>
   );
 }

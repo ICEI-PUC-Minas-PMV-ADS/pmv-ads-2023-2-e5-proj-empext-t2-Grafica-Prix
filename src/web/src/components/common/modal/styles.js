@@ -11,6 +11,10 @@ export const BackgroundModal = styled.div`
   z-index: 1000;
   display: flex;
   justify-content: flex-end;
+
+  @media (min-width: ${(props) => props.hidden}) {
+    display: none;
+  }
 `;
 
 export const ContainerPage = styled.div`

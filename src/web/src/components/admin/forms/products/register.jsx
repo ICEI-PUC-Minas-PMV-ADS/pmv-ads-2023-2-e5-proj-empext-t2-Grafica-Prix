@@ -25,9 +25,9 @@ export default function Register() {
 
     http.post("api/Produto", formData).then(
       () => {
+        toast.success("Produto cadastrado com sucesso");
         setLoading(false);
         client.invalidateQueries({ queryKey: ["products"] });
-        toast.success("Produto cadastrado com sucesso");
       },
       () => {
         setLoading(false);

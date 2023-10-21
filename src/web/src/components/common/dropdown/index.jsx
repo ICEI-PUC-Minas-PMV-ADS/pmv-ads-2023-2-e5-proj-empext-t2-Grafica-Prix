@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { AiOutlineMenu } from "react-icons/ai";
 import {
   ButtonMenuStyles,
   ContainerButtonDropdown,
@@ -8,12 +7,12 @@ import {
 } from "./style";
 import { Link } from "react-router-dom";
 
-export default function Dropdown({ itemsList, title }) {
+export default function Dropdown({ itemsList, icon, title }) {
   const [showMenu, setShowMenu] = useState(false);
   return (
     <ContainerButtonDropdown>
       <ButtonMenuStyles onClick={() => setShowMenu(!showMenu)}>
-        <AiOutlineMenu size={20} color="#ff5757" />
+        {icon}
         {title}
       </ButtonMenuStyles>
       <DropdownStyles show={showMenu} onMouseLeave={() => setShowMenu(false)}>

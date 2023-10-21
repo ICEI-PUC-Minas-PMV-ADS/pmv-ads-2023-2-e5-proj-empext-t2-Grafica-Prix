@@ -4,6 +4,7 @@ import {
   ContainerSearch,
   ContainerTable,
   ContentTable,
+  NoContent,
   TableStyles,
   Td,
   Th,
@@ -68,28 +69,36 @@ export default function Table(props) {
             })}
           </Tr>
           <ContentTable>
-            {props.loading
-              ? "Carregando"
-              : newData?.map((row) => {
-                  return (
-                    <Tr>
-                      {props.columns.map((column) => {
-                        return column.html ? (
-                          <Td
-                            countColumns={props.columns.length}
-                            dangerouslySetInnerHTML={{
-                              __html: renderDatas(row, column),
-                            }}
-                          ></Td>
-                        ) : (
-                          <Td countColumns={props.columns.length}>
-                            {renderDatas(row, column)}
-                          </Td>
-                        );
-                      })}
-                    </Tr>
-                  );
-                })}
+            {props.loading ? (
+              "Carregando"
+            ) : newData.length > 0 ? (
+              newData?.map((row) => {
+                return (
+                  <Tr>
+                    {props.columns.map((column) => {
+                      return column.html ? (
+                        <Td
+                          countColumns={props.columns.length}
+                          dangerouslySetInnerHTML={{
+                            __html: renderDatas(row, column),
+                          }}
+                        ></Td>
+                      ) : (
+                        <Td countColumns={props.columns.length}>
+                          {renderDatas(row, column)}
+                        </Td>
+                      );
+                    })}
+                  </Tr>
+                );
+              })
+            ) : (
+              <NoContent>
+                <Text size="16px" weight="600">
+                  {props.textNoContent}
+                </Text>
+              </NoContent>
+            )}
           </ContentTable>
           <Paginator />
         </TableStyles>

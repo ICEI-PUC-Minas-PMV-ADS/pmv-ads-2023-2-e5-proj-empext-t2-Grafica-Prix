@@ -5,6 +5,7 @@ import { TextForgotPassword } from "../../../pages/common/login/styles";
 import { Link, useNavigate } from "react-router-dom";
 import * as Yup from "yup";
 import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "react-toastify";
 
 export default function ClientLogin() {
   const { login } = useAuth();
@@ -28,9 +29,13 @@ export default function ClientLogin() {
           { queryKey: ["me", res.dbusuario.id] },
           res.dbusuario
         );
+        toast.success("Login efetuado com sucesso.");
       },
       (e) => {
         setLoading(false);
+        toast.error(
+          "Email ou senha inválidos. Certifique-se que os dados informado estajam corretos."
+        );
       }
     );
   }

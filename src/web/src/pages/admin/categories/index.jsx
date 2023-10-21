@@ -102,6 +102,7 @@ export default function Categories(props) {
             descriptionSearch="Consulte ou gerencie seus produtos"
             textTotal="produtos"
             heightTable="calc(100vh - 5%)"
+            textNoContent="Nenhuma categoria cadastrada"
           />
         </Divisor>
         <Divisor
