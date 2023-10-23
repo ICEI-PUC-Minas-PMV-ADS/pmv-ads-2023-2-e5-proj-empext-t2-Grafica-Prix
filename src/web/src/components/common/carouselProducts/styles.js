@@ -13,8 +13,6 @@ export const ContainerCarouselProducts = styled.div`
   gap: 20px;
   overflow: hidden;
   scroll-behavior: smooth;
-  margin: 0 auto;
-  white-space: nowrap;
 `;
 
 export const ContainerArrows = styled.div`
@@ -35,5 +33,4 @@ export const ArrowButton = styled.button`
   align-items: center;
   justify-content: center;
   height: 100%;
-  position: relative;
 `;
