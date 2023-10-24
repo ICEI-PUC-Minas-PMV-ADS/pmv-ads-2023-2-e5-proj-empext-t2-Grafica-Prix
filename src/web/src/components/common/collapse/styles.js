@@ -4,6 +4,7 @@ export const ContainerCollapse = styled.div`
   width: 100%;
   position: relative;
   border-bottom: 1px solid #e1e1e1;
+  margin: ${(props) => props.margin};
 `;
 
 export const ButtonStyles = styled.button`

@@ -29,7 +29,7 @@ export const DropdownStyles = styled.div`
   padding: ${(props) => (props.show ? "10px" : "0")};
   z-index: ${(props) => props.show && "2"};
   height: ${(props) => (props.show ? "auto" : "0")};
-  overflow: ${(props) => props.show && "hidden"};
+  overflow: ${(props) => !props.show && "hidden"};
   opacity: ${(props) => (props.show ? "1" : "0")};
   transition: 0.3s;
 `;

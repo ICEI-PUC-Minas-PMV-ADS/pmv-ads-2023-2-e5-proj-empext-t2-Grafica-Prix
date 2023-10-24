@@ -3,7 +3,6 @@ import Form from "../../../common/formComponents";
 import http from "../../../../services/http";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { currencyFormatter } from "../../../../services/priceServices";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
@@ -14,10 +13,11 @@ export default function Register() {
     setLoading(true);
 
     const formData = new FormData();
+    const salaryFormat = new Intl.NumberFormat("pt-BR");
 
     for (let key in values) {
       if (key === "Preco") {
-        formData.append(key, currencyFormatter(values[key]));
+        formData.append(key, salaryFormat.format(values[key]));
         continue;
       }
       formData.append(key, values[key]);

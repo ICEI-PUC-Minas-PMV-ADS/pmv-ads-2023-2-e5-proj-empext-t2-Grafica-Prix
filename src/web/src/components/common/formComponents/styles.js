@@ -28,6 +28,7 @@ export const InputGroup = styled.div`
     if (props.marginCenter) return "0 auto";
     else return props.margin;
   }};
+  padding: ${(props) => props.padding};
 
   .select__control {
     height: auto;
@@ -238,4 +239,17 @@ export const ContainerTextDeleteImage = styled.div`
   border-radius: 5px;
   left: 10px;
   bottom: -20px;
+`;
+
+export const ButtonCounter = styled.div`
+  background-color: #fff;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 1px solid #ff5757;
+  color: #ff5757;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;

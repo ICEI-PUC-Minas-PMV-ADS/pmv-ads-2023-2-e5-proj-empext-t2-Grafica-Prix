@@ -93,7 +93,12 @@ export default function Header() {
                 }
               }}
             />
-            <AiOutlineShoppingCart color="FF5757" cursor="pointer" size={30} />
+            <AiOutlineShoppingCart
+              color="FF5757"
+              cursor="pointer"
+              size={30}
+              onClick={() => navigate("/budgets")}
+            />
           </ContainerActionsMobile>
           <ContainerSearch>
             <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
@@ -140,7 +145,11 @@ export default function Header() {
                 </Datauser>
               )}
             </ContainerDataUser>
-            <AiOutlineShoppingCart color="FF5757" size={35} />
+            <AiOutlineShoppingCart
+              color="FF5757"
+              size={35}
+              onClick={() => navigate("/budgets")}
+            />
           </ContainerActions>
         </Container>
         <ContainerSearchMobile>

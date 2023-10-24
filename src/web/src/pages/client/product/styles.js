@@ -19,6 +19,7 @@ export const ContainerDetailProduct = styled.div`
 export const ImageProduct = styled.img`
   width: 520px;
   background-color: #fff;
+  flex: 1;
 
   @media (max-width: 500px) {
     width: 100%;
@@ -29,4 +30,5 @@ export const ImageProduct = styled.img`
 export const ContainerDescriptionProduct = styled.div`
   display: flex;
   flex-direction: column;
+  flex: 1;
 `;

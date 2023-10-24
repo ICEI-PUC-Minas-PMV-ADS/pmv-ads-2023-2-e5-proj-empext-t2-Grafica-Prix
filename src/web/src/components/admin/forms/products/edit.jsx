@@ -24,10 +24,11 @@ export default function Edit({ data, setModal }) {
     setLoading(true);
 
     const formData = new FormData();
+    const salaryFormat = new Intl.NumberFormat("pt-BR");
 
     for (let key in values) {
       if (key === "Preco") {
-        formData.append(key, currencyFormatter(values[key]));
+        formData.append(key, salaryFormat.format(values[key]));
         continue;
       }
       formData.append(key, values[key]);
@@ -65,9 +66,9 @@ export default function Edit({ data, setModal }) {
         <Form.Input label="Nome" name="Nome" />
         <Form.InputPrice label="Preço" name="Preco" />
         <Form.Number label="Quantidade" name="Quantidade" />
-        {/*  <Form.Select label="Categoria" name="Categoria" /> */}
+        <Form.Select label="Categoria" name="Categoria" />
         <Form.Editor label="Descrição" name="Descricao" />
-        <Form.Editor label="Promocao" name="Promocao" />
+        <Form.InputPrice label="Promoção" name="Promocao" />
         {fileConverted && (
           <Form.Button
             type="submit"
