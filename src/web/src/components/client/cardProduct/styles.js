@@ -33,3 +33,5 @@ export const PromotionAlert = styled.div`
   right: 0;
   height: fit-content;
 `;
+
+

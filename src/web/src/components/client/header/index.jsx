@@ -29,6 +29,7 @@ import useAuth from "../../../context/auth";
 import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../../../services/api/categories";
 import Text from "../../common/text";
+import { ContainerLogo } from "./styles";
 
 export default function Header() {
   const { authed, user } = useAuth();
@@ -77,9 +78,13 @@ export default function Header() {
           <MenuMobile onClick={() => setMenuMobile(true)}>
             <AiOutlineMenu size={30} color="#ff5757" />
           </MenuMobile>
-          <Link to="/">
-            <Logo src={logo} />
-          </Link>
+
+          <ContainerLogo>
+            <Link to="/">
+              <Logo src={logo} />
+            </Link>
+          </ContainerLogo>
+
           <ContainerActionsMobile>
             <AiOutlineUser
               color="FF5757"
@@ -111,7 +116,7 @@ export default function Header() {
               />
             </Form>
           </ContainerSearch>
-          <ContainerActions>
+          <ContainerActions justifyContent="flex-end">
             <ContainerDataUser
               onClick={() => {
                 if (authed) {
@@ -146,9 +151,16 @@ export default function Header() {
               )}
             </ContainerDataUser>
             <AiOutlineShoppingCart
-              color="FF5757"
-              size={35}
+              color="#FF5757"
+              size={30}
+              cursor="pointer"
               onClick={() => navigate("/budgets")}
+            />
+            <AiOutlineMenu
+              size={30}
+              color="#ff5757"
+              cursor="pointer"
+              onClick={() => setMenuMobile(true)}
             />
           </ContainerActions>
         </Container>
@@ -164,33 +176,14 @@ export default function Header() {
           </Form>
         </ContainerSearchMobile>
       </ContainerHeader>
-      <Menu border="1px solid #E1E1E1">
-        <Container direction="row" padding="5px 20px" gap="185px">
-          <Dropdown
-            title="Menu"
-            itemsList={itensMenu}
-            icon={<AiOutlineMenu size={20} color="#ff5757" />}
-          />
-          <ContainerCategories>
-            {categories?.data?.map((category) => {
-              return (
-                <Link to="">
-                  <Text key={category.nome} size="14px" cursor="pointer">
-                    {category.nome}
-                  </Text>
-                </Link>
-              );
-            })}
-          </ContainerCategories>
-        </Container>
-      </Menu>
+
       {authed && profile && (
         <Modal setModal={setProfile} width="40%">
           <Profile />
         </Modal>
       )}
       {menuMobile && (
-        <Modal setModal={setMenuMobile} hidden="800px" width="40%">
+        <Modal setModal={setMenuMobile} width="40%">
           {itensMenu.map((item) => {
             return (
               <Link to={item.url}>
