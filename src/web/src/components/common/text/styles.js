@@ -10,4 +10,5 @@ export const TextStyles = styled.p`
   margin: ${(props) => props.margin};
   border-bottom: ${(props) => props.bordeBottom};
   padding: ${(props) => props.padding};
+  text-decoration: ${(props) => props.lineThrough && "line-through"};
 `;

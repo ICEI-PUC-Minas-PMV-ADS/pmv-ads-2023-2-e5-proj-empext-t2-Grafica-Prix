@@ -1,8 +1,3 @@
-export function priceFormatter(price) {
-  const numberFormatter = new Intl.NumberFormat("pt-BR");
-  return numberFormatter.format(price);
-}
-
 export function currencyFormatter(price, currency) {
   if (!price) return;
 
@@ -12,4 +7,10 @@ export function currencyFormatter(price, currency) {
   });
 
   return salaryFormat.format(price);
+}
+
+export function percentagePromotion(product) {
+  const promotion = Math.floor((product.promocao * 100) / product.preco);
+  const percentage = 100 - promotion;
+  return percentage;
 }

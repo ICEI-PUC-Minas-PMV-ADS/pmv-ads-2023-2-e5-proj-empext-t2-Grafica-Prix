@@ -10,10 +10,10 @@ import Text from "../text";
 import Divisor from "../divisor";
 import { RiArrowDownSFill, RiArrowUpSFill } from "react-icons/ri";
 
-export default function Collpase({ itemsList, icon, title }) {
+export default function Collpase({ margin, itemsList, icon, title }) {
   const [showMenu, setShowMenu] = useState(false);
   return (
-    <ContainerCollapse>
+    <ContainerCollapse margin={margin}>
       <ButtonStyles onClick={() => setShowMenu(!showMenu)}>
         {icon}
         <Divisor justifyContent="space-between">

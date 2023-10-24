@@ -3,7 +3,6 @@ import Form from "../../../common/formComponents";
 import http from "../../../../services/http";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { priceFormatter } from "../../../../services/priceServices";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
@@ -14,10 +13,11 @@ export default function Register() {
     setLoading(true);
 
     const formData = new FormData();
+    const salaryFormat = new Intl.NumberFormat("pt-BR");
 
     for (let key in values) {
       if (key === "Preco") {
-        formData.append(key, priceFormatter(values[key]));
+        formData.append(key, salaryFormat.format(values[key]));
         continue;
       }
       formData.append(key, values[key]);
@@ -53,9 +53,9 @@ export default function Register() {
       <Form.Input label="Nome" name="Nome" />
       <Form.InputPrice label="Preço" name="Preco" />
       <Form.Number label="Quantidade" name="Quantidade" />
-      {/*  <Form.Select label="Categoria" name="Categoria" /> */}
+      {/* <Form.Select label="Categoria" name="Categoria" /> */}
       <Form.Editor label="Descrição" name="Descricao" />
-      <Form.Editor label="Promocao" name="Promocao" />
+      <Form.InputPrice label="Promoção" name="Promocao" />
       <Form.Button
         type="submit"
         title="Cadastrar"

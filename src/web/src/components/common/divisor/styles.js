@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const DivisorStyles = styled.div`
   background-color: ${(props) => props.bgColor};
   flex: ${(props) => props.flex};
-  width: 100%;
+  width: ${(props) => props.width || "100%"};
   height: ${(props) => props.height};
   display: flex;
   flex-direction: ${(props) => props.direction || "row"};
@@ -15,6 +15,7 @@ export const DivisorStyles = styled.div`
   overflow: ${(props) => props.overflow};
   border: ${(props) => props.border};
   border-bottom: ${(props) => props.borderBottom && "1px solid #e1e1e1"};
+  align-items: ${(props) => props.alignItems };
 
   @media (max-width: ${(props) => props.breakPoint}) {
     flex-direction: column;

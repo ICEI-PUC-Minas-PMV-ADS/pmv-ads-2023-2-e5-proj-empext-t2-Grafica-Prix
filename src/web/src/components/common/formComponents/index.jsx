@@ -8,6 +8,7 @@ import SelectForm from "./select";
 import InputPrice from "./inputPrice";
 import File from "./file";
 import Number from "./number";
+import Counter from "./counter";
 
 export default function Form({
   children,
@@ -55,3 +56,4 @@ Form.Select = SelectForm;
 Form.InputPrice = InputPrice;
 Form.File = File;
 Form.Number = Number;
+Form.Counter = Counter;

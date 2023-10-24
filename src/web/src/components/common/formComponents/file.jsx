@@ -88,7 +88,7 @@ export default function File({ name, label, multiple, imageDefault }) {
 
                 setImagePreview(URL.createObjectURL(e.target.files[0]));
               }}
-              accept=".png, .jpeg"
+              accept=".png, .jpeg, .jpg"
             />
 
             {meta.error && <ErrorMessage>{meta.error}</ErrorMessage>}

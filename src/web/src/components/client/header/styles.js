@@ -11,6 +11,7 @@ export const ContainerHeader = styled.div`
   border-bottom: 1px;
   background-color: #ffffff;
   width: 100%;
+  border-bottom: 1px solid #e1e1e1;
 `;
 export const ContainerMainHeader = styled.div`
   display: flex;
@@ -32,6 +33,9 @@ export const ContainerSearch = styled.div`
   height: 2.3125rem;
   font-size: 0.875rem;
   background-color: transparent;
+  flex: 2;
+  display: flex;
+  justify-content: flex-end;
 
   @media (max-width: 800px) {
     display: none;
@@ -39,10 +43,11 @@ export const ContainerSearch = styled.div`
 `;
 
 export const ContainerActions = styled.div`
-  width: 250px;
   display: flex;
-  gap: 10px;
+  gap: 20px;
   align-items: center;
+  flex: 1;
+  justify-content: ${(props) => props.justifyContent};
 
   @media (max-width: 800px) {
     display: none;
@@ -50,7 +55,6 @@ export const ContainerActions = styled.div`
 `;
 
 export const ContainerDataUser = styled.div`
-  width: 100%;
   display: flex;
   gap: 5px;
   cursor: pointer;
@@ -109,5 +113,14 @@ export const ContainerSearchMobile = styled.div`
     display: flex;
     width: 100%;
     padding: 10px;
+  }
+`;
+
+export const ContainerLogo = styled.div`
+  flex: 1;
+
+  @media (max-width: 800px) {
+    display: flex;
+    justify-content: center;
   }
 `;
