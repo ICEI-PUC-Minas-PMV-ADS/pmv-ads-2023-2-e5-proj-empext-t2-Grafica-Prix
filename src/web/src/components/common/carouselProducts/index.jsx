@@ -26,14 +26,8 @@ export default function CarouselProducts({ products, rollMeasure }) {
         <RiArrowLeftSLine onClick={prev} size={50} />
       </ArrowButton>
       <ContainerCarouselProducts ref={carousel}>
-        {products.map((product) => {
-          return (
-            <CardProduct
-              url={product.image}
-              name={product.name}
-              price={product.price}
-            />
-          );
+        {products?.map((product) => {
+          return <CardProduct product={product} />;
         })}
       </ContainerCarouselProducts>
       <ArrowButton>

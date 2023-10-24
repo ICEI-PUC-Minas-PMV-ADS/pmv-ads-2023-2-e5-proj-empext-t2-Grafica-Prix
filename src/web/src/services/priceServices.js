@@ -1,8 +1,3 @@
-export function priceFormatter(price) {
-  const numberFormatter = new Intl.NumberFormat("pt-BR");
-  return numberFormatter.format(price);
-}
-
 export function currencyFormatter(price, currency) {
   if (!price) return;
 

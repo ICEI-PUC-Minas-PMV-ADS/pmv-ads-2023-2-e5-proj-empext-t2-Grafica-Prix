@@ -3,7 +3,7 @@ import Form from "../../../common/formComponents";
 import http from "../../../../services/http";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
-import { priceFormatter } from "../../../../services/priceServices";
+import { currencyFormatter } from "../../../../services/priceServices";
 
 export default function Edit({ data, setModal }) {
   const [loading, setLoading] = useState(false);
@@ -27,7 +27,7 @@ export default function Edit({ data, setModal }) {
 
     for (let key in values) {
       if (key === "Preco") {
-        formData.append(key, priceFormatter(values[key]));
+        formData.append(key, currencyFormatter(values[key]));
         continue;
       }
       formData.append(key, values[key]);

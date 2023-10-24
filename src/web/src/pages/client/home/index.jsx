@@ -6,6 +6,7 @@ import CardProduct from "../../../components/client/cardProduct";
 import { getCategories } from "../../../services/api/categories";
 import { useQuery } from "@tanstack/react-query";
 import CarouselProducts from "../../../components/common/carouselProducts";
+import { getProducts } from "../../../services/api/products";
 
 export default function Home(props) {
   const banners = [
@@ -25,15 +26,10 @@ export default function Home(props) {
     queryFn: getCategories,
   });
 
-  const products = [];
-
-  for (let i = 0; i < 10; i++) {
-    products.push({
-      image: "",
-      name: "Nome do produto",
-      price: "RS 99,90",
-    });
-  }
+  const products = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
 
   return (
     <>
@@ -41,7 +37,7 @@ export default function Home(props) {
       {categories.data?.map((category) => {
         return (
           <Section title={category.nome}>
-            <CarouselProducts products={products} />
+            <CarouselProducts products={products.data} rollMeasure={150} />
           </Section>
         );
       })}

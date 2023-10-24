@@ -7,12 +7,14 @@ import Dashboard from "../pages/admin/dashboard";
 import Categories from "../pages/admin/categories";
 import Client from "../pages/client";
 import Products from "../pages/admin/products";
+import Detail from "../pages/client/product/details";
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Client />}>
         <Route path="/" element={<Home />} />
+        <Route path="product" element={<Detail />} />
       </Route>
       <Route path="admin" element={<Admin />}>
         <Route path="dashboard" element={<Dashboard />} />

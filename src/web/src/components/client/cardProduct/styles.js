@@ -10,6 +10,8 @@ export const CardStyles = styled.div`
   max-width: 180px;
 
   color: white;
+
+  cursor: pointer;
 `;
 
 export const ImageProduct = styled.img`
@@ -18,4 +20,5 @@ export const ImageProduct = styled.img`
   height: 180px;
   border-radius: 5px;
   margin-bottom: 5px;
+  border: 1px solid #e1e1e1;
 `;
