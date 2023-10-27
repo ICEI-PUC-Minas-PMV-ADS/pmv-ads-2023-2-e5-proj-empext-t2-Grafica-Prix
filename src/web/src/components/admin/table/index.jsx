@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import {
+  ContainerButtonAction,
   ContainerData,
   ContainerSearch,
   ContainerTable,
@@ -14,6 +15,7 @@ import Paginator from "../paginator";
 import Divisor from "../../common/divisor";
 import Text from "../../common/text";
 import Form from "../../common/formComponents";
+import Button from "../../common/button";
 
 export default function Table(props) {
   let newData = [];
@@ -38,16 +40,30 @@ export default function Table(props) {
       {props.search && (
         <ContainerSearch>
           <ContainerData>
-            <Text size="20px" weight="600">
-              {props.titleSearch}
-            </Text>
+            <Divisor justifyContent="space-between">
+              <Text size="20px" weight="600">
+                {props.titleSearch}
+              </Text>
+              {props.action && (
+                <ContainerButtonAction>
+                  <Button
+                    padding="8px 15px"
+                    margin="0"
+                    onClick={props.action.function}
+                  >
+                    <Text color="#fff">{props.actionTitle}</Text>
+                  </Button>
+                </ContainerButtonAction>
+              )}
+            </Divisor>
+
             <Divisor justifyContent="space-between">
               <Text>{props.descriptionSearch}</Text>
               <Text>
                 Total de {props.textTotal}: {props.data?.length || 0}
               </Text>
             </Divisor>
-            <Form>
+            <Form data={{ search: "" }} onSubmit={props.handleSearch}>
               <Form.Input
                 name="search"
                 placeHolder="Pesquisar cliente..."

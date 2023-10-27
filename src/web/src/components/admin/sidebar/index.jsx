@@ -52,10 +52,12 @@ export default function Sidebar() {
     },
     {
       title: "Orçamentos",
+      route: "/admin/budgets",
       icon: <GoTasklist size={20} color="#FF5757" />,
     },
     {
       title: "Colaboradores",
+      route: "/admin/employees",
       icon: <HiOutlineUsers size={20} color="#FF5757" />,
     },
   ];

@@ -9,6 +9,9 @@ import Client from "../pages/client";
 import Products from "../pages/admin/products";
 import Detail from "../pages/client/product/details";
 import BudgetList from "../components/client/budgetList";
+import SearchResult from "../pages/client/searchResult";
+import Budgets from "../pages/admin/budgets";
+import Employees from "../pages/admin/employees";
 
 export default function AppRoutes() {
   return (
@@ -17,11 +20,14 @@ export default function AppRoutes() {
         <Route path="/" element={<Home />} />
         <Route path="product" element={<Detail />} />
         <Route path="budgets" element={<BudgetList />} />
+        <Route path="search" element={<SearchResult />} />
       </Route>
       <Route path="admin" element={<Admin />}>
         <Route path="dashboard" element={<Dashboard />} />
         <Route path="categories" element={<Categories />} />
         <Route path="products" element={<Products />} />
+        <Route path="budgets" element={<Budgets />} />
+        <Route path="employees" element={<Employees />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="recover-password" element={<RecoverPassoword />} />

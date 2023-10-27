@@ -7,8 +7,11 @@ import { getCategories } from "../../../services/api/categories";
 import { useQuery } from "@tanstack/react-query";
 import CarouselProducts from "../../../components/common/carouselProducts";
 import { getProducts } from "../../../services/api/products";
+import { useEffect, useState } from "react";
 
 export default function Home(props) {
+  const [restOfCategories, setRestOfCategories] = useState();
+
   const banners = [
     {
       image: "",
@@ -31,10 +34,20 @@ export default function Home(props) {
     queryFn: getProducts,
   });
 
+  useEffect(() => {
+    let allCategories = categories.data && [...categories.data];
+    allCategories?.shift();
+    setRestOfCategories(allCategories);
+  }, [categories.data]);
+
   return (
     <>
-      <Banner images={banners} />
-      {categories.data?.map((category) => {
+      <Banner images={banners} carousel />
+      <Section title={categories.data && categories.data[0]?.nome}>
+        <CarouselProducts products={products.data} rollMeasure={150} />
+      </Section>
+      <Banner />
+      {restOfCategories?.map((category) => {
         return (
           <Section title={category.nome}>
             <CarouselProducts products={products.data} rollMeasure={150} />

@@ -80,3 +80,11 @@ export const NoContent = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const ContainerButtonAction = styled.div`
+  display: none;
+
+  @media (max-width: 850px) {
+    display: flex;
+  }
+`;

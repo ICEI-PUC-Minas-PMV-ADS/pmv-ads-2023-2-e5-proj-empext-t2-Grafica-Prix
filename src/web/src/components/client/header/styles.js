@@ -36,6 +36,7 @@ export const ContainerSearch = styled.div`
   flex: 2;
   display: flex;
   justify-content: flex-end;
+  position: relative;
 
   @media (max-width: 800px) {
     display: none;
@@ -123,4 +124,18 @@ export const ContainerLogo = styled.div`
     display: flex;
     justify-content: center;
   }
+`;
+
+export const ButtonSearch = styled.button`
+  background-color: #fff;
+  border: none;
+  width: 36px;
+  height: 36px;
+  position: absolute;
+  right: 7px;
+  top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
 `;

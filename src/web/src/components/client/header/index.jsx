@@ -12,11 +12,13 @@ import {
   ContainerActionsMobile,
   ContainerSearchMobile,
   ContainerFixed,
+  ButtonSearch,
 } from "./styles";
 import {
   AiOutlineUser,
   AiOutlineShoppingCart,
   AiOutlineMenu,
+  AiOutlineSearch,
 } from "react-icons/ai";
 import Form from "../../../components/common/formComponents";
 import logo from "../../../assets/logo-prix-removebg-preview 1.png";
@@ -30,12 +32,14 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../../../services/api/categories";
 import Text from "../../common/text";
 import { ContainerLogo } from "./styles";
+import { getProducts } from "../../../services/api/products";
 
 export default function Header() {
   const { authed, user } = useAuth();
   const [profile, setProfile] = useState(false);
   const [optionAdmin, setOptionAdmin] = useState();
   const [menuMobile, setMenuMobile] = useState(false);
+  const [itemsSearch, setItemsSearch] = useState();
 
   useEffect(() => {
     if (!authed) {
@@ -56,10 +60,35 @@ export default function Header() {
     queryFn: getCategories,
   });
 
+  const products = useQuery({
+    queryKey: ["products"],
+    queryFn: getProducts,
+  });
+
+  useEffect(() => {
+    let data = products.data?.map((item) => {
+      return {
+        label: item?.nome,
+        value: item?.nome,
+      };
+    });
+    setItemsSearch(data);
+  }, [products.data]);
+
+  function handleSearch(value) {
+    if (value) {
+      navigate("/search", {
+        state: {
+          search_result: value?.search,
+        },
+      });
+    }
+  }
+
   const itensMenu = [
     {
       title: "Admin",
-      url: "/admin/dashboard/",
+      url: "/admin/dashboard",
       hidden: optionAdmin,
     },
     { title: "Quem somos", url: "" },
@@ -106,14 +135,20 @@ export default function Header() {
             />
           </ContainerActionsMobile>
           <ContainerSearch>
-            <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
-              <Form.Input
+            <Form
+              data={{ search: "" }}
+              onSubmit={handleSearch}
+              maxWidth={"700px"}
+              width={"100%"}
+            >
+              <Form.Select
                 name="search"
                 placeHolder={"Buscar por..."}
-                maxWidth="700px"
-                marginCenter
-                search
+                options={itemsSearch}
               />
+              <ButtonSearch>
+                <AiOutlineSearch size={20} color="#FF5757" />
+              </ButtonSearch>
             </Form>
           </ContainerSearch>
           <ContainerActions justifyContent="flex-end">

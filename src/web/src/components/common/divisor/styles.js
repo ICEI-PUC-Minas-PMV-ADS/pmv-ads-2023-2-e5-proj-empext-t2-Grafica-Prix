@@ -15,7 +15,8 @@ export const DivisorStyles = styled.div`
   overflow: ${(props) => props.overflow};
   border: ${(props) => props.border};
   border-bottom: ${(props) => props.borderBottom && "1px solid #e1e1e1"};
-  align-items: ${(props) => props.alignItems };
+  align-items: ${(props) => props.alignItems};
+  position: relative;
 
   @media (max-width: ${(props) => props.breakPoint}) {
     flex-direction: column;
