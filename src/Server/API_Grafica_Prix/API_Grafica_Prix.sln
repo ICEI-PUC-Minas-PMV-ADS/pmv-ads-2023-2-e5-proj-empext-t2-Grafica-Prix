@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_Grafica_Prix", "API_Grafica_Prix\API_Grafica_Prix.csproj", "{F7E65ED1-C3F1-4383-8012-7967C5E7834E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F7E65ED1-C3F1-4383-8012-7967C5E7834E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F7E65ED1-C3F1-4383-8012-7967C5E7834E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F7E65ED1-C3F1-4383-8012-7967C5E7834E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F7E65ED1-C3F1-4383-8012-7967C5E7834E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B591AD0-45BD-4F6C-A827-9987BD36BF49}
+	EndGlobalSection
+EndGlobal
