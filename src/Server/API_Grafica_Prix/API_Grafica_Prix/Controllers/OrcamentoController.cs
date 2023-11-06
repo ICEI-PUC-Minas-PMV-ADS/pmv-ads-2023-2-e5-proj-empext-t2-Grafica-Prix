@@ -26,24 +26,29 @@ namespace API_Grafica_Prix.Controllers
         [Authorize]
         public async Task<IActionResult> AdicionarAoOrcamento([FromBody] Produto produto)
         {
-           
             if (produto == null)
             {
                 return BadRequest("Produto inválido.");
             }
 
+            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value; 
-            
-            var carrinhoExistente =  await _context.adicionarProdutos.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
+            // Verifique se o produto já existe no banco de dados
+            var produtoExistente = await _context.produtos.FirstOrDefaultAsync(p => p.Id == produto.Id);
+
+            if (produtoExistente == null)
+            {
+                return BadRequest("Produto não encontrado no banco de dados.");
+            }
+
+            var carrinhoExistente = await _context.adicionarProdutos.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
 
             if (carrinhoExistente == null)
             {
-               
                 var carrinho = new AdicionarProdutoOrcamento
                 {
                     UsuarioId = usuarioId,
-                    Produtos = new List<Produto> { produto }
+                    Produtos = new List<Produto> { produtoExistente }
                 };
 
                 _context.adicionarProdutos.Add(carrinho);
@@ -54,13 +59,15 @@ namespace API_Grafica_Prix.Controllers
                 {
                     carrinhoExistente.Produtos = new List<Produto>();
                 }
-                carrinhoExistente.Produtos.Add(produto);
+                carrinhoExistente.Produtos.Add(produtoExistente); 
             }
 
             await _context.SaveChangesAsync();
 
             return Ok("Produto adicionado ao carrinho de orçamento.");
         }
+
+      
 
         [HttpPost("concluir-orcamento")]
         [Authorize]
@@ -128,8 +135,10 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet("produtos-mais-colocados")]
         public async Task<IActionResult> ProdutosMaisColocados()
         {
-           
+            var ultimoMes = DateTime.Today.AddMonths(-1);
+
             var produtosMaisColocados = await _context.orcamentos
+                .Where(o => o.DataCriacao >= ultimoMes)
                 .SelectMany(o => o.Produtos) 
                 .GroupBy(p => p.Id) 
                 .OrderByDescending(g => g.Count()) 

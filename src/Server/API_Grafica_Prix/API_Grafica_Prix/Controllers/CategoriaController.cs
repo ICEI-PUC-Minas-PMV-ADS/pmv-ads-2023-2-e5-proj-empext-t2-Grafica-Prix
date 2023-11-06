@@ -24,11 +24,11 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarTodos()
         {
-            var model = await _context.categorias.ToListAsync();
+            var model = await _context.categorias.Include(c => c.Produtos).ToListAsync();
             return Ok(model);
         }
 
-        [HttpPost]
+        
         [HttpPost]
         public async Task<IActionResult> CriarCategoria([FromBody] CategoriaDto categoriaDto)
         {
@@ -56,12 +56,12 @@ namespace API_Grafica_Prix.Controllers
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var model = await _context.categorias
+                .Include(c => c.Produtos) 
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (model == null) return NotFound();
 
             return Ok(model);
-
         }
 
         [HttpPut("{id}")]
