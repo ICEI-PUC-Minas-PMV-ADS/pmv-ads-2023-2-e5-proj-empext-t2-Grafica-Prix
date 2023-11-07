@@ -1,4 +1,4 @@
-import { useLocation } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import Container from "../../../components/common/container";
 import {
   ContainerDescriptionProduct,
@@ -16,12 +16,16 @@ import { PromotionAlert } from "../../../components/client/cardProduct/styles";
 import { useState } from "react";
 import Modal from "../../../components/common/modal";
 import Budget from "../../../components/client/budgets";
+import useAuth from "../../../context/auth";
 
 export default function Detail() {
   const { state } = useLocation();
   const [kartModal, setKartModal] = useState(false);
+  const { authed } = useAuth();
 
   const product = state.product;
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -61,7 +65,10 @@ export default function Detail() {
                 {product.quantidade}
               </Text>
             </Divisor>
-            <Button margin="10px 0 0 0" onClick={() => setKartModal(true)}>
+            <Button
+              margin="10px 0 0 0"
+              onClick={() => (authed ? setKartModal(true) : navigate("/login"))}
+            >
               Adicionar à orçamentos
             </Button>
           </ContainerDescriptionProduct>

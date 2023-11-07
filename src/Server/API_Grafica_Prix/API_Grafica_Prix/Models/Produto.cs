@@ -24,13 +24,12 @@ namespace API_Grafica_Prix.Models
 
         public string? Tamanho { get; set; }
 
-        [JsonIgnore]
-        public byte[]? Imagem { get; set; }
+        public byte[] Imagem { get; set; }
 
         [ForeignKey("Categoria")]
         public int CategoriaId { get; set; }
 
-        
+
 
 
 

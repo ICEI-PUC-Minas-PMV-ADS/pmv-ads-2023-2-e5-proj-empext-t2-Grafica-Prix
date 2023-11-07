@@ -34,7 +34,7 @@ export default function Counter({
             >
               -
             </ButtonCounter>
-            <Text size="14px">{counter}</Text>
+            <Text size="14px">{field.value}</Text>
             <ButtonCounter
               onClick={() => {
                 if (counter === maxValue) return;

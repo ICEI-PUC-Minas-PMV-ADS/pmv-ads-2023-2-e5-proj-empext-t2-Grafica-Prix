@@ -23,7 +23,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPost("adicionar-ao-orcamento")]
-        [Authorize]
+        [Authorize("AuthorizePolicy")]
         public async Task<IActionResult> AdicionarAoOrcamento([FromBody] Produto produto)
         {
             if (produto == null)
@@ -59,7 +59,7 @@ namespace API_Grafica_Prix.Controllers
                 {
                     carrinhoExistente.Produtos = new List<Produto>();
                 }
-                carrinhoExistente.Produtos.Add(produtoExistente); 
+                carrinhoExistente.Produtos.Add(produtoExistente);
             }
 
             await _context.SaveChangesAsync();
@@ -67,7 +67,7 @@ namespace API_Grafica_Prix.Controllers
             return Ok("Produto adicionado ao carrinho de orçamento.");
         }
 
-      
+
 
         [HttpPost("concluir-orcamento")]
         [Authorize]
@@ -75,9 +75,9 @@ namespace API_Grafica_Prix.Controllers
         {
             var usuario = new Usuario
             {
-                Name = User.FindFirst(ClaimTypes.Name)?.Value, 
-                Email = User.FindFirst(ClaimTypes.Email)?.Value, 
-                                                                 
+                Name = User.FindFirst(ClaimTypes.Name)?.Value,
+                Email = User.FindFirst(ClaimTypes.Email)?.Value,
+
             };
 
             var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
@@ -88,25 +88,25 @@ namespace API_Grafica_Prix.Controllers
 
             if (carrinhoTemporario != null)
             {
-                
+
                 var orcamento = new Orcamento
                 {
                     UsuarioId = usuarioId,
                     Produtos = carrinhoTemporario.Produtos,
                     DataCriacao = DateTime.Now,
-                    Fechado = false 
+                    Fechado = false
                 };
 
-                
+
                 _context.orcamentos.Add(orcamento);
 
-                
+
                 _context.adicionarProdutos.Remove(carrinhoTemporario);
 
-                
+
                 await _context.SaveChangesAsync();
 
-                await _emailService.EnviarEmailPedidoOrcamento( destinatario, usuario, orcamento);
+                await _emailService.EnviarEmailPedidoOrcamento(destinatario, usuario, orcamento);
 
                 return Ok("Orçamento criado e produtos transferidos com sucesso.");
             }
@@ -119,7 +119,7 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet("orcamento/{orcamentoId}")]
         public async Task<IActionResult> ObterDetalhesDoOrcamento(int orcamentoId)
         {
-            
+
             var orcamento = await _context.orcamentos.Include(o => o.Produtos).FirstOrDefaultAsync(o => o.Id == orcamentoId);
 
             if (orcamento != null)
@@ -139,17 +139,17 @@ namespace API_Grafica_Prix.Controllers
 
             var produtosMaisColocados = await _context.orcamentos
                 .Where(o => o.DataCriacao >= ultimoMes)
-                .SelectMany(o => o.Produtos) 
-                .GroupBy(p => p.Id) 
-                .OrderByDescending(g => g.Count()) 
-                .Take(3) 
-                .Select(g => g.Key) 
+                .SelectMany(o => o.Produtos)
+                .GroupBy(p => p.Id)
+                .OrderByDescending(g => g.Count())
+                .Take(3)
+                .Select(g => g.Key)
                 .ToListAsync();
 
-            
-                 var produtosDetalhes = await _context.produtos
-                .Where(p => produtosMaisColocados.Contains(p.Id))
-                .ToListAsync();
+
+            var produtosDetalhes = await _context.produtos
+           .Where(p => produtosMaisColocados.Contains(p.Id))
+           .ToListAsync();
 
             return Ok(produtosDetalhes);
         }
@@ -179,24 +179,24 @@ namespace API_Grafica_Prix.Controllers
         [HttpDelete("remover-do-orcamento/{produtoId}")]
         public async Task<IActionResult> RemoverDoOrcamento(int produtoId)
         {
-           
 
-            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value; 
 
-           
+            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
             var carrinhoTemporario = await _context.adicionarProdutos.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
 
             if (carrinhoTemporario != null)
             {
-                
+
                 var produtoParaRemover = carrinhoTemporario.Produtos.FirstOrDefault(p => p.Id == produtoId);
 
                 if (produtoParaRemover != null)
                 {
-                    
+
                     carrinhoTemporario.Produtos.Remove(produtoParaRemover);
 
-                    
+
                     await _context.SaveChangesAsync();
 
                     return Ok("Produto removido do carrinho de orçamento.");

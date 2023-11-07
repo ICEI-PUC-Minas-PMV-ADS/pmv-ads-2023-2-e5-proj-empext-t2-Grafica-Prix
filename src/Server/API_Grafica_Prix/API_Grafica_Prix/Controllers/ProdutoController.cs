@@ -24,7 +24,7 @@ namespace API_Grafica_Prix.Controllers
             var model = await _context.produtos.ToListAsync();
             return Ok(model);
         }
-        
+
 
         [HttpPost]
         public async Task<IActionResult> CriarProduto([FromForm] IFormFile Imagem, [FromForm] Produto Model)
@@ -60,7 +60,7 @@ namespace API_Grafica_Prix.Controllers
                     Quantidade = Model.Quantidade,
                     Promocao = Model.Promocao,
                     Imagem = imagemBytes,
-                    CategoriaId= Model.CategoriaId
+                    CategoriaId = Model.CategoriaId
                 };
 
 
@@ -76,7 +76,7 @@ namespace API_Grafica_Prix.Controllers
             }
         }
 
-              [HttpGet("{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var produto = await _context.produtos
@@ -87,8 +87,8 @@ namespace API_Grafica_Prix.Controllers
                 return NotFound();
             }
 
-    
-    
+
+
             return Ok(produto);
         }
 
@@ -120,14 +120,14 @@ namespace API_Grafica_Prix.Controllers
                 }
 
 
-                
+
                 produtoExistente.Nome = Model.Nome;
                 produtoExistente.Descricao = Model.Descricao;
                 produtoExistente.Observacao = Model.Observacao;
                 produtoExistente.Preco = Model.Preco;
                 produtoExistente.Quantidade = Model.Quantidade;
                 produtoExistente.Promocao = Model.Promocao;
-               
+
 
                 // Se houver uma nova imagem, atualize-a
                 if (Imagem != null)

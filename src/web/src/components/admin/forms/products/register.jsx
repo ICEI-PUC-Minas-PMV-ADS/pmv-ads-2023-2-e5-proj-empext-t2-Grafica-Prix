@@ -1,13 +1,22 @@
 import React, { useState } from "react";
 import Form from "../../../common/formComponents";
 import http from "../../../../services/http";
-import { useQueryClient } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
+import { getCategories } from "../../../../services/api/categories";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
 
   const client = useQueryClient();
+
+  const categories = useQuery({
+    queryKey: ["categories"],
+    queryFn: getCategories,
+    retry: false,
+    refetchOnMount: false,
+    refetchOnWindowFocus: false,
+  });
 
   function handleSubmit(values) {
     setLoading(true);
@@ -45,6 +54,7 @@ export default function Register() {
         Imagem: "",
         Promocao: "",
         Quantidade: "",
+        CategoriaId: "",
       }}
       onSubmit={handleSubmit}
       gap="10px"
@@ -53,7 +63,16 @@ export default function Register() {
       <Form.Input label="Nome" name="Nome" />
       <Form.InputPrice label="Preço" name="Preco" />
       <Form.Number label="Quantidade" name="Quantidade" />
-      {/* <Form.Select label="Categoria" name="Categoria" /> */}
+      <Form.Select
+        label="Categoria"
+        name="CategoriaId"
+        options={categories.data?.map((category) => {
+          return {
+            label: category.nome,
+            value: category.id,
+          };
+        })}
+      />
       <Form.Editor label="Descrição" name="Descricao" />
       <Form.InputPrice label="Promoção" name="Promocao" />
       <Form.Button

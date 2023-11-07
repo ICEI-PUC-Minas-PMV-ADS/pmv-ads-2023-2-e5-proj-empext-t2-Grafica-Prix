@@ -174,6 +174,11 @@ export default function Products(props) {
           <Register />
         </Modal>
       )}
+      {modal?.key === "details" && (
+        <Modal setModal={setModal} width="40%">
+          <Details data={modal?.data} setModal={setModal} />
+        </Modal>
+      )}
     </>
   );
 }

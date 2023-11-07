@@ -17,27 +17,28 @@ export default function Budget({ product }) {
   const navigate = useNavigate();
 
   function handleSubmit(values) {
-    /* setLoading(true);
+    setLoading(true);
 
-    let data = {};
+    const data = {
+      ...product,
+      quantidade: values.quantidade,
+      observacao: values.observacao,
+    };
 
-    http.post("", data).then(
+    http.post("/api/Orcamento/adicionar-ao-orcamento", data).then(
       () => {
         setLoading(false);
         navigate("/budgets");
       },
       () => {
         setLoading(false);
-        navigate("/budgets");
       }
-    ); */
-
-    navigate("/budgets");
+    );
   }
 
   return (
     <BudgetsStyles>
-      <Form data={{}} onSubmit={handleSubmit}>
+      <Form data={{ quantidade: 0, observacao: "" }} onSubmit={handleSubmit}>
         <Text size="25px" weight="600" margin="0 0 5px 0">
           {product.nome}
         </Text>
@@ -73,11 +74,11 @@ export default function Budget({ product }) {
           </Text>
         </Divisor>
         <Form.Counter
-          name="Quantidade"
+          name="quantidade"
           label="Quantidade"
           maxValue={product.quantidade}
         />
-        <Form.Editor name="Observacao" label="Observação" />
+        <Form.Editor name="observacao" label="Observação" />
         <Form.Button
           type="submit"
           title="Confirmar"

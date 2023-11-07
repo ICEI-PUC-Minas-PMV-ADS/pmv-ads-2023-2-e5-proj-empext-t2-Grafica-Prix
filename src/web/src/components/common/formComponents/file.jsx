@@ -1,22 +1,16 @@
 import React, { useRef, useState } from "react";
 import {
-  ButtonAddFile,
-  ContainerUpFiled,
   ErrorMessage,
   InputStyle,
   InputGroup,
-  Label,
-  NameFile,
   Preview,
   ContainerPreview,
   ContainerAddImage,
   ContainerTrash,
   ContainerTextDeleteImage,
 } from "./styles";
-import { CgTrash } from "react-icons/cg";
-import { BsFileEarmarkText, BsFillTrashFill } from "react-icons/bs";
+import { BsFillTrashFill } from "react-icons/bs";
 import { Field } from "formik";
-import { GoPlus } from "react-icons/go";
 import Text from "../text";
 import { BiImageAdd } from "react-icons/bi";
 

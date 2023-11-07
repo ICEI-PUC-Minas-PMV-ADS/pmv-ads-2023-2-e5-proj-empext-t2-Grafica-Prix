@@ -20,7 +20,7 @@ export default function Register() {
       },
       () => {
         setLoading(false);
-        toast.error("Categoria cadastrada com sucesso");
+        toast.error("Erro ao cadastrar categoria");
       }
     );
   }
