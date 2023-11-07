@@ -23,5 +23,5 @@ dist-ssr
 *.sln
 *.sw?
 
-# Servidor: cd Server/API-Grafica-Prix/API-Grafica-Prix
+# Servidor: cd Server/API_Grafica_Prix/API_Grafica_Prix
 # Client: cd web

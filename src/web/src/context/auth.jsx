@@ -1,4 +1,4 @@
-import { useContext, createContext } from "react";
+import { useContext, createContext, useEffect, useState } from "react";
 import http from "../services/http";
 import { getMe } from "../services/api/user";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
@@ -10,8 +10,13 @@ export function AuthProvider({ children }) {
     queryKey: ["me", localStorage.getItem("id")],
     queryFn: getMe,
   });
+  const [token, setToken] = useState();
 
   const client = useQueryClient();
+
+  useEffect(() => {
+    http.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  }, [token]);
 
   async function register(reqData) {
     const { data } = await http.post("api/Usuario/", reqData);
@@ -22,6 +27,7 @@ export function AuthProvider({ children }) {
     const { data } = await http.post("api/Usuario/Autenticacao", reqData);
     localStorage.setItem("id", data.dbusuario?.id);
     localStorage.setItem("token", data.jwtToken);
+    setToken(data.jwtToken);
     client.setQueryData({ queryKey: ["me", null] }, data.dbusuario);
     return data;
   }

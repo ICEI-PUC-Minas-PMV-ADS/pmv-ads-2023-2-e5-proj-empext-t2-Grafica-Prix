@@ -25,7 +25,7 @@ export default function Budget({ product }) {
       observacao: values.observacao,
     };
 
-    http.post("/api/Orcamento/adicionar-ao-orcamento", data).then(
+    http.post("/api/Orcamento/adicionar-ao-orcamento/", data).then(
       () => {
         setLoading(false);
         navigate("/budgets");

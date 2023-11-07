@@ -23,7 +23,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPost("adicionar-ao-orcamento")]
-        [Authorize("AuthorizePolicy")]
+        [Authorize]
         public async Task<IActionResult> AdicionarAoOrcamento([FromBody] Produto produto)
         {
             if (produto == null)
