@@ -12,6 +12,7 @@ import BudgetList from "../components/client/budgetList";
 import SearchResult from "../pages/client/searchResult";
 import Budgets from "../pages/admin/budgets";
 import Employees from "../pages/admin/employees";
+import Banners from "../pages/admin/banners";
 
 export default function AppRoutes() {
   return (
@@ -28,6 +29,7 @@ export default function AppRoutes() {
         <Route path="products" element={<Products />} />
         <Route path="budgets" element={<Budgets />} />
         <Route path="employees" element={<Employees />} />
+        <Route path="banners" element={<Banners />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="recover-password" element={<RecoverPassoword />} />

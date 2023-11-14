@@ -19,12 +19,10 @@ export const ContainerData = styled.div`
   }
 `;
 
-export const CardHowWeAre = styled.div`
+export const ActionCard = styled.div`
   width: 100%;
-  flex: 1;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px #e1e1e1;
   padding: 10px 20px;
-  height: fit-content;
 `;

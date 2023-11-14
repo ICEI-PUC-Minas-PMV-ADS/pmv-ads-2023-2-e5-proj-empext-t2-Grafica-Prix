@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { CardHowWeAre, ContainerActions, ContainerData } from "./styles";
+import { ActionCard, ContainerActions, ContainerData } from "./styles";
 import TitlePage from "../../../components/admin/titlePages";
 import Container from "../../../components/common/container";
 import Table from "../../../components/admin/table";
@@ -15,10 +15,13 @@ import { getClients } from "../../../services/api/user";
 import Modal from "../../../components/common/modal";
 import Edit from "../../../components/admin/forms/clients/edit";
 import Delete from "../../../components/admin/forms/clients/delete";
+import { useNavigate } from "react-router";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+
+  const navigate = useNavigate();
 
   const clients = useQuery({
     queryKey: ["clients"],
@@ -146,8 +149,8 @@ export default function Dashboard(props) {
                 );
               })}
             </SwiperComponent>
-            <CardHowWeAre>
-              <Divisor justifyContent="space-between" margin="0 0 5px 0">
+            <ActionCard>
+              <Divisor justifyContent="space-between" margin="0 ">
                 <Text size="20px" weight="600">
                   Quem somos
                 </Text>
@@ -157,24 +160,19 @@ export default function Dashboard(props) {
                   style={{ cursor: "pointer" }}
                 />
               </Divisor>
-              <Text>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
-                dui at leo suscipit placerat. Aenean lacinia arcu eget elementum
-                consectetur. Sed eu odio vitae leo suscipit sagittis. Vivamus
-                varius vulputate magna, pellentesque placerat nunc eleifend nec.
-                Ut at quam quis ligula ornare blandit eget tempus justo. Integer
-                porta metus nec elementum varius.
-                <br />
-                <br />
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at
-                dui at leo suscipit placerat. Aenean lacinia arcu eget elementum
-                consectetur. Sed eu odio vitae leo suscipit sagittis. Vivamus
-                varius vulputate magna, pellentesque placerat nunc eleifend nec.
-                Ut at quam quis ligula ornare blandit eget tempus justo. Integer
-                porta metus nec elementum varius. Suspendisse faucibus vel
-                tortor at mollis.
-              </Text>
-            </CardHowWeAre>
+            </ActionCard>
+            <ActionCard onClick={() => navigate("/admin/banners")}>
+              <Divisor justifyContent="space-between" margin="0 ">
+                <Text size="20px" weight="600">
+                  Banners
+                </Text>
+                <BiEditAlt
+                  setModal={{ key: "editHowWeAre" }}
+                  size={25}
+                  style={{ cursor: "pointer" }}
+                />
+              </Divisor>
+            </ActionCard>
           </ContainerData>
         </Divisor>
       </Container>
