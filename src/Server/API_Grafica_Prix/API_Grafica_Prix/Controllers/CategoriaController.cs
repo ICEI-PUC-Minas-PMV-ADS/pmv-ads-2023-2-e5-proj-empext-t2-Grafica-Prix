@@ -8,7 +8,7 @@ namespace API_Grafica_Prix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    //[Authorize]
+    [Authorize]
     public class CategoriaController : ControllerBase
     {
         private readonly PrixContext _context;
@@ -22,6 +22,7 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin, Escrita, Leitura")]
         public async Task<IActionResult> ListarTodos()
         {
             var model = await _context.categorias.Include(c => c.Produtos).ToListAsync();
@@ -30,6 +31,7 @@ namespace API_Grafica_Prix.Controllers
 
         
         [HttpPost]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> CriarCategoria([FromBody] CategoriaDto categoriaDto)
         {
             if (categoriaDto == null)
@@ -53,6 +55,7 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var model = await _context.categorias
@@ -65,6 +68,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> AtualizarCategoria(int id, [FromBody] CategoriaDto model)
         {
            
@@ -85,6 +89,7 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Deletar(int id)
         {
             var model = await _context.categorias.FindAsync(id);

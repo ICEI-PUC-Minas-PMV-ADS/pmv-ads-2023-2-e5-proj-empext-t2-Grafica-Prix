@@ -1,5 +1,6 @@
 ﻿using API_Grafica_Prix.Models;
 using API_Grafica_Prix.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -19,14 +20,16 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet]
+        
         public async Task<IActionResult> ListarTodos()
         {
             var model = await _context.produtos.ToListAsync();
             return Ok(model);
         }
-
+        
 
         [HttpPost]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> CriarProduto([FromForm] IFormFile Imagem, [FromForm] Produto Model)
         {
             try
@@ -60,7 +63,7 @@ namespace API_Grafica_Prix.Controllers
                     Quantidade = Model.Quantidade,
                     Promocao = Model.Promocao,
                     Imagem = imagemBytes,
-                    CategoriaId = Model.CategoriaId
+                    CategoriaId= Model.CategoriaId
                 };
 
 
@@ -76,7 +79,8 @@ namespace API_Grafica_Prix.Controllers
             }
         }
 
-        [HttpGet("{id}")]
+              [HttpGet("{id}")]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var produto = await _context.produtos
@@ -87,8 +91,8 @@ namespace API_Grafica_Prix.Controllers
                 return NotFound();
             }
 
-
-
+    
+    
             return Ok(produto);
         }
 
@@ -108,6 +112,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> AtualizarProduto(int id, [FromForm] IFormFile Imagem, [FromForm] Produto Model)
         {
             try
@@ -120,14 +125,14 @@ namespace API_Grafica_Prix.Controllers
                 }
 
 
-
+                
                 produtoExistente.Nome = Model.Nome;
                 produtoExistente.Descricao = Model.Descricao;
                 produtoExistente.Observacao = Model.Observacao;
                 produtoExistente.Preco = Model.Preco;
                 produtoExistente.Quantidade = Model.Quantidade;
                 produtoExistente.Promocao = Model.Promocao;
-
+               
 
                 // Se houver uma nova imagem, atualize-a
                 if (Imagem != null)
@@ -157,8 +162,8 @@ namespace API_Grafica_Prix.Controllers
         }
 
 
-
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Deletar(int id)
         {
             var model = await _context.produtos.FindAsync(id);

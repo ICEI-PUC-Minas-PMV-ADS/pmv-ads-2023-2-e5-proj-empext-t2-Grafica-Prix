@@ -17,6 +17,8 @@ builder.Configuration.AddJsonFile("appsettings.json", optional: false, reloadOnC
 
 builder.Services.AddControllers();
 
+
+
 var configuration = builder.Configuration;
 
 var jwtSecretKey = configuration["JwtSettings:SecretKey"];
@@ -30,12 +32,27 @@ var emailSettings = new EmailSettings
 builder.Services.Configure<JwtSettings>(configuration.GetSection("JwtSettings"));
 builder.Services.Configure<EmailSettings>(configuration.GetSection("EmailSettings"));
 
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("LeituraPolicy", policy =>
+        policy.RequireClaim("Permissao", "Leitura")); // Apenas permissão de Leitura
+
+    options.AddPolicy("EscritaPolicy", policy =>
+        policy.RequireClaim("Permissao", "Escrita")); // Apenas permissão de Escrita
+
+    options.AddPolicy("AdminPolicy", policy =>
+        policy.RequireClaim("Permissao", "Admin")); // Apenas permissão de Admin
+});
+
 
 builder.Services.AddDbContext<PrixContext>(options =>
         options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 
 builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<ISenhaService, SenhaService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IJwtService, JwtService>();
+
 
 
 

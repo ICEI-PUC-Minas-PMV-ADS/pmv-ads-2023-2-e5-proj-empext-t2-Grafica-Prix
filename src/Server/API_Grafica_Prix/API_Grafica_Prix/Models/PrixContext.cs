@@ -27,6 +27,10 @@ namespace API_Grafica_Prix.Models
 
         public DbSet<Banner> banners { get; set; }
 
+        public DbSet<Colaborador> colaboradores { get; set; }
+
+        public DbSet<QuemSomos> quemSomos { get; set; }
+
         public DbSet<AdicionarProdutoOrcamento> adicionarProdutos { get; set; }
 
 
