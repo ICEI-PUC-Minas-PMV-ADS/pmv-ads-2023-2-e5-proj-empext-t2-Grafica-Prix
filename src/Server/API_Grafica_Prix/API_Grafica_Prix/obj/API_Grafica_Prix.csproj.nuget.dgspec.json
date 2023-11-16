@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj": {}
+    "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj": {}
   },
   "projects": {
-    "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj": {
+    "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
+        "projectUniqueName": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
         "projectName": "API_Grafica_Prix",
-        "projectPath": "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
+        "projectPath": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
         "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
-        "outputPath": "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\obj\\",
+        "outputPath": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kkXiTZ8hWb4zuKvj93tBalnfhvtJYXQecmg02bOgeXjXCPw0rUVA/bOyXPNywzgP+sq1ZDlH6P0wxs7Zy7DUxg==",
+  "dgSpecHash": "G+FDYxgpJL12EyGeHmPtQAhuDvGe5TEs980laK+dk/yMFdWX9SqyUYhc9FXbZEkzzANltoFoH5KXuDluc4FGLw==",
   "success": true,
-  "projectFilePath": "C:\\Prix-Ultimate\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
+  "projectFilePath": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\rapha\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\rapha\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",

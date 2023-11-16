@@ -74,6 +74,25 @@ namespace API_Grafica_Prix.Controllers
             return Ok(produtosNoCarrinho);
         }
 
+        [HttpGet("produtos-no-carrinho")]
+        [Authorize]
+        public async Task<IActionResult> ObterProdutosNoCarrinho()
+        {
+            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+
+
+            var carrinhoExistente = await _context.adicionarProdutos
+                .Include(c => c.Produtos)
+                .FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
+
+            if (carrinhoExistente == null || carrinhoExistente.Produtos == null)
+            {
+                return NotFound("Nenhum produto encontrado no carrinho.");
+            }
+
+            var produtosNoCarrinho = carrinhoExistente.Produtos;
+            return Ok(produtosNoCarrinho);
+        }
 
 
         [HttpPost("concluir-orcamento")]
@@ -195,22 +214,22 @@ namespace API_Grafica_Prix.Controllers
         {
            
 
-            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value; 
+            var usuarioId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
-           
-            var carrinhoTemporario = await _context.adicionarProdutos.FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
+
+            var carrinhoTemporario = await _context.adicionarProdutos
+            .Include(c => c.Produtos)
+            .FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
 
             if (carrinhoTemporario != null)
             {
-                
+
                 var produtoParaRemover = carrinhoTemporario.Produtos.FirstOrDefault(p => p.Id == produtoId);
 
                 if (produtoParaRemover != null)
                 {
-                    
                     carrinhoTemporario.Produtos.Remove(produtoParaRemover);
 
-                    
                     await _context.SaveChangesAsync();
 
                     return Ok("Produto removido do carrinho de orçamento.");
@@ -219,6 +238,7 @@ namespace API_Grafica_Prix.Controllers
                 {
                     return NotFound("Produto não encontrado no carrinho.");
                 }
+
             }
             else
             {
