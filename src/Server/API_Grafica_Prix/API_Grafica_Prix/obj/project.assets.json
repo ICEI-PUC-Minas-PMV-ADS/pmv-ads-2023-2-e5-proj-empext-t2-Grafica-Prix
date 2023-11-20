@@ -3443,24 +3443,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\rapha\\.nuget\\packages\\": {},
-    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
+    "C:\\Users\\Notebook Acer\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
+      "projectUniqueName": "C:\\Users\\Notebook Acer\\OneDrive\\Matérias 5 semestre - PUC\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
       "projectName": "API_Grafica_Prix",
-      "projectPath": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
-      "packagesPath": "C:\\Users\\rapha\\.nuget\\packages\\",
-      "outputPath": "C:\\Prix-novembro\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\obj\\",
+      "projectPath": "C:\\Users\\Notebook Acer\\OneDrive\\Matérias 5 semestre - PUC\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\API_Grafica_Prix.csproj",
+      "packagesPath": "C:\\Users\\Notebook Acer\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Notebook Acer\\OneDrive\\Matérias 5 semestre - PUC\\pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix\\src\\Server\\API_Grafica_Prix\\API_Grafica_Prix\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-      ],
       "configFilePaths": [
-        "C:\\Users\\rapha\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Users\\Notebook Acer\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -3542,7 +3537,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.203\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

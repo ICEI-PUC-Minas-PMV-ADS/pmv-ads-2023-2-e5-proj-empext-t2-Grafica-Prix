@@ -8,13 +8,12 @@ namespace API_Grafica_Prix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class CategoriaController : ControllerBase
     {
         private readonly PrixContext _context;
         private readonly UsuarioLogado _usuario;
 
-        public CategoriaController (PrixContext context, UsuarioLogado usuario)
+        public CategoriaController(PrixContext context, UsuarioLogado usuario)
         {
             _context = context;
             _usuario = usuario;
@@ -22,16 +21,14 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Escrita, Leitura")]
         public async Task<IActionResult> ListarTodos()
         {
             var model = await _context.categorias.Include(c => c.Produtos).ToListAsync();
             return Ok(model);
         }
 
-        
+
         [HttpPost]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> CriarCategoria([FromBody] CategoriaDto categoriaDto)
         {
             if (categoriaDto == null)
@@ -39,12 +36,12 @@ namespace API_Grafica_Prix.Controllers
                 return BadRequest("Dados inválidos");
             }
 
-            
+
             var categoria = new Categoria
             {
                 Nome = categoriaDto.Nome,
                 Descricao = categoriaDto.Descricao,
-                
+
             };
 
             _context.categorias.Add(categoria);
@@ -55,11 +52,10 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var model = await _context.categorias
-                .Include(c => c.Produtos) 
+                .Include(c => c.Produtos)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (model == null) return NotFound();
@@ -68,16 +64,15 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> AtualizarCategoria(int id, [FromBody] CategoriaDto model)
         {
-           
+
 
             var categoria = await _context.categorias.FirstOrDefaultAsync(c => c.Id == id);
 
             if (categoria == null) return NotFound();
 
-            
+
             categoria.Nome = model.Nome;
             categoria.Descricao = model.Descricao;
 
@@ -89,7 +84,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Deletar(int id)
         {
             var model = await _context.categorias.FindAsync(id);

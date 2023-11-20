@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BudgetsStyles } from "./styles";
 import Text from "../../common/text";
 import {
@@ -15,6 +15,12 @@ export default function Budget({ product }) {
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    http.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
+  }, []);
 
   function handleSubmit(values) {
     setLoading(true);

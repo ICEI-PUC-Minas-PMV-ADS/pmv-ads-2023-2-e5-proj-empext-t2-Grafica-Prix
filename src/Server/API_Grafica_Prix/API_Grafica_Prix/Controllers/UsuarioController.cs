@@ -56,7 +56,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var model = await _context.usuarios
@@ -116,6 +115,6 @@ namespace API_Grafica_Prix.Controllers
             return await _authService.AuthenticateUser(model);
         }
 
-   
+
     }
 }

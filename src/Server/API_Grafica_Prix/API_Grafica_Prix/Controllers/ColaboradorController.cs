@@ -8,7 +8,7 @@ namespace API_Grafica_Prix.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    
+
     public class ColaboradorController : ControllerBase
     {
         private readonly PrixContext _context;
@@ -20,7 +20,6 @@ namespace API_Grafica_Prix.Controllers
             _authService = authService;
         }
         [HttpGet]
-        [Authorize(Roles = "Admin, Escrita, Leitura")]
         public async Task<ActionResult> ListarTodos()
         {
             var model = await _context.colaboradores.ToListAsync();
@@ -28,7 +27,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> PesquisarPorId(int id)
         {
             var model = await _context.colaboradores
@@ -78,7 +76,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> Atualizar(int id, Colaborador model)
         {
 
@@ -104,7 +101,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Deletar(int id)
         {
             var model = await _context.colaboradores.FindAsync(id);

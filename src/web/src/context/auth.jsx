@@ -10,7 +10,7 @@ export function AuthProvider({ children }) {
     queryKey: ["me", localStorage.getItem("id")],
     queryFn: getMe,
   });
-  const [token, setToken] = useState();
+  const [token, setToken] = useState(localStorage.getItem("id"));
 
   const client = useQueryClient();
 
@@ -25,10 +25,10 @@ export function AuthProvider({ children }) {
 
   async function login(reqData) {
     const { data } = await http.post("api/Usuario/Autenticacao", reqData);
-    localStorage.setItem("id", data.dbusuario?.id);
+    localStorage.setItem("id", data.user?.id);
     localStorage.setItem("token", data.jwtToken);
     setToken(data.jwtToken);
-    client.setQueryData({ queryKey: ["me", null] }, data.dbusuario);
+    client.setQueryData({ queryKey: ["me", null] }, data.user);
     return data;
   }
 
