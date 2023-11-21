@@ -15,10 +15,20 @@ import Form from "../../common/formComponents";
 import CardProduct from "../cardProduct";
 import { useEffect, useState } from "react";
 import http from "../../../services/http";
+import Actions from "../../common/actions";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
+import {
+  getBudgets,
+  getBudgetsMostPlaced,
+} from "../../../services/api/budgets";
+import CarouselProducts from "../../common/carouselProducts";
 
 export default function BudgetList() {
   const navigate = useNavigate();
-  const [productsInKart, setProductsInKart] = useState([]);
+  const [prices, setPrices] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const client = useQueryClient();
 
   useEffect(() => {
     http.defaults.headers.common[
@@ -26,22 +36,68 @@ export default function BudgetList() {
     ] = `Bearer ${localStorage.getItem("token")}`;
   }, []);
 
+  const productsInKart = useQuery({
+    queryKey: ["productsInKart"],
+    queryFn: getBudgets,
+  });
+
+  const productsMorePlaced = useQuery({
+    queryKey: ["productsMorePlaced"],
+    queryFn: getBudgetsMostPlaced,
+  });
+
   useEffect(() => {
-    http.get("/api/Orcamento/produtos-no-carrinho").then((res) => {
-      setProductsInKart(res.data);
+    let data = [];
+
+    if (productsInKart.data?.length > 0) {
+      for (let key in productsInKart.data) {
+        data.push(productsInKart.data[key]?.preco);
+      }
+    }
+
+    setPrices(data);
+  }, [productsInKart.data]);
+
+  function handleRequestBudgets() {
+    setLoading(true);
+
+    http.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
+
+    http.post("/api/Orcamento/concluir-orcamento").then(
+      () => {
+        client.setQueryData({ queryKey: ["productsInKart"] }, []);
+        setLoading(false);
+      },
+      () => {
+        setLoading(false);
+      }
+    );
+  }
+
+  function handleDeleteProduct(id) {
+    console.log(id);
+    http.delete(`/api/Orcamento/remover-do-orcamento/${id}`).then(() => {
+      client.invalidateQueries({ queryKey: ["productsInKart"] });
     });
-  }, []);
+  }
 
   return (
-    <Container height="calc(100vh - 100px)">
+    <Container height="calc(100vh - 70px)">
       <Text size="20px" weight="600">
         Orçamentos
       </Text>
       <BudgetsStyles>
         <ProductList>
-          {productsInKart?.map((product) => {
+          {productsInKart.data?.map((product) => {
             return (
               <ProductBudget>
+                <Actions
+                  right
+                  delete
+                  actionDelete={() => handleDeleteProduct(product.id)}
+                />
                 <Text size="18px" weight="600">
                   {product.nome}
                 </Text>
@@ -63,18 +119,34 @@ export default function BudgetList() {
         </ProductList>
         <Containeractions>
           <ActionBudgets>
-            <Form data={{}} gap="10px">
+            <Form data={{}} gap="10px" onSubmit={handleRequestBudgets}>
               <Text size="14px" weight="600">
-                produtos: 5
+                produtos: {productsInKart.data?.length}
               </Text>
-              <Text size="20px" weight="600">
-                Total: {currencyFormatter(23.9)}
-              </Text>
-              <Form.Button title="Solicitar orçamento" />
+              {productsInKart.data?.length > 0 && (
+                <>
+                  <Text size="20px" weight="600">
+                    Total:{" "}
+                    {currencyFormatter(
+                      prices?.reduce(
+                        (accumlator, currentValue) => accumlator + currentValue,
+                        0
+                      )
+                    )}
+                  </Text>
+                  <Form.Button title="Solicitar orçamento" loading={loading} />
+                </>
+              )}
             </Form>
           </ActionBudgets>
+          <Text size="20px" weight="600">
+            Produtos recomendados
+          </Text>
           <CardSugestionProducts>
-            <CardProduct />
+            <CarouselProducts
+              products={productsMorePlaced.data}
+              rollMeasure={150}
+            />
           </CardSugestionProducts>
         </Containeractions>
       </BudgetsStyles>

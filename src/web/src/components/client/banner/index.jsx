@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { ImageBanner } from "./styles";
 import SwiperComponent from "../../common/swiper";
 import { SwiperSlide } from "swiper/react";

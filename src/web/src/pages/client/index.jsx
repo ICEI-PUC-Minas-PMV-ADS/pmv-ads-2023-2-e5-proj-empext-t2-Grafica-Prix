@@ -10,8 +10,8 @@ export default function Client() {
       <Header />
       <Content>
         <Outlet />
+        <Footer />
       </Content>
-      <Footer />
     </ProtectedRoute>
   );
 }

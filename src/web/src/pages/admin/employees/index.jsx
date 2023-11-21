@@ -3,7 +3,7 @@ import Container from "../../../components/common/container";
 import Divisor from "../../../components/common/divisor";
 import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
-import Register from "../../../components/admin/forms/categories/register";
+import Register from "../../../components/admin/forms/employees/register";
 import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../../../services/api/categories";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
@@ -14,14 +14,15 @@ import Edit from "../../../components/admin/forms/categories/edit";
 import Delete from "../../../components/admin/forms/categories/delete";
 import Details from "../../../components/admin/forms/categories/detail";
 import { ContainerRegister } from "../categories/styles";
+import { getEmployees } from "../../../services/api/employees";
 
 export default function Employees(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
 
-  const categories = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
+  const employees = useQuery({
+    queryKey: ["employees"],
+    queryFn: getEmployees,
   });
 
   const columns = [
@@ -30,8 +31,13 @@ export default function Employees(props) {
       key: "nome",
     },
     {
-      label: "Descrição",
-      key: "descricao",
+      label: "Email",
+      key: "email",
+      html: true,
+    },
+    {
+      label: "Telefone",
+      key: "telefone",
       html: true,
     },
     {
@@ -42,7 +48,7 @@ export default function Employees(props) {
 
   useEffect(() => {
     setDataWithAction(
-      categories.data?.map((data) => {
+      employees.data?.map((data) => {
         return {
           ...data,
           action: (
@@ -82,7 +88,7 @@ export default function Employees(props) {
         };
       })
     );
-  }, [categories.data]);
+  }, [employees.data]);
 
   return (
     <>
@@ -95,7 +101,7 @@ export default function Employees(props) {
       >
         <Divisor flex="3" height="100vh" padding="20px">
           <Table
-            loading={categories.isLoading}
+            loading={employees.isLoading}
             data={dataWithAction}
             columns={columns}
             search

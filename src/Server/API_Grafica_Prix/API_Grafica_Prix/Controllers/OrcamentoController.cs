@@ -85,7 +85,8 @@ namespace API_Grafica_Prix.Controllers
 
             if (carrinhoExistente == null || carrinhoExistente.Produtos == null)
             {
-                return NotFound("Nenhum produto encontrado no carrinho.");
+                var empty = new int[] { };
+                return Ok(empty);
             }
 
             var produtosNoCarrinho = carrinhoExistente.Produtos;
@@ -94,7 +95,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpPost("concluir-orcamento")]
-        [Authorize]
         public async Task<IActionResult> ConcluirOrcamento()
         {
             var usuario = new Usuario
@@ -141,8 +141,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet("orcamento/{orcamentoId}")]
-        [Authorize]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> ObterDetalhesDoOrcamento(int orcamentoId)
         {
 
@@ -159,8 +157,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet("produtos-mais-colocados")]
-        [Authorize]
-        [Authorize(Roles = "Admin, Escrita, Leitura")]
         public async Task<IActionResult> ProdutosMaisColocados()
         {
             var ultimoMes = DateTime.Today.AddMonths(-1);
@@ -184,8 +180,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpPatch("orcamento/{orcamentoId}/atualizar-status")]
-        [Authorize]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> AtualizarStatusDoOrcamento(int orcamentoId, [FromBody] bool novoStatus)
         {
             var orcamento = await _context.orcamentos.FirstOrDefaultAsync(o => o.Id == orcamentoId);
@@ -207,7 +201,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpDelete("remover-do-orcamento/{produtoId}")]
-        [Authorize]
         public async Task<IActionResult> RemoverDoOrcamento(int produtoId)
         {
 

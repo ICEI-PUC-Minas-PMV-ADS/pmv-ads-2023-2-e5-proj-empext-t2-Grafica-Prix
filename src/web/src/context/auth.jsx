@@ -2,21 +2,46 @@ import { useContext, createContext, useEffect, useState } from "react";
 import http from "../services/http";
 import { getMe } from "../services/api/user";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { getEmployees, getSingleEmployees } from "../services/api/employees";
 
 const authContext = createContext();
 
 export function AuthProvider({ children }) {
+  const [token, setToken] = useState(localStorage.getItem("id"));
+  const [userIsEmployee, setUserIsEmployee] = useState();
+
+  const client = useQueryClient();
+
   const user = useQuery({
     queryKey: ["me", localStorage.getItem("id")],
     queryFn: getMe,
   });
-  const [token, setToken] = useState(localStorage.getItem("id"));
 
-  const client = useQueryClient();
+  const employees = useQuery({
+    queryKey: ["employees"],
+    queryFn: getEmployees,
+  });
+
+  const employee = useQuery({
+    queryKey: ["employee", localStorage.getItem("id")],
+    queryFn: getSingleEmployees,
+  });
 
   useEffect(() => {
+    if (localStorage.getItem("id") === "undefined") {
+      localStorage.removeItem("id");
+    }
     http.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  }, [token]);
+  }, [token, localStorage.getItem("id")]);
+
+  useEffect(() => {
+    let userFinded = employees.data?.find(
+      (x) => x.email === localStorage.getItem("email")
+    );
+    setUserIsEmployee(userFinded ? true : false);
+  }, [localStorage.getItem("email")]);
+
+  console.log(userIsEmployee);
 
   async function register(reqData) {
     const { data } = await http.post("api/Usuario/", reqData);
@@ -27,6 +52,7 @@ export function AuthProvider({ children }) {
     const { data } = await http.post("api/Usuario/Autenticacao", reqData);
     localStorage.setItem("id", data.user?.id);
     localStorage.setItem("token", data.jwtToken);
+    localStorage.setItem("email", data.user?.email);
     setToken(data.jwtToken);
     client.setQueryData({ queryKey: ["me", null] }, data.user);
     return data;
@@ -45,7 +71,7 @@ export function AuthProvider({ children }) {
         register,
         logout,
         authed: !!localStorage.getItem("id"),
-        user: user?.data,
+        user: userIsEmployee ? employee.data : user?.data,
         isLoading: user?.isLoading,
       }}
     >

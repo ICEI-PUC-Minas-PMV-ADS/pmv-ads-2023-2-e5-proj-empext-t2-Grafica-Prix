@@ -14,18 +14,22 @@ export const ProductList = styled.div`
   box-shadow: 0 0 5px #e1e1e1;
   flex: 2;
   border-radius: 8px;
+  padding: 10px;
 `;
 
 export const ProductBudget = styled.div`
   width: 100%;
   padding: 20px;
+  position: relative;
+  border-bottom: 1px solid #e1e1e1;
 `;
 
 export const Containeractions = styled.div`
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  flex-flow: column;
+  gap: 10px;
   flex: 1;
+  height: calc(100vh - 150px);
 `;
 
 export const ActionBudgets = styled.div`
@@ -34,16 +38,18 @@ export const ActionBudgets = styled.div`
   height: fit-content;
   padding: 20px;
   box-shadow: 0 0 5px #e1e1e1;
-
+  flex-grow: 0;
+  flex-basis: auto;
   border-radius: 8px;
 `;
 
 export const CardSugestionProducts = styled.div`
-  background-color: #fff;
   width: 100%;
-  height: fit-content;
-  padding: 20px;
-  box-shadow: 0 0 5px #e1e1e1;
-  flex: 1;
+  flex-grow: 1;
+  flex-basis: auto;
   border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
 `;
