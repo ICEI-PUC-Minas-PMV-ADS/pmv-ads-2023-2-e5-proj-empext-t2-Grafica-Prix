@@ -14,7 +14,7 @@ export default function Banner({ images, image, carousel }) {
         images?.map((banner, index) => {
           return (
             <SwiperSlide key={index + 10023332}>
-              <ImageBanner src={banner.image} />
+              <ImageBanner src={`data:image/png;base64,${banner.imagem}`} />
             </SwiperSlide>
           );
         })

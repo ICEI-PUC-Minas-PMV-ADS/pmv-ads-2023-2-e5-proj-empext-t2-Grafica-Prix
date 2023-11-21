@@ -2,29 +2,39 @@ import React, { useEffect, useState } from "react";
 import Container from "../../../components/common/container";
 import Divisor from "../../../components/common/divisor";
 import Table from "../../../components/admin/table";
-import { useQuery } from "@tanstack/react-query";
-import { getCategories } from "../../../services/api/categories";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { BsBookmarkCheck, BsBoxArrowUpRight } from "react-icons/bs";
 import ContainerActions from "../../../components/admin/containerActions";
+import { getBudgetsList } from "../../../services/api/budgets";
+import { getClients } from "../../../services/api/user";
+import moment from "moment";
+import http from "../../../services/http";
+import { toast } from "react-toastify";
 
 export default function Budgets(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
 
-  const categories = useQuery({
-    queryKey: ["categories"],
-    queryFn: getCategories,
+  const client = useQueryClient();
+
+  const budgets = useQuery({
+    queryKey: ["budgets"],
+    queryFn: getBudgetsList,
+  });
+
+  const clients = useQuery({
+    queryKey: ["clients"],
+    queryFn: getClients,
   });
 
   const columns = [
     {
-      label: "Nome",
-      key: "nome",
+      label: "Data de solicitação",
+      key: "dataCriacao",
     },
     {
-      label: "Descrição",
-      key: "descricao",
-      html: true,
+      label: "Cliente",
+      key: "usuarioId",
     },
     {
       label: "Ações",
@@ -32,14 +42,35 @@ export default function Budgets(props) {
     },
   ];
 
+  function checkBudget(id, status) {
+    http
+      .patch(`/api/Orcamento/orcamento/${id}/atualizar-status`, {
+        fechado: !status,
+      })
+      .then(() => {
+        toast.success("Orçamento checado com sucesso");
+        client.invalidateQueries({ queryKey: ["budgets"] });
+      });
+  }
+
   useEffect(() => {
     setDataWithAction(
-      categories.data?.map((data) => {
+      budgets.data?.map((data) => {
+        console.log(data.fechado);
         return {
           ...data,
+          dataCriacao: moment(data.dataCriacao).format("DD/MM/YYYY - hh:mm"),
+          usuarioId: clients.data?.find(
+            (x) => x.id === parseInt(data.usuarioId)
+          )?.name,
           action: (
             <ContainerActions>
-              <BsBookmarkCheck size={18} style={{ cursor: "pointer" }} />
+              <BsBookmarkCheck
+                onClick={() => checkBudget(data.id, data.fechado)}
+                size={18}
+                color={data.fechado ? "red" : ""}
+                style={{ cursor: "pointer" }}
+              />
               <BsBoxArrowUpRight
                 size={18}
                 onClick={() => {
@@ -55,7 +86,7 @@ export default function Budgets(props) {
         };
       })
     );
-  }, [categories.data]);
+  }, [budgets.data]);
 
   return (
     <>
@@ -68,7 +99,7 @@ export default function Budgets(props) {
       >
         <Divisor flex="3" height="100vh" padding="20px">
           <Table
-            loading={categories.isLoading}
+            loading={budgets.isLoading}
             data={dataWithAction}
             columns={columns}
             search

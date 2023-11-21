@@ -9,7 +9,6 @@ namespace API_Grafica_Prix.Controllers
 {
 
 
-    //[Authorize]
     [Route("api/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
@@ -66,6 +65,23 @@ namespace API_Grafica_Prix.Controllers
             return Ok(model);
 
         }
+
+        [HttpGet("nome/{nome}")]
+        public async Task<ActionResult> PesquisarPorNome(string nome)
+        {
+            var usuario = await _context.usuarios
+                .Where(p => p.Name.ToLower().Contains(nome.ToLower()))
+                .ToListAsync();
+
+            if (usuario == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(usuario);
+        }
+
+
         [HttpPut("{id}")]
         public async Task<ActionResult> Atualizar(int id, Usuario model)
         {
@@ -91,11 +107,7 @@ namespace API_Grafica_Prix.Controllers
             return NoContent();
         }
 
-
-
-
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> Deletar(int id)
         {
             var model = await _context.usuarios.FindAsync(id);

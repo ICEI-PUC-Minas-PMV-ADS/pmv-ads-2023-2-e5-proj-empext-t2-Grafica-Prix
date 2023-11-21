@@ -13,13 +13,12 @@ namespace API_Grafica_Prix.Controllers
     {
         private readonly PrixContext _context;
 
-        public QuemSomosController (PrixContext context)
+        public QuemSomosController(PrixContext context)
         {
             _context = context;
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Escrita, Leitura")]
         public async Task<ActionResult> ListarTodos()
         {
             var model = await _context.quemSomos.ToListAsync();
@@ -27,8 +26,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Admin, Escrita")]
-        public async Task<ActionResult> Criar(QuemSomos model)
+        public async Task<ActionResult> Criar([FromBody] QuemSomos model)
         {
 
             _context.quemSomos.Add(model);
@@ -38,7 +36,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<ActionResult> Atualizar(int id, QuemSomos model)
         {
 
@@ -51,8 +48,8 @@ namespace API_Grafica_Prix.Controllers
             if (modelo == null) return BadRequest();
 
             modelo.Titulo = model.Titulo;
-            modelo.Descricao= model.Descricao;  
-           
+            modelo.Descricao = model.Descricao;
+
 
             _context.quemSomos.Update(modelo);
             await _context.SaveChangesAsync();

@@ -63,6 +63,21 @@ namespace API_Grafica_Prix.Controllers
             return Ok(model);
         }
 
+        [HttpGet("nome/{nome}")]
+        public async Task<ActionResult> PesquisarPorNome(string nome)
+        {
+            var categoria = await _context.categorias
+                .Where(p => p.Nome.ToLower().Contains(nome.ToLower()))
+                .ToListAsync();
+
+            if (categoria == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(categoria);
+        }
+
         [HttpPut("{id}")]
         public async Task<ActionResult> AtualizarCategoria(int id, [FromBody] CategoriaDto model)
         {

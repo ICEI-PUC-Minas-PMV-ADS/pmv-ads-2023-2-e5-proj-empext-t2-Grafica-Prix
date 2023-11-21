@@ -87,7 +87,7 @@ namespace API_Grafica_Prix.Controllers
 
             if (modelo == null) return BadRequest();
 
-            modelo.Nome = model.Nome;
+            modelo.Name = model.Name;
             modelo.Email = model.Email;
             modelo.Telefone = model.Telefone;
             modelo.Cpf = model.Cpf;
@@ -98,6 +98,21 @@ namespace API_Grafica_Prix.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        [HttpGet("Name/{Name}")]
+        public async Task<ActionResult> PesquisarPorName(string Name)
+        {
+            var colaborador = await _context.colaboradores
+                .Where(p => p.Name.ToLower().Contains(Name.ToLower()))
+                .ToListAsync();
+
+            if (colaborador == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(colaborador);
         }
 
         [HttpDelete("{id}")]

@@ -6,6 +6,7 @@ export const BannerList = styled.div`
   flex-direction: column;
   width: 100%;
   height: 100vh;
+  gap: 10px;
 `;
 
 export const BannerContainer = styled.div`

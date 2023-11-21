@@ -13,6 +13,8 @@ export default function FormPersonalData({ data }) {
     title: "",
   });
 
+  console.log(data);
+
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("Este campo é obrigatório"),
     email: Yup.string().required("Este campo é obrigatório"),

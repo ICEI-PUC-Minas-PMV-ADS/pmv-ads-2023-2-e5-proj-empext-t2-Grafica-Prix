@@ -1,10 +1,6 @@
 ﻿using API_Grafica_Prix.Models;
-using API_Grafica_Prix.Services;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using static System.Net.Mime.MediaTypeNames;
 
 namespace API_Grafica_Prix.Controllers
 {
@@ -20,13 +16,32 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet]
-
         public async Task<IActionResult> ListarTodos()
         {
-            var model = await _context.produtos.ToListAsync();
-            return Ok(model);
-        }
+            try
+            {
+                var produtos = await _context.produtos.ToListAsync();
 
+                var produtosComImagemBase64 = produtos.Select(p => new ProdutoComImagem
+                {
+                    Id = p.Id,
+                    Nome = p.Nome,
+                    Descricao = p.Descricao,
+                    Observacao = p.Observacao,
+                    Preco = p.Preco,
+                    Quantidade = p.Quantidade,
+                    Promocao = p.Promocao,
+                    ImagemBase64 = p.Imagem != null ? Convert.ToBase64String(p.Imagem) : null,
+                    CategoriaId = p.CategoriaId
+                }).ToList();
+
+                return Ok(produtosComImagemBase64);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
+            }
+        }
 
         [HttpPost]
         public async Task<IActionResult> CriarProduto([FromForm] IFormFile Imagem, [FromForm] Produto Model)

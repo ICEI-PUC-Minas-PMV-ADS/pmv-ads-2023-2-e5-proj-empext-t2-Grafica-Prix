@@ -20,7 +20,7 @@ export default function CardProduct({ product }) {
         })
       }
     >
-      <ImageProduct src={`data:image/png;base64, ${product?.imagem}`} />
+      <ImageProduct src={`data:image/png;base64,${product?.imagem}`} />
       <Text>{product?.nome}</Text>
       <Text size="18px" weight="600">
         {currencyFormatter(

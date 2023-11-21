@@ -22,6 +22,14 @@ namespace API_Grafica_Prix.Controllers
             _emailService = emailService;
         }
 
+        [HttpGet]
+
+        public async Task<IActionResult> ListarTodos()
+        {
+            var model = await _context.orcamentos.Include(c => c.Produtos).ToListAsync();
+            return Ok(model);
+        }
+
         [HttpPost("adicionar-ao-orcamento")]
         public async Task<IActionResult> AdicionarAoOrcamento([FromBody] Produto produto)
         {
@@ -180,7 +188,7 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpPatch("orcamento/{orcamentoId}/atualizar-status")]
-        public async Task<IActionResult> AtualizarStatusDoOrcamento(int orcamentoId, [FromBody] bool novoStatus)
+        public async Task<IActionResult> AtualizarStatusDoOrcamento(int orcamentoId, [FromBody] OrcamentoDto model)
         {
             var orcamento = await _context.orcamentos.FirstOrDefaultAsync(o => o.Id == orcamentoId);
 
@@ -190,7 +198,7 @@ namespace API_Grafica_Prix.Controllers
             }
 
             // Atualize o status do orçamento com o novoStatus fornecido no corpo da solicitação.
-            orcamento.Fechado = novoStatus;
+            orcamento.Fechado = model.Fechado;
 
             _context.orcamentos.Update(orcamento);
             await _context.SaveChangesAsync();

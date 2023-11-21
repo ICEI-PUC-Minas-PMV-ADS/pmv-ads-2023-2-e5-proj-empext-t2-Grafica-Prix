@@ -12,3 +12,8 @@ export async function getBudgetsMostPlaced() {
   const { data } = await http.get("/api/Orcamento/produtos-mais-colocados");
   return data;
 }
+
+export async function getBudgetsList() {
+  const { data } = await http.get("/api/Orcamento");
+  return data;
+}

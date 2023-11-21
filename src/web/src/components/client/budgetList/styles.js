@@ -45,11 +45,12 @@ export const ActionBudgets = styled.div`
 
 export const CardSugestionProducts = styled.div`
   width: 100%;
-  flex-grow: 1;
   flex-basis: auto;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   overflow: auto;
+  padding: 10px 0;
+  max-width: 400px;
 `;

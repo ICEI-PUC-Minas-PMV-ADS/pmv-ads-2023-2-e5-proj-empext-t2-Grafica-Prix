@@ -14,7 +14,7 @@ import { Field } from "formik";
 import Text from "../text";
 import { BiImageAdd } from "react-icons/bi";
 
-export default function File({ name, label, multiple, imageDefault }) {
+export default function File({ name, label, multiple, imageDefault, dimensions}) {
   const [imagePreview, setImagePreview] = useState(
     imageDefault ? `data:image/png;base64,${imageDefault}` : null
   );
@@ -27,7 +27,7 @@ export default function File({ name, label, multiple, imageDefault }) {
 
   return (
     <>
-      <Text>Dimensão de imagem recomendada: 600x600 pixels</Text>
+      <Text>Dimensão de imagem recomendada: {dimensions || "600x600"} pixels</Text>
       <Text>(Só é permitido arquivos do tipo JPEG ou PNG)</Text>
 
       <ContainerPreview>

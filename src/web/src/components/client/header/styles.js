@@ -129,11 +129,11 @@ export const ContainerLogo = styled.div`
 export const ButtonSearch = styled.button`
   background-color: #fff;
   border: none;
-  width: 36px;
-  height: 36px;
+  width: 20px;
+  height: 20px;
   position: absolute;
   right: 7px;
-  top: 1px;
+  top: 5px;
   display: flex;
   align-items: center;
   justify-content: center;

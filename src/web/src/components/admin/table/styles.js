@@ -83,6 +83,7 @@ export const NoContent = styled.div`
 
 export const ContainerButtonAction = styled.div`
   display: none;
+  margin: ${(props) => props.margin};
 
   @media (max-width: 850px) {
     display: flex;

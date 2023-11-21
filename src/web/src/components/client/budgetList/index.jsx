@@ -12,7 +12,6 @@ import Text from "../../common/text";
 import { currencyFormatter } from "../../../services/priceServices";
 import Collpase from "../../common/collapse";
 import Form from "../../common/formComponents";
-import CardProduct from "../cardProduct";
 import { useEffect, useState } from "react";
 import http from "../../../services/http";
 import Actions from "../../common/actions";
@@ -22,11 +21,23 @@ import {
   getBudgetsMostPlaced,
 } from "../../../services/api/budgets";
 import CarouselProducts from "../../common/carouselProducts";
+import useAuth from "../../../context/auth";
 
 export default function BudgetList() {
   const navigate = useNavigate();
   const [prices, setPrices] = useState([]);
   const [loading, setLoading] = useState(false);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    if (
+      !user ||
+      !localStorage.getItem("id") ||
+      !localStorage.getItem("token")
+    ) {
+      navigate("/login");
+    }
+  }, [user]);
 
   const client = useQueryClient();
 

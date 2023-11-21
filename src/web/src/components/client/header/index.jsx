@@ -5,8 +5,6 @@ import {
   ContainerHeader,
   ContainerSearch,
   Logo,
-  ContainerCategories,
-  Menu,
   Datauser,
   MenuMobile,
   ContainerActionsMobile,
@@ -23,7 +21,6 @@ import {
 import Form from "../../../components/common/formComponents";
 import logo from "../../../assets/logo-prix-removebg-preview 1.png";
 import Container from "../../common/container";
-import Dropdown from "../../common/dropdown";
 import { Link, useNavigate } from "react-router-dom";
 import Modal from "../../common/modal";
 import Profile from "../profile";
@@ -32,26 +29,24 @@ import { useQuery } from "@tanstack/react-query";
 import { getCategories } from "../../../services/api/categories";
 import Text from "../../common/text";
 import { ContainerLogo } from "./styles";
-import { getProducts } from "../../../services/api/products";
 
 export default function Header() {
-  const { authed, user } = useAuth();
+  const { authed, user, admin } = useAuth();
   const [profile, setProfile] = useState(false);
   const [optionAdmin, setOptionAdmin] = useState();
   const [menuMobile, setMenuMobile] = useState(false);
-  const [itemsSearch, setItemsSearch] = useState();
 
   useEffect(() => {
-    if (!authed) {
-      setOptionAdmin(true);
-    }
-
-    if (authed) {
-      if (user?.email !== "lennon@email.com") {
+    if (user) {
+      if (admin || user.permissao) {
         setOptionAdmin(false);
+      } else {
+        setOptionAdmin(true);
       }
     }
-  }, [authed]);
+  }, [user, admin]);
+
+  console.log(admin);
 
   const navigate = useNavigate();
 
@@ -59,21 +54,6 @@ export default function Header() {
     queryKey: ["categories"],
     queryFn: getCategories,
   });
-
-  const products = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
-  });
-
-  useEffect(() => {
-    let data = products.data?.map((item) => {
-      return {
-        label: item?.nome,
-        value: item?.nome,
-      };
-    });
-    setItemsSearch(data);
-  }, [products.data]);
 
   function handleSearch(value) {
     if (value) {
@@ -91,7 +71,7 @@ export default function Header() {
       url: "/admin/dashboard",
       hidden: optionAdmin,
     },
-    { title: "Quem somos", url: "" },
+    { title: "Quem somos", url: "/about-us" },
     { title: "Contato", url: "" },
   ];
 
@@ -141,11 +121,7 @@ export default function Header() {
               maxWidth={"700px"}
               width={"100%"}
             >
-              <Form.Select
-                name="search"
-                placeHolder={"Buscar por..."}
-                options={itemsSearch}
-              />
+              <Form.Input name="search" placeHolder={"Buscar por produto..."} />
               <ButtonSearch>
                 <AiOutlineSearch size={20} color="#FF5757" />
               </ButtonSearch>
@@ -168,10 +144,15 @@ export default function Header() {
                     <span>Olá,</span>
                   </Text>
                   <Text weight="600" color>
-                    {`${user?.name?.split(" ")[0]} ${
-                      user?.name?.split(" ").length > 1 &&
-                      user?.name?.split(" ")[user?.name?.split(" ").length - 1]
-                    }`}
+                    {`
+                       ${user?.name?.split(" ")[0]} ${
+                      user?.name?.split(" ").length > 1
+                        ? user?.name?.split(" ")[
+                            user?.name?.split(" ").length - 1
+                          ]
+                        : ""
+                    }
+                       `}
                   </Text>
                 </Datauser>
               ) : (
@@ -203,7 +184,7 @@ export default function Header() {
           <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
             <Form.Input
               name="search"
-              placeHolder={"Buscar por..."}
+              placeHolder={"Buscar por produto..."}
               maxWidth="700px"
               marginCenter
               search
@@ -221,20 +202,22 @@ export default function Header() {
         <Modal setModal={setMenuMobile} width="40%">
           {itensMenu.map((item) => {
             return (
-              <Link to={item.url}>
-                <Text
-                  key={item.title}
-                  size="14px"
-                  cursor="pointer"
-                  weight="600"
-                  margin="0 0 10px 0"
-                  width="100%"
-                  bordeBottom="1px solid #e1e1e1"
-                  padding="5px 0"
-                >
-                  {item.title}
-                </Text>
-              </Link>
+              !item.hidden && (
+                <Link to={item.url}>
+                  <Text
+                    key={item.title}
+                    size="14px"
+                    cursor="pointer"
+                    weight="600"
+                    margin="0 0 10px 0"
+                    width="100%"
+                    bordeBottom="1px solid #e1e1e1"
+                    padding="5px 0"
+                  >
+                    {item.title}
+                  </Text>
+                </Link>
+              )
             );
           })}
           {categories?.data?.map((category) => {

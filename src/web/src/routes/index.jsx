@@ -13,6 +13,8 @@ import SearchResult from "../pages/client/searchResult";
 import Budgets from "../pages/admin/budgets";
 import Employees from "../pages/admin/employees";
 import Banners from "../pages/admin/banners";
+import AboutUsClient from "../pages/client/aboutUs";
+import AboutUsAdmin from "../pages/admin/aboutUs";
 
 export default function AppRoutes() {
   return (
@@ -22,6 +24,7 @@ export default function AppRoutes() {
         <Route path="product" element={<Detail />} />
         <Route path="budgets" element={<BudgetList />} />
         <Route path="search" element={<SearchResult />} />
+        <Route path="about-us" element={<AboutUsClient />} />
       </Route>
       <Route path="admin" element={<Admin />}>
         <Route path="dashboard" element={<Dashboard />} />
@@ -30,6 +33,7 @@ export default function AppRoutes() {
         <Route path="budgets" element={<Budgets />} />
         <Route path="employees" element={<Employees />} />
         <Route path="banners" element={<Banners />} />
+        <Route path="about-us" element={<AboutUsAdmin />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="recover-password" element={<RecoverPassoword />} />

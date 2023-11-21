@@ -1,37 +1,26 @@
-import { SwiperSlide } from "swiper/react";
 import Banner from "../../../components/client/banner";
 import Section from "../../../components/client/section";
-import SwiperComponent from "../../../components/common/swiper";
-import CardProduct from "../../../components/client/cardProduct";
 import { getCategories } from "../../../services/api/categories";
 import { useQuery } from "@tanstack/react-query";
 import CarouselProducts from "../../../components/common/carouselProducts";
-import { getProducts } from "../../../services/api/products";
 import { useEffect, useState } from "react";
+import { getBanners } from "../../../services/api/banners";
+import useAuth from "../../../context/auth";
 
-export default function Home(props) {
+export default function Home() {
   const [restOfCategories, setRestOfCategories] = useState();
+  const { admin } = useAuth();
 
-  const banners = [
-    {
-      image: "",
-    },
-    {
-      image: "",
-    },
-    {
-      image: "",
-    },
-  ];
+  console.log(admin);
+
+  const banners = useQuery({
+    queryKey: ["banners"],
+    queryFn: getBanners,
+  });
 
   const categories = useQuery({
     queryKey: ["categories"],
     queryFn: getCategories,
-  });
-
-  const products = useQuery({
-    queryKey: ["products"],
-    queryFn: getProducts,
   });
 
   useEffect(() => {
@@ -42,15 +31,18 @@ export default function Home(props) {
 
   return (
     <>
-      <Banner images={banners} carousel />
+      {banners.data && <Banner images={banners.data} carousel />}
       <Section title={categories.data && categories.data[0]?.nome}>
-        <CarouselProducts products={products.data} rollMeasure={150} />
+        <CarouselProducts
+          products={categories.data && categories.data[0]?.produtos}
+          rollMeasure={150}
+        />
       </Section>
       <Banner />
       {restOfCategories?.map((category) => {
         return (
           <Section title={category.nome}>
-            <CarouselProducts products={products.data} rollMeasure={150} />
+            <CarouselProducts products={category.produtos} rollMeasure={150} />
           </Section>
         );
       })}

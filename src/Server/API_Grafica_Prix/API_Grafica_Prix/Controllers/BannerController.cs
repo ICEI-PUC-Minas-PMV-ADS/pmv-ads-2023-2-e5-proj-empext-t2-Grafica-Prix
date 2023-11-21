@@ -18,7 +18,6 @@ namespace API_Grafica_Prix.Controllers
 
 
         [HttpPost]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> CriarBanner([FromForm] IFormFile Imagem)
         {
             try
@@ -41,24 +40,23 @@ namespace API_Grafica_Prix.Controllers
                         imagemBytes = memoryStream.ToArray();
                     }
                 }
-                    var banner = new Banner
-                    {
-                        Imagem = imagemBytes
-                    };
-                    _context.banners.Add(banner);
-                    await _context.SaveChangesAsync();
+                var banner = new Banner
+                {
+                    Imagem = imagemBytes
+                };
+                _context.banners.Add(banner);
+                await _context.SaveChangesAsync();
 
-                    return Ok("Produto criado com sucesso.");
+                return Ok("Produto criado com sucesso.");
 
-                }
-                    catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
             }
         }
 
         [HttpGet]
-        [Authorize(Roles = "Admin, Escrita")]
         public IActionResult GetBanners()
         {
             try
@@ -73,7 +71,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpGet("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public IActionResult GetById(int id)
         {
             try
@@ -92,7 +89,6 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Admin, Escrita")]
         public async Task<IActionResult> Deletar(int id)
         {
             try

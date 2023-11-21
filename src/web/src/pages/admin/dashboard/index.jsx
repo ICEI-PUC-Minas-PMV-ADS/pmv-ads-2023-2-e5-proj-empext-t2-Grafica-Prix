@@ -16,6 +16,10 @@ import Modal from "../../../components/common/modal";
 import Edit from "../../../components/admin/forms/clients/edit";
 import Delete from "../../../components/admin/forms/clients/delete";
 import { useNavigate } from "react-router";
+import { CardSugestionProducts } from "../../../components/client/budgetList/styles";
+import CarouselProducts from "../../../components/common/carouselProducts";
+import http from "../../../services/http";
+import { getBudgetsMostPlaced } from "../../../services/api/budgets";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
@@ -23,9 +27,20 @@ export default function Dashboard(props) {
 
   const navigate = useNavigate();
 
+  useEffect(() => {
+    http.defaults.headers.common[
+      "Authorization"
+    ] = `Bearer ${localStorage.getItem("token")}`;
+  }, []);
+
   const clients = useQuery({
     queryKey: ["clients"],
     queryFn: getClients,
+  });
+
+  const productsMorePlaced = useQuery({
+    queryKey: ["productsMorePlaced"],
+    queryFn: getBudgetsMostPlaced,
   });
 
   let cards = [];
@@ -133,23 +148,13 @@ export default function Dashboard(props) {
               Produtos mais procurados
             </Text>
             <Text>Lista de produtos com mais acessos</Text>
-            <SwiperComponent
-              countItems={cards?.length}
-              breakpoints={breakpoints}
-            >
-              {cards?.map((card, index) => {
-                return (
-                  <SwiperSlide key={index + 10023332}>
-                    <CardProduct
-                      url={card.image}
-                      name={card.name}
-                      price={card.price}
-                    />
-                  </SwiperSlide>
-                );
-              })}
-            </SwiperComponent>
-            <ActionCard>
+            <CardSugestionProducts>
+              <CarouselProducts
+                products={productsMorePlaced.data}
+                rollMeasure={150}
+              />
+            </CardSugestionProducts>
+            <ActionCard onClick={() => navigate("/admin/about-us")}>
               <Divisor justifyContent="space-between" margin="0 ">
                 <Text size="20px" weight="600">
                   Quem somos
