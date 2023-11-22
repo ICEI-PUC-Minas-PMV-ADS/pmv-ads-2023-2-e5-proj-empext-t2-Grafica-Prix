@@ -4,7 +4,7 @@ import Divisor from "../../../components/common/divisor";
 import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
 import Register from "../../../components/admin/forms/employees/register";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getCategories } from "../../../services/api/categories";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
@@ -15,6 +15,8 @@ import Delete from "../../../components/admin/forms/categories/delete";
 import Details from "../../../components/admin/forms/categories/detail";
 import { ContainerRegister } from "../categories/styles";
 import { getEmployees } from "../../../services/api/employees";
+import http from "../../../services/http";
+import { toast } from "react-toastify";
 
 export default function Employees(props) {
   const [dataWithAction, setDataWithAction] = useState();
@@ -25,10 +27,12 @@ export default function Employees(props) {
     queryFn: getEmployees,
   });
 
+  const client = useQueryClient();
+
   const columns = [
     {
       label: "Nome",
-      key: "nome",
+      key: "name",
     },
     {
       label: "Email",
@@ -45,6 +49,21 @@ export default function Employees(props) {
       key: "action",
     },
   ];
+
+  function handleSearch(value) {
+    http
+      .get(
+        `/api/Colaborador/Name/${value.search === "" ? "all" : value.search}`
+      )
+      .then(
+        (res) => {
+          client.setQueryData({ queryKey: ["employees"] }, res.data);
+        },
+        () => {
+          toast.error("Erro ao buscar colaborador");
+        }
+      );
+  }
 
   useEffect(() => {
     setDataWithAction(
@@ -119,6 +138,7 @@ export default function Employees(props) {
                 }),
             }}
             actionTitle="Novo funcionário"
+            handleSearch={handleSearch}
           />
         </Divisor>
         <ContainerRegister>

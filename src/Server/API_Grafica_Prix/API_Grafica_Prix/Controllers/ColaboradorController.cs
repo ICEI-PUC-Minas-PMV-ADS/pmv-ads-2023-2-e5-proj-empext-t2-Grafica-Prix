@@ -103,6 +103,11 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet("Name/{Name}")]
         public async Task<ActionResult> PesquisarPorName(string Name)
         {
+            if (Name == "all")
+            {
+                return Ok(await _context.colaboradores.ToListAsync());
+            }
+
             var colaborador = await _context.colaboradores
                 .Where(p => p.Name.ToLower().Contains(Name.ToLower()))
                 .ToListAsync();

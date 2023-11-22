@@ -14,11 +14,14 @@ import Edit from "../../../components/admin/forms/categories/edit";
 import Delete from "../../../components/admin/forms/categories/delete";
 import Details from "../../../components/admin/forms/categories/detail";
 import { ContainerRegister } from "./styles";
+import http from "../../../services/http";
+import { toast } from "react-toastify";
 
 export default function Categories() {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
   const [dateWithPagination, setDateWithPagination] = useState();
+  const [page, setPage] = useState(1);
 
   const categories = useQuery({
     queryKey: ["categories"],
@@ -55,58 +58,61 @@ export default function Categories() {
   ];
 
   useEffect(() => {
-    console.log()
     setDataWithAction(
-      categories.data?.map((data) => {
-        return {
-          ...data,
-          action: (
-            <ContainerActions>
-              <BsTrash3
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "delete",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BiEditAlt
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "edit",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BsBoxArrowUpRight
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "details",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </ContainerActions>
-          ),
-        };
-      })
+      dateWithPagination &&
+        dateWithPagination[page - 1]?.map((data) => {
+          return {
+            ...data,
+            action: (
+              <ContainerActions>
+                <BsTrash3
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "delete",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                <BiEditAlt
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "edit",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                <BsBoxArrowUpRight
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "details",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+              </ContainerActions>
+            ),
+          };
+        })
     );
-  }, [categories.data]);
+  }, [categories.data, dateWithPagination, page]);
 
   function handleSearch(value) {
-    client.setQueryData({ queryKey: ["categories"] }, (data) => {
-      let old = [...data];
-
-      let finded = old?.find((x) => x.nome === value.search);
-
-      return [finded];
-    });
+    http
+      .get(`/api/Categoria/nome/${value.search === "" ? "all" : value.search}`)
+      .then(
+        (res) => {
+          client.setQueryData({ queryKey: ["categories"] }, res.data);
+        },
+        () => {
+          toast.error("Erro ao buscar categoria");
+        }
+      );
   }
 
   return (
@@ -139,6 +145,9 @@ export default function Categories() {
             }}
             handleSearch={handleSearch}
             actionTitle="Nova categoria"
+            setPage={setPage}
+            page={page}
+            lastPage={dateWithPagination && dateWithPagination?.length}
           />
         </Divisor>
         <ContainerRegister>

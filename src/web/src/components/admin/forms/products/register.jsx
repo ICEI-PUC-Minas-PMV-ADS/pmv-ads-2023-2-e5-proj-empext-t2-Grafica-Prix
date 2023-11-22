@@ -55,6 +55,7 @@ export default function Register() {
         Promocao: "",
         Quantidade: "",
         CategoriaId: "",
+        Observacao: "",
       }}
       onSubmit={handleSubmit}
       gap="10px"
@@ -74,6 +75,7 @@ export default function Register() {
         })}
       />
       <Form.Editor label="Descrição" name="Descricao" />
+      <Form.Editor label="Observação" name="Observacao" />
       <Form.InputPrice label="Promoção" name="Promocao" />
       <Form.Button
         type="submit"

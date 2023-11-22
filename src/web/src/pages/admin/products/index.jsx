@@ -4,7 +4,7 @@ import Divisor from "../../../components/common/divisor";
 import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
 import Register from "../../../components/admin/forms/products/register";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import ContainerActions from "../../../components/admin/containerActions";
@@ -15,10 +15,14 @@ import Details from "../../../components/admin/forms/products/detail";
 import { getProducts } from "../../../services/api/products";
 import { currencyFormatter } from "../../../services/priceServices";
 import { ContainerRegister } from "../categories/styles";
+import http from "../../../services/http";
+import { toast } from "react-toastify";
 
 export default function Products(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+
+  const client = useQueryClient();
 
   const products = useQuery({
     queryKey: ["products"],
@@ -90,6 +94,19 @@ export default function Products(props) {
     );
   }, [products.data]);
 
+  function handleSearch(value) {
+    http
+      .get(`/api/Produto/nome/${value.search === "" ? "all" : value.search}`)
+      .then(
+        (res) => {
+          client.setQueryData({ queryKey: ["products"] }, res.data);
+        },
+        () => {
+          toast.error("Erro ao buscar produto");
+        }
+      );
+  }
+
   return (
     <>
       <Container
@@ -119,6 +136,7 @@ export default function Products(props) {
                 }),
             }}
             actionTitle="Novo produto"
+            handleSearch={handleSearch}
           />
         </Divisor>
         <ContainerRegister>

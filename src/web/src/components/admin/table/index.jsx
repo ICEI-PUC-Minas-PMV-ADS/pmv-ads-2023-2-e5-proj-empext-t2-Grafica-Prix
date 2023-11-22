@@ -116,7 +116,11 @@ export default function Table(props) {
               </NoContent>
             )}
           </ContentTable>
-          <Paginator />
+          <Paginator
+            actualPage={props.page}
+            lastPage={props.lastPage}
+            setActualPage={props.setPage}
+          />
         </TableStyles>
       </ContainerData>
     </ContainerTable>

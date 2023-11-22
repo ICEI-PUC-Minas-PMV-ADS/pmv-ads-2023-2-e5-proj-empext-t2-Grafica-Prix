@@ -27,8 +27,8 @@ export default function Budget({ product }) {
 
     const data = {
       ...product,
-      quantidade: values.quantidade,
-      observacao: values.observacao,
+      Quantidade: values.Quantidade,
+      Observacao: values.Observacao,
     };
 
     http.post("/api/Orcamento/adicionar-ao-orcamento/", data).then(
@@ -44,7 +44,7 @@ export default function Budget({ product }) {
 
   return (
     <BudgetsStyles>
-      <Form data={{ quantidade: 0, observacao: "" }} onSubmit={handleSubmit}>
+      <Form data={{ Quantidade: 0, Observacao: "" }} onSubmit={handleSubmit}>
         <Text size="25px" weight="600" margin="0 0 5px 0">
           {product.nome}
         </Text>
@@ -80,11 +80,11 @@ export default function Budget({ product }) {
           </Text>
         </Divisor>
         <Form.Counter
-          name="quantidade"
+          name="Quantidade"
           label="Quantidade"
           maxValue={product.quantidade}
         />
-        <Form.Editor name="observacao" label="Observação" />
+        <Form.Editor name="Observacao" label="Observação" />
         <Form.Button
           type="submit"
           title="Confirmar"

@@ -3,11 +3,12 @@ import * as Yup from "yup";
 import { toast } from "react-toastify";
 import Form from "../../../common/formComponents";
 import http from "../../../../services/http";
+import { useQueryClient } from "@tanstack/react-query";
 
 export default function Register() {
   const [loading, setLoading] = useState(false);
   const validationSchema = Yup.object().shape({
-    nome: Yup.string().required("Este campo é obrigatório"),
+    name: Yup.string().required("Este campo é obrigatório"),
     email: Yup.string().required("Este campo é obrigatório"),
     telefone: Yup.string().required("Este campo é obrigatório"),
     senha: Yup.string().required("Este campo é obrigatório"),
@@ -15,12 +16,15 @@ export default function Register() {
     endereco: Yup.string().nullable(),
   });
 
+  const client = useQueryClient();
+
   function handleSubmit(data) {
     setLoading(true);
     http.post("/api/Colaborador", data).then(
       (res) => {
         setLoading(false);
         toast.success("Colaborador cadastrado com sucesso.");
+        client.invalidateQueries({ queryKey: ["employees"] });
       },
       (e) => {
         setLoading(false);
@@ -35,7 +39,7 @@ export default function Register() {
   return (
     <Form
       data={{
-        nome: "",
+        name: "",
         email: "",
         telefone: "",
         senha: "",
@@ -48,7 +52,7 @@ export default function Register() {
       validationSchema={validationSchema}
     >
       <Form.Input
-        name="nome"
+        name="name"
         placeHolder="Ex: João Batista"
         label="Nome completo"
         required

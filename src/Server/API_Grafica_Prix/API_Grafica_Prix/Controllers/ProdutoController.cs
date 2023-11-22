@@ -18,30 +18,10 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet]
         public async Task<IActionResult> ListarTodos()
         {
-            try
-            {
-                var produtos = await _context.produtos.ToListAsync();
-
-                var produtosComImagemBase64 = produtos.Select(p => new ProdutoComImagem
-                {
-                    Id = p.Id,
-                    Nome = p.Nome,
-                    Descricao = p.Descricao,
-                    Observacao = p.Observacao,
-                    Preco = p.Preco,
-                    Quantidade = p.Quantidade,
-                    Promocao = p.Promocao,
-                    ImagemBase64 = p.Imagem != null ? Convert.ToBase64String(p.Imagem) : null,
-                    CategoriaId = p.CategoriaId
-                }).ToList();
-
-                return Ok(produtosComImagemBase64);
-            }
-            catch (Exception ex)
-            {
-                return StatusCode(StatusCodes.Status500InternalServerError, $"Erro interno do servidor: {ex.Message}");
-            }
+            var model = await _context.produtos.ToListAsync();
+            return Ok(model);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> CriarProduto([FromForm] IFormFile Imagem, [FromForm] Produto Model)
@@ -112,6 +92,11 @@ namespace API_Grafica_Prix.Controllers
         [HttpGet("nome/{nome}")]
         public async Task<ActionResult> PesquisarPorNome(string nome)
         {
+            if (nome == "all")
+            {
+                return Ok(await _context.produtos.ToListAsync());
+            }
+
             var produto = await _context.produtos
                 .Where(p => p.Nome.ToLower().Contains(nome.ToLower()))
                 .ToListAsync();

@@ -31,7 +31,7 @@ namespace API_Grafica_Prix.Controllers
         }
 
         [HttpPost("adicionar-ao-orcamento")]
-        public async Task<IActionResult> AdicionarAoOrcamento([FromBody] Produto produto)
+        public async Task<IActionResult> AdicionarAoOrcamento([FromBody] ProdutoDto produto)
         {
             if (produto == null)
             {
@@ -55,7 +55,7 @@ namespace API_Grafica_Prix.Controllers
                 carrinhoExistente = new AdicionarProdutoOrcamento
                 {
                     UsuarioId = usuarioId,
-                    Produtos = new List<Produto> { produtoExistente }
+                    Produtos = new List<Produto> { produtoExistente },
                 };
 
                 _context.adicionarProdutos.Add(carrinhoExistente);

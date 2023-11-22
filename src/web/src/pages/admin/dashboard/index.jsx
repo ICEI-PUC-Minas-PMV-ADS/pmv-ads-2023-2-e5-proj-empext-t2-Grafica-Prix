@@ -10,7 +10,7 @@ import Text from "../../../components/common/text";
 import CardProduct from "../../../components/client/cardProduct";
 import SwiperComponent from "../../../components/common/swiper";
 import { SwiperSlide } from "swiper/react";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getClients } from "../../../services/api/user";
 import Modal from "../../../components/common/modal";
 import Edit from "../../../components/admin/forms/clients/edit";
@@ -20,10 +20,15 @@ import { CardSugestionProducts } from "../../../components/client/budgetList/sty
 import CarouselProducts from "../../../components/common/carouselProducts";
 import http from "../../../services/http";
 import { getBudgetsMostPlaced } from "../../../services/api/budgets";
+import { toast } from "react-toastify";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+  const [page, setPage] = useState(1);
+  const [dateWithPagination, setDateWithPagination] = useState();
+
+  const client = useQueryClient();
 
   const navigate = useNavigate();
 
@@ -43,6 +48,17 @@ export default function Dashboard(props) {
     queryFn: getBudgetsMostPlaced,
   });
 
+  useEffect(() => {
+    const take = 10;
+    const newData = [];
+
+    for (let i = 0; i < clients.data?.length; i += take) {
+      newData.push(clients.data?.slice(i, i + take));
+    }
+
+    setDateWithPagination(newData);
+  }, [clients.data]);
+
   let cards = [];
 
   for (let i = 0; i < 10; i++) {
@@ -52,24 +68,6 @@ export default function Dashboard(props) {
       price: "RS 99,90",
     });
   }
-
-  const breakpoints = {
-    0: {
-      slidesPerView: 1,
-    },
-    390: {
-      slidesPerView: 2,
-    },
-    502: {
-      slidesPerView: 3,
-    },
-    1034: {
-      slidesPerView: 4,
-    },
-    1280: {
-      slidesPerView: 3,
-    },
-  };
 
   const columns = [
     {
@@ -92,37 +90,51 @@ export default function Dashboard(props) {
 
   useEffect(() => {
     setDataWithAction(
-      clients.data?.map((data) => {
-        return {
-          ...data,
-          action: (
-            <ContainerActions>
-              <BsTrash3
-                size={25}
-                onClick={() => {
-                  setModal({
-                    key: "delete",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BiEditAlt
-                size={25}
-                onClick={() => {
-                  setModal({
-                    key: "edit",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </ContainerActions>
-          ),
-        };
-      })
+      dateWithPagination &&
+        dateWithPagination[page - 1]?.map((data) => {
+          return {
+            ...data,
+            action: (
+              <ContainerActions>
+                <BsTrash3
+                  size={25}
+                  onClick={() => {
+                    setModal({
+                      key: "delete",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+                <BiEditAlt
+                  size={25}
+                  onClick={() => {
+                    setModal({
+                      key: "edit",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+              </ContainerActions>
+            ),
+          };
+        })
     );
-  }, [clients.data]);
+  }, [clients.data, dateWithPagination, page]);
+
+  function handleSearch(value) {
+    http
+      .get(`/api/Usuario/nome/${value.search === "" ? "all" : value.search}`)
+      .then(
+        (res) => {
+          client.setQueryData({ queryKey: ["clients"] }, res.data);
+        },
+        () => {
+          toast.error("Erro ao buscar cliente");
+        }
+      );
+  }
 
   return (
     <>
@@ -141,6 +153,10 @@ export default function Dashboard(props) {
               textTotal="clientes"
               maxHeight="400px"
               textNoContent="Nenhum cliente cadastrado"
+              handleSearch={handleSearch}
+              setPage={setPage}
+              page={page}
+              lastPage={dateWithPagination && dateWithPagination?.length}
             />
           </ContainerData>
           <ContainerData>
