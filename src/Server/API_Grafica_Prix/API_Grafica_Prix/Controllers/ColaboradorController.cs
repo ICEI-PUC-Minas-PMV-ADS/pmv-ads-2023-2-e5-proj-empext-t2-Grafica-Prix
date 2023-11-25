@@ -56,12 +56,6 @@ namespace API_Grafica_Prix.Controllers
 
                 model.Senha = BCrypt.Net.BCrypt.HashPassword(model.Senha);
 
-                // Verifique se a permissão foi passada corretamente no objeto model
-                if (!Enum.IsDefined(typeof(Permissao), model.Permissao))
-                {
-                    return BadRequest("Permissão inválida.");
-                }
-
                 _context.colaboradores.Add(model);
                 await _context.SaveChangesAsync();
 

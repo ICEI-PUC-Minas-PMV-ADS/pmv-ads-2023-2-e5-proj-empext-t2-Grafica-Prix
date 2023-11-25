@@ -10,6 +10,7 @@ import { PromotionAlert } from "../cardProduct/styles";
 import Form from "../../common/formComponents";
 import http from "../../../services/http";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 export default function Budget({ product }) {
   const [loading, setLoading] = useState(false);
@@ -35,16 +36,20 @@ export default function Budget({ product }) {
       () => {
         setLoading(false);
         navigate("/budgets");
+        toast.success("Produto adicionado ao carrinho");
       },
       () => {
         setLoading(false);
+        toast.error(
+          "Erro ao adicionar produto no carrinho. Tente deslogar e logar novamente na plataforma e efetue a ação novamente"
+        );
       }
     );
   }
 
   return (
     <BudgetsStyles>
-      <Form data={{ Quantidade: 0, Observacao: "" }} onSubmit={handleSubmit}>
+      <Form data={{ quantidade: 0, observacao: "" }} onSubmit={handleSubmit}>
         <Text size="25px" weight="600" margin="0 0 5px 0">
           {product.nome}
         </Text>
@@ -80,11 +85,11 @@ export default function Budget({ product }) {
           </Text>
         </Divisor>
         <Form.Counter
-          name="Quantidade"
+          name="quantidade"
           label="Quantidade"
           maxValue={product.quantidade}
         />
-        <Form.Editor name="Observacao" label="Observação" />
+        <Form.Editor name="observacao" label="bservação" />
         <Form.Button
           type="submit"
           title="Confirmar"

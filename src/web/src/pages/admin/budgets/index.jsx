@@ -14,6 +14,8 @@ import { toast } from "react-toastify";
 export default function Budgets(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+  const [dateWithPagination, setDateWithPagination] = useState();
+  const [page, setPage] = useState(1);
 
   const client = useQueryClient();
 
@@ -26,6 +28,17 @@ export default function Budgets(props) {
     queryKey: ["clients"],
     queryFn: getClients,
   });
+
+  useEffect(() => {
+    const take = 10;
+    const newData = [];
+
+    for (let i = 0; i < budgets.data?.length; i += take) {
+      newData.push(budgets.data?.slice(i, i + take));
+    }
+
+    setDateWithPagination(newData);
+  }, [budgets.data]);
 
   const columns = [
     {
@@ -55,38 +68,38 @@ export default function Budgets(props) {
 
   useEffect(() => {
     setDataWithAction(
-      budgets.data?.map((data) => {
-        console.log(data.fechado);
-        return {
-          ...data,
-          dataCriacao: moment(data.dataCriacao).format("DD/MM/YYYY - hh:mm"),
-          usuarioId: clients.data?.find(
-            (x) => x.id === parseInt(data.usuarioId)
-          )?.name,
-          action: (
-            <ContainerActions>
-              <BsBookmarkCheck
-                onClick={() => checkBudget(data.id, data.fechado)}
-                size={18}
-                color={data.fechado ? "red" : ""}
-                style={{ cursor: "pointer" }}
-              />
-              <BsBoxArrowUpRight
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "details",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </ContainerActions>
-          ),
-        };
-      })
+      dateWithPagination &&
+        dateWithPagination[page - 1]?.map((data) => {
+          return {
+            ...data,
+            dataCriacao: moment(data.dataCriacao).format("DD/MM/YYYY - hh:mm"),
+            usuarioId: clients.data?.find(
+              (x) => x.id === parseInt(data.usuarioId)
+            )?.name,
+            action: (
+              <ContainerActions>
+                <BsBookmarkCheck
+                  onClick={() => checkBudget(data.id, data.fechado)}
+                  size={18}
+                  color={data.fechado ? "red" : ""}
+                  style={{ cursor: "pointer" }}
+                />
+                <BsBoxArrowUpRight
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "details",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+              </ContainerActions>
+            ),
+          };
+        })
     );
-  }, [budgets.data]);
+  }, [budgets.data, dateWithPagination, page]);
 
   return (
     <>
@@ -102,12 +115,14 @@ export default function Budgets(props) {
             loading={budgets.isLoading}
             data={dataWithAction}
             columns={columns}
-            search
             titleSearch="Orçamentos"
             descriptionSearch="Consulte ou gerencie orçamentos"
             textTotal="orçamentos"
             heightTable="calc(100vh - 5%)"
             textNoContent="Nenhum orçamento registrado"
+            setPage={setPage}
+            page={page}
+            lastPage={dateWithPagination && dateWithPagination?.length}
           />
         </Divisor>
       </Container>

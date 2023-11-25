@@ -5,13 +5,8 @@ import { useQuery } from "@tanstack/react-query";
 import CarouselProducts from "../../../components/common/carouselProducts";
 import { useEffect, useState } from "react";
 import { getBanners } from "../../../services/api/banners";
-import useAuth from "../../../context/auth";
-
 export default function Home() {
   const [restOfCategories, setRestOfCategories] = useState();
-  const { admin } = useAuth();
-
-  console.log(admin);
 
   const banners = useQuery({
     queryKey: ["banners"],
@@ -41,9 +36,14 @@ export default function Home() {
       <Banner />
       {restOfCategories?.map((category) => {
         return (
-          <Section title={category.nome}>
-            <CarouselProducts products={category.produtos} rollMeasure={150} />
-          </Section>
+          category?.produtos?.length > 0 && (
+            <Section title={category.nome}>
+              <CarouselProducts
+                products={category.produtos}
+                rollMeasure={150}
+              />
+            </Section>
+          )
         );
       })}
     </>

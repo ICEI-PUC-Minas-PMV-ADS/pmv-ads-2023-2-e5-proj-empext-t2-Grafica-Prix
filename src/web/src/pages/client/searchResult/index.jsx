@@ -51,7 +51,7 @@ export default function SearchResult() {
   }, [categories.data, productsSearch]);
 
   return (
-    <Container height="100vh">
+    <Container minHeight="calc(100vh - 70px)">
       {productsSearch && data && categories.data && (
         <Divisor direction="column">
           {data?.map((item) => {

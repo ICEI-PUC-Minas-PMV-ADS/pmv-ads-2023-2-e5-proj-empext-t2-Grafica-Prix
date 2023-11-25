@@ -1,6 +1,4 @@
 import React, { useState } from "react";
-import * as Yup from "yup";
-import { ErrorMessage } from "../../../common/formComponents/styles";
 import http from "../../../../services/http";
 import { toast } from "react-toastify";
 import Form from "../../../common/formComponents";

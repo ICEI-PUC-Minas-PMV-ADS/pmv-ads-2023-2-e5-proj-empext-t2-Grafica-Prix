@@ -62,8 +62,9 @@ export default function Login(props) {
         <ContainerImage>
           <TitleImage>Olá, bem-vindo!</TitleImage>
           <TextImage>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget
-            mattis dui, in varius felis.{" "}
+            Na nossa plataforma, você encontrará uma variedade de produtos e
+            serviços gráficos para atender às suas necessidades criativas e
+            profissionais.{" "}
           </TextImage>
           <ImageLogin src={image} />
         </ContainerImage>

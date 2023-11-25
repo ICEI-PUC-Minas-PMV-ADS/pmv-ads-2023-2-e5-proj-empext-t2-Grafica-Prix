@@ -37,32 +37,32 @@ export default function Table(props) {
 
   return (
     <ContainerTable {...props}>
-      {props.search && (
-        <ContainerSearch>
-          <ContainerData>
-            <Divisor justifyContent="space-between">
-              <Text size="20px" weight="600">
-                {props.titleSearch}
-              </Text>
-              {props.action && (
-                <ContainerButtonAction>
-                  <Button
-                    padding="8px 15px"
-                    margin="0"
-                    onClick={props.action.function}
-                  >
-                    <Text color="#fff">{props.actionTitle}</Text>
-                  </Button>
-                </ContainerButtonAction>
-              )}
-            </Divisor>
+      <ContainerSearch>
+        <ContainerData>
+          <Divisor justifyContent="space-between">
+            <Text size="20px" weight="600">
+              {props.titleSearch}
+            </Text>
+            {props.action && (
+              <ContainerButtonAction>
+                <Button
+                  padding="8px 15px"
+                  margin="0"
+                  onClick={props.action.function}
+                >
+                  <Text color="#fff">{props.actionTitle}</Text>
+                </Button>
+              </ContainerButtonAction>
+            )}
+          </Divisor>
 
-            <Divisor justifyContent="space-between">
-              <Text>{props.descriptionSearch}</Text>
-              <Text>
-                Total de {props.textTotal}: {props.data?.length || 0}
-              </Text>
-            </Divisor>
+          <Divisor justifyContent="space-between">
+            {props.search && <Text>{props.descriptionSearch}</Text>}
+            <Text>
+              Total de {props.textTotal}: {props.data?.length || 0}
+            </Text>
+          </Divisor>
+          {props.search && (
             <Form data={{ search: "" }} onSubmit={props.handleSearch}>
               <Form.Input
                 name="search"
@@ -72,9 +72,9 @@ export default function Table(props) {
                 shadow
               />
             </Form>
-          </ContainerData>
-        </ContainerSearch>
-      )}
+          )}
+        </ContainerData>
+      </ContainerSearch>
       <ContainerData>
         <TableStyles {...props}>
           <Tr>

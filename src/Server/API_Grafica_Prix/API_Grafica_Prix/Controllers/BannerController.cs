@@ -1,6 +1,4 @@
 ﻿using API_Grafica_Prix.Models;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API_Grafica_Prix.Controllers

@@ -56,7 +56,7 @@ export const TextOption = styled.p`
 export const CardProfile = styled.div`
   width: 100%;
   display: flex;
-  padding: ${(props) => (props.toggle ? "5px 10px" : "0")};
+  padding: ${(props) => (props.toggle ? "0 0 0 10px" : "0")};
   border-radius: 5px;
   border: ${(props) => props.toggle && "1px solid #e1e1e1"};
   align-items: center;

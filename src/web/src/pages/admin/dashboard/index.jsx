@@ -21,12 +21,15 @@ import CarouselProducts from "../../../components/common/carouselProducts";
 import http from "../../../services/http";
 import { getBudgetsMostPlaced } from "../../../services/api/budgets";
 import { toast } from "react-toastify";
+import useAuth from "../../../context/auth";
 
 export default function Dashboard(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
   const [page, setPage] = useState(1);
   const [dateWithPagination, setDateWithPagination] = useState();
+
+  const { user } = useAuth();
 
   const client = useQueryClient();
 
@@ -96,26 +99,30 @@ export default function Dashboard(props) {
             ...data,
             action: (
               <ContainerActions>
-                <BsTrash3
-                  size={25}
-                  onClick={() => {
-                    setModal({
-                      key: "delete",
-                      data: data,
-                    });
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
-                <BiEditAlt
-                  size={25}
-                  onClick={() => {
-                    setModal({
-                      key: "edit",
-                      data: data,
-                    });
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
+                {user?.permissao === 2 && (
+                  <BsTrash3
+                    size={25}
+                    onClick={() => {
+                      setModal({
+                        key: "delete",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                {user?.permissao !== 0 && (
+                  <BiEditAlt
+                    size={25}
+                    onClick={() => {
+                      setModal({
+                        key: "edit",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
               </ContainerActions>
             ),
           };
@@ -170,30 +177,34 @@ export default function Dashboard(props) {
                 rollMeasure={150}
               />
             </CardSugestionProducts>
-            <ActionCard onClick={() => navigate("/admin/about-us")}>
-              <Divisor justifyContent="space-between" margin="0 ">
-                <Text size="20px" weight="600">
-                  Quem somos
-                </Text>
-                <BiEditAlt
-                  setModal={{ key: "editHowWeAre" }}
-                  size={25}
-                  style={{ cursor: "pointer" }}
-                />
-              </Divisor>
-            </ActionCard>
-            <ActionCard onClick={() => navigate("/admin/banners")}>
-              <Divisor justifyContent="space-between" margin="0 ">
-                <Text size="20px" weight="600">
-                  Banners
-                </Text>
-                <BiEditAlt
-                  setModal={{ key: "editHowWeAre" }}
-                  size={25}
-                  style={{ cursor: "pointer" }}
-                />
-              </Divisor>
-            </ActionCard>
+            {user?.permissao === 2 && (
+              <>
+                <ActionCard onClick={() => navigate("/admin/about-us")}>
+                  <Divisor justifyContent="space-between" margin="0 ">
+                    <Text size="20px" weight="600">
+                      Quem somos
+                    </Text>
+                    <BiEditAlt
+                      setModal={{ key: "editHowWeAre" }}
+                      size={25}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </Divisor>
+                </ActionCard>
+                <ActionCard onClick={() => navigate("/admin/banners")}>
+                  <Divisor justifyContent="space-between" margin="0 ">
+                    <Text size="20px" weight="600">
+                      Banners
+                    </Text>
+                    <BiEditAlt
+                      setModal={{ key: "editHowWeAre" }}
+                      size={25}
+                      style={{ cursor: "pointer" }}
+                    />
+                  </Divisor>
+                </ActionCard>
+              </>
+            )}
           </ContainerData>
         </Divisor>
       </Container>

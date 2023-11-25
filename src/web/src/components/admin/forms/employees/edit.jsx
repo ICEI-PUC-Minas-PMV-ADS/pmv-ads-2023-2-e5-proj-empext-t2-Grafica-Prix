@@ -1,37 +1,29 @@
 import React, { useState } from "react";
-import * as Yup from "yup";
+import http from "../../../../services/http";
 import { toast } from "react-toastify";
 import Form from "../../../common/formComponents";
-import http from "../../../../services/http";
 import { useQueryClient } from "@tanstack/react-query";
 
-export default function Register() {
+export default function Edit({ data, setModal }) {
   const [loading, setLoading] = useState(false);
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Este campo é obrigatório"),
-    email: Yup.string().required("Este campo é obrigatório"),
-    telefone: Yup.string().required("Este campo é obrigatório"),
-    senha: Yup.string().required("Este campo é obrigatório"),
-    cpf: Yup.string().nullable(),
-    endereco: Yup.string().nullable(),
-  });
 
   const client = useQueryClient();
 
-  function handleSubmit(data) {
+  function handleSubmit(values) {
     setLoading(true);
-    http.post("/api/Colaborador", data).then(
-      (res) => {
+
+    let dataObj = { ...values, id: data?.id };
+
+    http.put(`api/Colaborador/${data?.id}`, dataObj).then(
+      () => {
         setLoading(false);
-        toast.success("Colaborador cadastrado com sucesso.");
         client.invalidateQueries({ queryKey: ["employees"] });
+        toast.success("Colaborador editado com sucesso");
+        setModal(false);
       },
-      (e) => {
+      () => {
         setLoading(false);
-        console.dir(e.response.data);
-        toast.error(
-          e.response.data || "Não foi possível cadastrar o Colaborador."
-        );
+        toast.error("Erro ao editar colaborador");
       }
     );
   }
@@ -39,17 +31,16 @@ export default function Register() {
   return (
     <Form
       data={{
-        name: "",
-        email: "",
-        telefone: "",
+        name: data?.name,
+        email: data?.email,
+        telefone: data?.telefone,
         senha: "",
-        cpf: "",
-        endereco: "",
-        permissao: 0,
+        cpf: data?.cpf,
+        endereco: data?.endereco,
       }}
       onSubmit={handleSubmit}
       gap="5px"
-      validationSchema={validationSchema}
+      margin="10px 0"
     >
       <Form.Input
         name="name"
@@ -82,18 +73,9 @@ export default function Register() {
         placeHolder="Ex: Rua A - 13, Belo Horizonte..."
         label="Endereço"
       />
-      <Form.Select
-        name="permissao"
-        label="Permissão"
-        options={[
-          { label: "Administrador", value: 2 },
-          { label: "Gestor", value: 1 },
-          { label: "Consultor", value: 0 },
-        ]}
-      />
       <Form.Button
         type="submit"
-        title="Cadastrar"
+        title="Editar"
         minWidth="fit-content"
         padding="10px 30px"
         margin="5px 0 0 0"

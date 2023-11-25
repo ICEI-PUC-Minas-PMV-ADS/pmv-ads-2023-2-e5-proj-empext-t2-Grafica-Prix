@@ -16,12 +16,14 @@ import Details from "../../../components/admin/forms/categories/detail";
 import { ContainerRegister } from "./styles";
 import http from "../../../services/http";
 import { toast } from "react-toastify";
+import useAuth from "../../../context/auth";
 
 export default function Categories() {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
   const [dateWithPagination, setDateWithPagination] = useState();
   const [page, setPage] = useState(1);
+  const { user } = useAuth();
 
   const categories = useQuery({
     queryKey: ["categories"],
@@ -65,26 +67,30 @@ export default function Categories() {
             ...data,
             action: (
               <ContainerActions>
-                <BsTrash3
-                  size={18}
-                  onClick={() => {
-                    setModal({
-                      key: "delete",
-                      data: data,
-                    });
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
-                <BiEditAlt
-                  size={18}
-                  onClick={() => {
-                    setModal({
-                      key: "edit",
-                      data: data,
-                    });
-                  }}
-                  style={{ cursor: "pointer" }}
-                />
+                {user?.permissao === 2 && (
+                  <BsTrash3
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "delete",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                {user?.permissao !== 0 && (
+                  <BiEditAlt
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "edit",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
                 <BsBoxArrowUpRight
                   size={18}
                   onClick={() => {
@@ -150,24 +156,26 @@ export default function Categories() {
             lastPage={dateWithPagination && dateWithPagination?.length}
           />
         </Divisor>
-        <ContainerRegister>
-          <Divisor
-            flex="2"
-            direction="column"
-            height="100vh"
-            bgColor="#fff"
-            boxShadow
-            padding="20px"
-          >
-            <Text size="20px" weight="600">
-              Cadastrar nova categoria
-            </Text>
-            <Text size="14px" weight="500">
-              Informe o nome e uma descrição (opcional) para sua categoria.
-            </Text>
-            <Register />
-          </Divisor>
-        </ContainerRegister>
+        {user?.permissao === 2 && (
+          <ContainerRegister>
+            <Divisor
+              flex="2"
+              direction="column"
+              height="100vh"
+              bgColor="#fff"
+              boxShadow
+              padding="20px"
+            >
+              <Text size="20px" weight="600">
+                Cadastrar nova categoria
+              </Text>
+              <Text size="14px" weight="500">
+                Informe o nome e uma descrição (opcional) para sua categoria.
+              </Text>
+              <Register />
+            </Divisor>
+          </ContainerRegister>
+        )}
       </Container>
       {modal?.key === "edit" && (
         <Modal setModal={setModal} width="40%">

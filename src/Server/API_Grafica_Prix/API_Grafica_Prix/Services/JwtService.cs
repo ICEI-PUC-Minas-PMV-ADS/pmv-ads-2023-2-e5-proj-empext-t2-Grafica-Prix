@@ -57,15 +57,6 @@ namespace API_Grafica_Prix.Services
             new Claim(ClaimTypes.Email, model.Email),
         };
 
-                // Adicionar a reivindicação de permissão com base na propriedade do Colaborador
-                foreach (Permissao permissao in Enum.GetValues(typeof(Permissao)))
-                {
-                    if (model.Permissao.HasFlag(permissao))
-                    {
-                        claims.Add(new Claim(ClaimTypes.Role, permissao.ToString()));
-                    }
-                }
-
                 var tokenDescriptor = new SecurityTokenDescriptor
                 {
                     Subject = new ClaimsIdentity(claims),

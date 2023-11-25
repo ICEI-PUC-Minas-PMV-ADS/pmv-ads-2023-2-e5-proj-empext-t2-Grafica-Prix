@@ -46,8 +46,6 @@ export default function Header() {
     }
   }, [user, admin]);
 
-  console.log(admin);
-
   const navigate = useNavigate();
 
   const categories = useQuery({
@@ -69,7 +67,7 @@ export default function Header() {
     {
       title: "Admin",
       url: "/admin/dashboard",
-      hidden: optionAdmin,
+      hidden: optionAdmin || !user,
     },
     { title: "Quem somos", url: "/about-us" },
     { title: "Contato", url: "" },
@@ -181,14 +179,16 @@ export default function Header() {
           </ContainerActions>
         </Container>
         <ContainerSearchMobile>
-          <Form data={{ search: "" }} maxWidth={"700px"} width={"100%"}>
-            <Form.Input
-              name="search"
-              placeHolder={"Buscar por produto..."}
-              maxWidth="700px"
-              marginCenter
-              search
-            />
+          <Form
+            data={{ search: "" }}
+            onSubmit={handleSearch}
+            maxWidth={"700px"}
+            width={"100%"}
+          >
+            <Form.Input name="search" placeHolder={"Buscar por produto..."} />
+            <ButtonSearch>
+              <AiOutlineSearch size={20} color="#FF5757" />
+            </ButtonSearch>
           </Form>
         </ContainerSearchMobile>
       </ContainerHeader>
@@ -224,6 +224,13 @@ export default function Header() {
             return (
               <Text
                 key={category.nome}
+                onClick={() =>
+                  navigate("/category", {
+                    state: {
+                      category: category,
+                    },
+                  })
+                }
                 size="14px"
                 cursor="pointer"
                 weight="600"

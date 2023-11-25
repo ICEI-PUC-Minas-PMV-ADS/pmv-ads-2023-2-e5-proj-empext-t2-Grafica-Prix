@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Form from "../../../components/common/formComponents";
 import useAuth from "../../../context/auth";
 import { TextForgotPassword } from "../../../pages/common/login/styles";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import * as Yup from "yup";
 import { useQueryClient } from "@tanstack/react-query";
 import { toast } from "react-toastify";
@@ -10,8 +10,6 @@ import { toast } from "react-toastify";
 export default function ClientLogin() {
   const { login } = useAuth();
   const [loading, setLoading] = useState(false);
-
-  const navigate = useNavigate();
 
   const client = useQueryClient();
 
@@ -25,11 +23,14 @@ export default function ClientLogin() {
     login(data).then(
       (res) => {
         setLoading(false);
-        client.setQueryData(
-          { queryKey: ["me", res.dbusuario.id] },
-          res.dbusuario
-        );
-        toast.success("Login efetuado com sucesso.");
+        if (res.user?.permissao) {
+          client.setQueryData(
+            { queryKey: ["employee", res.user.id] },
+            res.user
+          );
+        } else {
+          client.setQueryData({ queryKey: ["me", res.user.id] }, res.user);
+        }
       },
       (e) => {
         setLoading(false);

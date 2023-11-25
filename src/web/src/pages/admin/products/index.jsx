@@ -17,10 +17,15 @@ import { currencyFormatter } from "../../../services/priceServices";
 import { ContainerRegister } from "../categories/styles";
 import http from "../../../services/http";
 import { toast } from "react-toastify";
+import useAuth from "../../../context/auth";
 
 export default function Products(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+  const [dateWithPagination, setDateWithPagination] = useState();
+  const [page, setPage] = useState(1);
+
+  const { user } = useAuth();
 
   const client = useQueryClient();
 
@@ -28,6 +33,17 @@ export default function Products(props) {
     queryKey: ["products"],
     queryFn: getProducts,
   });
+
+  useEffect(() => {
+    const take = 10;
+    const newData = [];
+
+    for (let i = 0; i < products.data?.length; i += take) {
+      newData.push(products.data?.slice(i, i + take));
+    }
+
+    setDateWithPagination(newData);
+  }, [products.data]);
 
   const columns = [
     {
@@ -50,49 +66,54 @@ export default function Products(props) {
 
   useEffect(() => {
     setDataWithAction(
-      products.data?.map((data) => {
-        const priceFormat = currencyFormatter(data.preco);
-        return {
-          ...data,
-          preco: priceFormat,
-          action: (
-            <ContainerActions>
-              <BsTrash3
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "delete",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BiEditAlt
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "edit",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BsBoxArrowUpRight
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "details",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </ContainerActions>
-          ),
-        };
-      })
+      dateWithPagination &&
+        dateWithPagination[page - 1]?.map((data) => {
+          const priceFormat = currencyFormatter(data.preco);
+          return {
+            ...data,
+            preco: priceFormat,
+            action: (
+              <ContainerActions>
+                {user?.permissao === 2 && (
+                  <BsTrash3
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "delete",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                {user?.permissao !== 0 && (
+                  <BiEditAlt
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "edit",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                <BsBoxArrowUpRight
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "details",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+              </ContainerActions>
+            ),
+          };
+        })
     );
-  }, [products.data]);
+  }, [products.data, dateWithPagination, page]);
 
   function handleSearch(value) {
     http
@@ -137,27 +158,32 @@ export default function Products(props) {
             }}
             actionTitle="Novo produto"
             handleSearch={handleSearch}
+            setPage={setPage}
+            page={page}
+            lastPage={dateWithPagination && dateWithPagination?.length}
           />
         </Divisor>
-        <ContainerRegister>
-          <Divisor
-            flex="2"
-            direction="column"
-            height="100vh"
-            bgColor="#fff"
-            boxShadow
-            padding="20px"
-            overflow="auto"
-          >
-            <Text size="20px" weight="600">
-              Cadastrar novo produto
-            </Text>
-            <Text size="14px" weight="500">
-              Informe o nome e uma descrição (opcional) para seu produto.
-            </Text>
-            <Register />
-          </Divisor>
-        </ContainerRegister>
+        {user?.permissao === 2 && (
+          <ContainerRegister>
+            <Divisor
+              flex="2"
+              direction="column"
+              height="100vh"
+              bgColor="#fff"
+              boxShadow
+              padding="20px"
+              overflow="auto"
+            >
+              <Text size="20px" weight="600">
+                Cadastrar novo produto
+              </Text>
+              <Text size="14px" weight="500">
+                Informe o nome e uma descrição (opcional) para seu produto.
+              </Text>
+              <Register />
+            </Divisor>
+          </ContainerRegister>
+        )}
       </Container>
       {modal?.key === "edit" && (
         <Modal setModal={setModal} width="40%">

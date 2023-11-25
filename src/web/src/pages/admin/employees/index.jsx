@@ -5,27 +5,42 @@ import Table from "../../../components/admin/table";
 import Text from "../../../components/common/text";
 import Register from "../../../components/admin/forms/employees/register";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { getCategories } from "../../../services/api/categories";
 import { BsBoxArrowUpRight, BsTrash3 } from "react-icons/bs";
 import { BiEditAlt } from "react-icons/bi";
 import ContainerActions from "../../../components/admin/containerActions";
 import Modal from "../../../components/common/modal";
-import Edit from "../../../components/admin/forms/categories/edit";
-import Delete from "../../../components/admin/forms/categories/delete";
-import Details from "../../../components/admin/forms/categories/detail";
+import Edit from "../../../components/admin/forms/employees/edit";
+import Delete from "../../../components/admin/forms/employees/delete";
+import Details from "../../../components/admin/forms/employees/detail";
 import { ContainerRegister } from "../categories/styles";
 import { getEmployees } from "../../../services/api/employees";
 import http from "../../../services/http";
 import { toast } from "react-toastify";
+import useAuth from "../../../context/auth";
 
 export default function Employees(props) {
   const [dataWithAction, setDataWithAction] = useState();
   const [modal, setModal] = useState(false);
+  const [dateWithPagination, setDateWithPagination] = useState();
+  const [page, setPage] = useState(1);
+
+  const { user } = useAuth();
 
   const employees = useQuery({
     queryKey: ["employees"],
     queryFn: getEmployees,
   });
+
+  useEffect(() => {
+    const take = 10;
+    const newData = [];
+
+    for (let i = 0; i < employees.data?.length; i += take) {
+      newData.push(employees.data?.slice(i, i + take));
+    }
+
+    setDateWithPagination(newData);
+  }, [employees.data]);
 
   const client = useQueryClient();
 
@@ -67,47 +82,52 @@ export default function Employees(props) {
 
   useEffect(() => {
     setDataWithAction(
-      employees.data?.map((data) => {
-        return {
-          ...data,
-          action: (
-            <ContainerActions>
-              <BsTrash3
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "delete",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BiEditAlt
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "edit",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-              <BsBoxArrowUpRight
-                size={18}
-                onClick={() => {
-                  setModal({
-                    key: "details",
-                    data: data,
-                  });
-                }}
-                style={{ cursor: "pointer" }}
-              />
-            </ContainerActions>
-          ),
-        };
-      })
+      dateWithPagination &&
+        dateWithPagination[page - 1]?.map((data) => {
+          return {
+            ...data,
+            action: (
+              <ContainerActions>
+                {user?.permissao === 2 && (
+                  <BsTrash3
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "delete",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                {user?.permissao !== 0 && (
+                  <BiEditAlt
+                    size={18}
+                    onClick={() => {
+                      setModal({
+                        key: "edit",
+                        data: data,
+                      });
+                    }}
+                    style={{ cursor: "pointer" }}
+                  />
+                )}
+                <BsBoxArrowUpRight
+                  size={18}
+                  onClick={() => {
+                    setModal({
+                      key: "details",
+                      data: data,
+                    });
+                  }}
+                  style={{ cursor: "pointer" }}
+                />
+              </ContainerActions>
+            ),
+          };
+        })
     );
-  }, [employees.data]);
+  }, [employees.data, dateWithPagination, page]);
 
   return (
     <>
@@ -139,26 +159,31 @@ export default function Employees(props) {
             }}
             actionTitle="Novo funcionário"
             handleSearch={handleSearch}
+            setPage={setPage}
+            page={page}
+            lastPage={dateWithPagination && dateWithPagination?.length}
           />
         </Divisor>
-        <ContainerRegister>
-          <Divisor
-            flex="2"
-            direction="column"
-            height="100vh"
-            bgColor="#fff"
-            boxShadow
-            padding="20px"
-          >
-            <Text size="20px" weight="600">
-              Cadastrar novo funcionário
-            </Text>
-            <Text size="14px" weight="500">
-              Informe os dados do funcionário.
-            </Text>
-            <Register />
-          </Divisor>
-        </ContainerRegister>
+        {user?.permissao === 2 && (
+          <ContainerRegister>
+            <Divisor
+              flex="2"
+              direction="column"
+              height="100vh"
+              bgColor="#fff"
+              boxShadow
+              padding="20px"
+            >
+              <Text size="20px" weight="600">
+                Cadastrar novo funcionário
+              </Text>
+              <Text size="14px" weight="500">
+                Informe os dados do funcionário.
+              </Text>
+              <Register />
+            </Divisor>
+          </ContainerRegister>
+        )}
       </Container>
       {modal?.key === "edit" && (
         <Modal setModal={setModal} width="40%">

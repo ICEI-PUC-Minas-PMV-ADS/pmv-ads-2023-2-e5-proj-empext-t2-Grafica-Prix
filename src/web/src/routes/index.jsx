@@ -15,6 +15,7 @@ import Employees from "../pages/admin/employees";
 import Banners from "../pages/admin/banners";
 import AboutUsClient from "../pages/client/aboutUs";
 import AboutUsAdmin from "../pages/admin/aboutUs";
+import Category from "../pages/client/category";
 
 export default function AppRoutes() {
   return (
@@ -25,6 +26,7 @@ export default function AppRoutes() {
         <Route path="budgets" element={<BudgetList />} />
         <Route path="search" element={<SearchResult />} />
         <Route path="about-us" element={<AboutUsClient />} />
+        <Route path="category" element={<Category />} />
       </Route>
       <Route path="admin" element={<Admin />}>
         <Route path="dashboard" element={<Dashboard />} />

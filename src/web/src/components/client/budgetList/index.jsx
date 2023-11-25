@@ -22,6 +22,7 @@ import {
 } from "../../../services/api/budgets";
 import CarouselProducts from "../../common/carouselProducts";
 import useAuth from "../../../context/auth";
+import { toast } from "react-toastify";
 
 export default function BudgetList() {
   const navigate = useNavigate();
@@ -80,6 +81,9 @@ export default function BudgetList() {
       () => {
         client.setQueryData({ queryKey: ["productsInKart"] }, []);
         setLoading(false);
+        toast.success(
+          "Orçamento solicitado com sucesso. O vendedor entrará em contato com você por email"
+        );
       },
       () => {
         setLoading(false);
@@ -101,32 +105,38 @@ export default function BudgetList() {
       </Text>
       <BudgetsStyles>
         <ProductList>
-          {productsInKart.data?.map((product) => {
-            return (
-              <ProductBudget>
-                <Actions
-                  right
-                  delete
-                  actionDelete={() => handleDeleteProduct(product.id)}
-                />
-                <Text size="18px" weight="600">
-                  {product.nome}
-                </Text>
-                <Text size="14px" weight="500">
-                  {currencyFormatter(product.preco)}
-                </Text>
-                {product.observavao && (
-                  <Collpase title="Observação" margin="10px 0 0 0">
-                    <Text
-                      dangerouslySetInnerHTML={{
-                        __html: product.observavao,
-                      }}
-                    ></Text>
-                  </Collpase>
-                )}
-              </ProductBudget>
-            );
-          })}
+          {productsInKart.data?.length > 0 ? (
+            productsInKart.data?.map((product) => {
+              return (
+                <ProductBudget>
+                  <Actions
+                    right
+                    delete
+                    actionDelete={() => handleDeleteProduct(product.id)}
+                  />
+                  <Text size="18px" weight="600">
+                    {product.nome}
+                  </Text>
+                  <Text size="14px" weight="500">
+                    {currencyFormatter(product.preco)}
+                  </Text>
+                  {product.observavao && (
+                    <Collpase title="Observação" margin="10px 0 0 0">
+                      <Text
+                        dangerouslySetInnerHTML={{
+                          __html: product.observavao,
+                        }}
+                      ></Text>
+                    </Collpase>
+                  )}
+                </ProductBudget>
+              );
+            })
+          ) : (
+            <Text size="16px" weight="600">
+              Não há produtos no carrinho
+            </Text>
+          )}
         </ProductList>
         <Containeractions>
           <ActionBudgets>

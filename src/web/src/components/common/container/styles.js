@@ -12,4 +12,5 @@ export const ContainerStyles = styled.div`
   height: ${(props) => props.height};
   gap: ${(props) => props.gap || "10px"};
   position: relative;
+  min-height: ${(props) => props.minHeight};
 `;
