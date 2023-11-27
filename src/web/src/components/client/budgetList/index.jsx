@@ -63,7 +63,11 @@ export default function BudgetList() {
 
     if (productsInKart.data?.length > 0) {
       for (let key in productsInKart.data) {
-        data.push(productsInKart.data[key]?.preco);
+        data.push(
+          productsInKart.data[key]?.promocao
+            ? productsInKart.data[key]?.promocao
+            : productsInKart.data[key]?.preco
+        );
       }
     }
 
@@ -118,7 +122,7 @@ export default function BudgetList() {
                     {product.nome}
                   </Text>
                   <Text size="14px" weight="500">
-                    {currencyFormatter(product.preco)}
+                    {currencyFormatter(product.promocao || product.preco)}
                   </Text>
                   {product.observavao && (
                     <Collpase title="Observação" margin="10px 0 0 0">

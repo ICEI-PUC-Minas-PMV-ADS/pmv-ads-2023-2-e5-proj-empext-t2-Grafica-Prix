@@ -18,6 +18,7 @@ import image from "../../../assets/image-login-removebg-preview.png";
 import logo from "../../../assets/logo-prix-removebg-preview 1.png";
 import useAuth from "../../../context/auth";
 import { Navigate } from "react-router";
+import { Link } from "react-router-dom";
 
 export default function Login(props) {
   const [form, setForm] = useState("login");
@@ -36,7 +37,9 @@ export default function Login(props) {
     return (
       <ContainerLogin>
         <ContainerForm>
-          <Logo src={logo} />
+          <Link to="/">
+            <Logo src={logo} />
+          </Link>
           <JustifyForm>
             <FormOptions>
               <Option
