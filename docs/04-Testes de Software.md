@@ -1,9 +1,9 @@
 # Planos de Testes de Software
 
-Apresente os cenários de testes utilizados na realização dos testes da sua aplicação. Escolha cenários de testes que demonstrem os requisitos sendo satisfeitos.
+![image](https://github.com/ICEI-PUC-Minas-PMV-ADS/pmv-ads-2023-2-e5-proj-empext-t2-Grafica-Prix/assets/91069587/8ffc2121-a08b-4b6c-89c8-ac018ed5cf84)
 
-Enumere quais cenários de testes foram selecionados para teste. Neste tópico o grupo deve detalhar quais funcionalidades avaliadas, o grupo de usuários que foi escolhido para participar do teste e as ferramentas utilizadas.
  
 # Evidências de Testes de Software
 
-Apresente imagens e/ou vídeos que comprovam que um determinado teste foi executado, e o resultado esperado foi obtido. Normalmente são screenshots de telas, ou vídeos do software em funcionamento.
+
+https://sgapucminasbr-my.sharepoint.com/:w:/g/personal/909986_sga_pucminas_br/ETF6axCvr3pMq_dxio0Eu1EBa0xxKqz7Tox06oNcdxeP3A?e=zNM7UZ)https://sgapucminasbr-my.sharepoint.com/:w:/g/personal/909986_sga_pucminas_br/ETF6axCvr3pMq_dxio0Eu1EBa0xxKqz7Tox06oNcdxeP3A?e=zNM7UZ
