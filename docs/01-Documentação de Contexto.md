@@ -4,13 +4,13 @@ O projeto do grupo para o 5ª semestre do curso de Análise e Desenvolvimento, t
 
 ## Problema
 Tendo em vista a mudança no mercado por conta da popularização da tecnologia e de dispositivos digitais, para que a Gráfica possa acompanhar esta evolução e se manter competitiva no mercado gráfico, existe a necessidade de se integrar no mundo tecnológico por meio de um website que possa captar novos clientes não só local como de qualquer outra parte do Brasil. 
+Como facilitar o acesso e atrair novos clientes para a gráfica? 
 
 ## Objetivos
 
-O obetivo principal deste projeto é a criação de uma aplicação web, onde apresente todos os produtos e serviços do cliente categorizados.
+O objetivo principal deste projeto é a criação de uma aplicação web para uma gráfica, na qual os usuários possam solicitar orçamentos de produtos. 
 
-Como objetivos específicos existe o foco na funcionalidade que possibilite solicitar um orçamento dos produtos de interesse junto da gráfica, através da adição dos mesmos e envio de orçamento. E também a criação de um perfil administrador que consiga visualizar dentro da aplicação orçamentos solicitados, bem como realizar o gerenciamento de produtos.
-
+Os objetivos específicos são a criação de um perfil administrador que possa gerenciar e criar categorias e produtos, envio de solicitação de orçamento para o e-mail do empreendedor e criação de um dashboard onde o administrador consiga visualizar os produtos mais procurados e pedidos de orçamento. 
 ## Justificativa
 
 Por possuir um baixo número de funcionários e atender principalmente empresas, ter uma aplicação web onde possam ser gerados orçamentos já com as imagens desejadas otimiza muito o tempo de empresas já fidelizadas por Reinaldo e também o tempo do atendimento realizado.
@@ -31,6 +31,4 @@ Em resumo, a relação entre a situação-problema da organização e o impacto 
  
 ## Descrição do Parceiro
 
-O proprietário da Gráfica PRIX é pai, honesto e trabalhador ele tem paixão pelo trabalho que exerce e amor pela sua gráfica.
-Não é muito ligado em tecnologias e utiiza apenas de watsaapp com frequência. Tem o desejo de ter um site para sua gráfica, onde possa exibir seus produtos e facilitar o alcance a possíveis novos clientes.
-A gráfica PRIX é um empreendimento de renome pois já está no mercado desde 1996 entregando produtos e serviços com excelência, conta também com 2 funcionários que o auxiliam no trabalho. O público principal da gráfica são empresas(dentre elas gigantes do mercado em diversos segmentos), porém realiza todos os tipo de serviços comuns a gráficas com nada menos que excelência.
+O proprietário da Gráfica PRIX é pai, honesto e trabalhador ele tem paixão pelo trabalho que exerce e amor pela sua gráfica. Não é muito ligado em tecnologias e utiliza apenas de WhatsApp com frequência. Tem o desejo de ter um site para sua gráfica, onde possa exibir seus produtos e facilitar o alcance a possíveis novos clientes. A gráfica PRIX é um empreendimento de renome pois já está no mercado desde 1996 entregando produtos e serviços com excelência, conta também com 2 funcionários que o auxiliam no trabalho. O público principal da gráfica são empresas (dentre elas gigantes do mercado em diversos segmentos), porém realiza todos os tipos de serviços comuns a gráficas com nada menos que excelência. 
