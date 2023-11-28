@@ -29,7 +29,7 @@ export default function Detail() {
 
   return (
     <>
-      <Container maxWidth="1100px">
+      <Container maxWidth="1100px" minHeight="100%">
         <Text>{`Home > ${product.nome}`}</Text>
         <ContainerDetailProduct>
           <ImageProduct src={`data:image/png;base64, ${product.imagem}`} />

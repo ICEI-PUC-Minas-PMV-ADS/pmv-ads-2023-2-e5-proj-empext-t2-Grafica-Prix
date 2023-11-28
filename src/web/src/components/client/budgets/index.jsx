@@ -28,8 +28,8 @@ export default function Budget({ product }) {
 
     const data = {
       ...product,
-      Quantidade: values.Quantidade,
-      Observacao: values.Observacao,
+      Quantidade: values.quantidade,
+      Observacao: values.observacao,
     };
 
     http.post("/api/Orcamento/adicionar-ao-orcamento/", data).then(

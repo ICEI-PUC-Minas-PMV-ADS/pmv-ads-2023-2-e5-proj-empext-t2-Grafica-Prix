@@ -15,7 +15,7 @@ namespace API_Grafica_Prix.Models
 
         public decimal Preco { get; set; }
         public int? Quantidade { get; set; }
-        public string? Promocao { get; set; }
+        public decimal? Promocao { get; set; }
 
         public string? Cor { get; set; }
 

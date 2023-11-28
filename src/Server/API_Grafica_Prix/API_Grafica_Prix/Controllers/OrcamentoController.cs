@@ -116,7 +116,7 @@ namespace API_Grafica_Prix.Controllers
 
             var carrinhoTemporario = await _context.adicionarProdutos.Include(c => c.Produtos).FirstOrDefaultAsync(c => c.UsuarioId == usuarioId);
 
-            var destinatario = "raphael.latini@gmail.com";
+            var destinatario = "reigrafmg@reigrafmg.com.br";
 
             if (carrinhoTemporario != null)
             {
