@@ -37,8 +37,7 @@ As tabelas que se seguem apresentam os requisitos funcionais e não funcionais q
 |RF-012| Comunicação direta com o emprresário por watassp através de um botão flutuante  | ALTA |
 |RF-013| Deve ser enviada ao e-mail da gráfica as informações de poduto, quantidade, nome do cliente, e-mail, telefone e endereço (contidos no cadastro do usuário) assim que concluida uma solicitação de orçamento  |  ALTA | 
 |RF-014| Disponilizar uma funcionalidade em que o administrador possa gerenciar os pedidos, de modo que possa atribuir um status: Fechado, negociando e venda concluída. Sempre uma solicitação de orçamento for enviada esta deve conter automaticamente o status de nogociando  |  ALTA | 
-|RF-015| Gerar relatório de quantos pedidos possuem cada um dos status para visualização do administrador possa visulizar |  ALTA | 
-|RF-019| Visualização de quantidade de cliques por produto ao administrador |  ALTA | 
+|RF-015| Visualização de produtos mais procurados (administrador) |  ALTA | 
 
 
 ### Requisitos não Funcionais
