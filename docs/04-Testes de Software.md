@@ -7,3 +7,7 @@
 
 
 https://sgapucminasbr-my.sharepoint.com/:w:/g/personal/909986_sga_pucminas_br/ETF6axCvr3pMq_dxio0Eu1EBa0xxKqz7Tox06oNcdxeP3A?e=zNM7UZ)https://sgapucminasbr-my.sharepoint.com/:w:/g/personal/909986_sga_pucminas_br/ETF6axCvr3pMq_dxio0Eu1EBa0xxKqz7Tox06oNcdxeP3A?e=zNM7UZ
+
+# Vídeo de demonstração do projeto
+
+https://www.youtube.com/watch?v=XYPSpkS7ygE&ab_channel=RaquelFernandes
